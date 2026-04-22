@@ -11,6 +11,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\CompanyhighlightController;
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -91,4 +92,11 @@ Route::prefix('admin')->group(function () {
     Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
 
+    // Company Highlight routes
+    Route::get('/highlights', [CompanyhighlightController::class, 'index'])->name('admin.highlights.index');
+    Route::get('/highlights/create', [CompanyhighlightController::class, 'create'])->name('admin.highlights.create');
+    Route::post('/highlights', [CompanyhighlightController::class, 'store'])->name('admin.highlights.store');
+    Route::get('/highlights/{highlight}/edit', [CompanyhighlightController::class, 'edit'])->name('admin.highlights.edit');
+    Route::put('/highlights/{highlight}', [CompanyhighlightController::class, 'update'])->name('admin.highlights.update');
+    Route::delete('/highlights/{highlight}', [CompanyhighlightController::class, 'destroy'])->name('admin.highlights.destroy');
 });
