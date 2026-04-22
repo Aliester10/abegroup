@@ -10,7 +10,6 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\Admin\TimelineController;
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -19,8 +18,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang', [\App\Http\Controllers\AboutPageController::class, 'index'])->name('about');
 Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index'])->name('business');
 Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
-Route::get('/berita', [\App\Http\Controllers\NewsController::class, 'index'])->name('news');
-Route::get('/berita/{id}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
+Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
+Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::post('/hubungi', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
@@ -32,7 +31,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Admin routes (protected)
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     
     // Banner routes
@@ -82,12 +81,4 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/partner/{partner}/edit', [PartnerController::class, 'edit'])->name('admin.partner.edit');
     Route::put('/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
     Route::delete('/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
-
-    // Timeline routes
-    Route::get('/timelines', [TimelineController::class, 'index'])->name('admin.timelines.index');
-    Route::get('/timelines/create', [TimelineController::class, 'create'])->name('admin.timelines.create');
-    Route::post('/timelines', [TimelineController::class, 'store'])->name('admin.timelines.store');
-    Route::get('/timelines/{timeline}/edit', [TimelineController::class, 'edit'])->name('admin.timelines.edit');
-    Route::put('/timelines/{timeline}', [TimelineController::class, 'update'])->name('admin.timelines.update');
-    Route::delete('/timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.timelines.destroy');
 });
