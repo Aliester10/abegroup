@@ -10,6 +10,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\CompanyhighlightController;
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -81,4 +82,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/partner/{partner}/edit', [PartnerController::class, 'edit'])->name('admin.partner.edit');
     Route::put('/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
     Route::delete('/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
+
+    // Company Highlight routes
+    Route::get('/highlights', [CompanyhighlightController::class, 'index'])->name('admin.highlights.index');
+    Route::get('/highlights/create', [CompanyhighlightController::class, 'create'])->name('admin.highlights.create');
+    Route::post('/highlights', [CompanyhighlightController::class, 'store'])->name('admin.highlights.store');
+    Route::get('/highlights/{highlight}/edit', [CompanyhighlightController::class, 'edit'])->name('admin.highlights.edit');
+    Route::put('/highlights/{highlight}', [CompanyhighlightController::class, 'update'])->name('admin.highlights.update');
+    Route::delete('/highlights/{highlight}', [CompanyhighlightController::class, 'destroy'])->name('admin.highlights.destroy');
+
+ 
 });
