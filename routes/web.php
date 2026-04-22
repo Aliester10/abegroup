@@ -10,6 +10,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\Admin\TimelineController;
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -81,4 +82,12 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/partner/{partner}/edit', [PartnerController::class, 'edit'])->name('admin.partner.edit');
     Route::put('/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
     Route::delete('/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
+
+    // Timeline routes
+    Route::get('/timelines', [TimelineController::class, 'index'])->name('admin.timelines.index');
+    Route::get('/timelines/create', [TimelineController::class, 'create'])->name('admin.timelines.create');
+    Route::post('/timelines', [TimelineController::class, 'store'])->name('admin.timelines.store');
+    Route::get('/timelines/{timeline}/edit', [TimelineController::class, 'edit'])->name('admin.timelines.edit');
+    Route::put('/timelines/{timeline}', [TimelineController::class, 'update'])->name('admin.timelines.update');
+    Route::delete('/timelines/{timeline}', [TimelineController::class, 'destroy'])->name('admin.timelines.destroy');
 });

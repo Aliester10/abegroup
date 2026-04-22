@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABE Group</title>
+    <script type="module" src="http://[::1]:5175/@vite/client"></script><link rel="stylesheet" href="http://[::1]:5175/resources/css/app.css" /><script type="module" src="http://[::1]:5175/resources/js/app.js"></script></head>
+<body class="bg-white text-slate-900 antialiased">
+        <header class="sticky top-0 z-50">
+    <div class="bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="http://127.0.0.1:8000" class="flex items-center gap-3 text-gray-900">
+                    <img src="http://127.0.0.1:8000/assets/img/LOGO ABE GROUP-02.png" alt="ABE Group Logo" class="h-20">
+                </a>
+
+                <nav class="hidden md:flex items-center gap-1 text-sm">
+                    <a href="http://127.0.0.1:8000" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Beranda</a>
+                    <a href="http://127.0.0.1:8000/tentang" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Tentang</a>
+
+                    <div class="relative group">
+                        <button type="button" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition inline-flex items-center gap-2 font-bold font-poppins">
+                            Bisnis
+                            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+                        </button>
+                        <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
+                            <div class="w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
+                                <div class="p-2">
+                                                                            <a href="http://127.0.0.1:8000/bisnis" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">
+                                            <div class="font-medium text-slate-900">ARO Baskara Esa</div>
+                                            <div class="text-xs text-slate-500">Perusahaan yang bergerak di bidang konstruksi dan infrastruk...</div>
+                                        </a>
+                                                                            <a href="http://127.0.0.1:8000/bisnis" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">
+                                            <div class="font-medium text-slate-900">ABE Inteknologi Indonesia</div>
+                                            <div class="text-xs text-slate-500">Perusahaan teknologi yang menyediakan solusi IT terintegrasi...</div>
+                                        </a>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="http://127.0.0.1:8000/karir" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Karir</a>
+                    <a href="http://127.0.0.1:8000/berita" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Berita Terkini</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-3">
+                    <a href="http://127.0.0.1:8000/hubungi" class="inline-flex items-center px-4 py-2 rounded-lg bg-[#FF6900] hover:bg-orange-600 text-white font-semibold transition">
+                        Hubungi Kami
+                    </a>
+                </div>
+
+                <button type="button" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-700 hover:bg-gray-100" data-mobile-menu-button aria-label="Open menu">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="md:hidden hidden" data-mobile-menu>
+        <div class="bg-white border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+                <div class="flex flex-col gap-1 text-sm">
+                    <a href="http://127.0.0.1:8000" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 font-bold font-poppins">Beranda</a>
+                    <a href="http://127.0.0.1:8000/tentang" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 font-bold font-poppins">Tentang</a>
+                    <a href="http://127.0.0.1:8000/bisnis" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 font-bold font-poppins">Bisnis</a>
+                    <a href="http://127.0.0.1:8000/karir" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 font-bold font-poppins">Karir</a>
+                    <a href="http://127.0.0.1:8000/berita" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 font-bold font-poppins">Berita Terkini</a>
+                    <a href="http://127.0.0.1:8000/hubungi" class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold">
+                        Hubungi Kami
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+    <section class="relative overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="http://127.0.0.1:8000/storage/banners/EkzsITl38cRX1XcCZGA9iClCtCVVvjD0lSM68jAp.jpg" alt="ABE Group" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-slate-950/70"></div>
+        <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-950/70 to-orange-500/10"></div>
+    </div>
+
+    <div class="relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="min-h-[78vh] flex items-center justify-center py-16">
+                <div class="max-w-3xl text-center">
+                    <p class="inline-flex items-center gap-2 text-white/70 text-sm mb-4">
+                        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                        Corporate Group • Indonesia
+                    </p>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        Membangun Masa Depan
+                        <span class="block text-orange-400">Bersama ABE Group</span>
+                    </h1>
+
+                    <p class="mt-5 text-base sm:text-lg text-white/75 max-w-2xl">
+                        ABE Group adalah grup perusahaan yang berfokus pada pertumbuhan berkelanjutan, inovasi, dan tata kelola yang kuat untuk menciptakan dampak positif.
+                    </p>
+
+                    <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                        <a href="http://127.0.0.1:8000/tentang" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white hover:bg-gray-100 text-gray-900 font-semibold transition">
+                            Tentang Kami
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 ml-2">
+                                <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="http://127.0.0.1:8000/hubungi" class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-transparent hover:bg-white/10 text-white font-semibold border border-white transition">
+                            Hubungi Kami
+                        </a>
+                    </div>
+
+                    <div class="mt-12 flex justify-center">
+                        <div class="inline-flex items-center gap-2 text-white/60 text-xs">
+                            <span class="animate-pulse">Scroll</span>
+                            <span class="w-5 h-9 rounded-full border border-white/25 flex items-start justify-center p-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-white/70 animate-bounce"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="-mt-10 relative z-10">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 bg-white rounded-2xl shadow-xl ring-1 ring-slate-200 p-6">
+                                    <div class="group rounded-xl p-3 hover:bg-slate-50 transition">
+                        <div class="flex items-start gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
+                                <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10.75 10.5h5.5a.75.75 0 000-1.5h-5.5a.75.75 0 000 1.5z"/><path fill-rule="evenodd" d="M4 3.5A1.5 1.5 0 015.5 2h9A1.5 1.5 0 0116 3.5v13A1.5 1.5 0 0114.5 18h-9A1.5 1.5 0 014 16.5v-13zM5.5 3.5v13h9v-13h-9z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900">
+                                    <span class="js-counter" data-from="0" data-to="115" data-suffix="M">0</span>
+                                </div>
+                                <div class="text-xs text-slate-500">Pendapatan Tahunan</div>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="group rounded-xl p-3 hover:bg-slate-50 transition">
+                        <div class="flex items-start gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
+                                <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path d="M13 7a3 3 0 11-6 0 3 3 0 016 0z"/><path fill-rule="evenodd" d="M10 11a6 6 0 00-6 6 .75.75 0 001.5 0 4.5 4.5 0 019 0 .75.75 0 001.5 0 6 6 0 00-6-6z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900">
+                                    <span class="js-counter" data-from="0" data-to="450" data-suffix="+">0</span>
+                                </div>
+                                <div class="text-xs text-slate-500">Karyawan Global</div>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="group rounded-xl p-3 hover:bg-slate-50 transition">
+                        <div class="flex items-start gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
+                                <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9.69 18.933a.75.75 0 01-.638-.352l-3.84-6.144a6.5 6.5 0 1110.976 0l-3.84 6.144a.75.75 0 01-.638.352zm.31-8.433a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900">
+                                    <span class="js-counter" data-from="0" data-to="10" data-suffix="+">0</span>
+                                </div>
+                                <div class="text-xs text-slate-500">Kota</div>
+                            </div>
+                        </div>
+                    </div>
+                                    <div class="group rounded-xl p-3 hover:bg-slate-50 transition">
+                        <div class="flex items-start gap-3">
+                            <div class="w-11 h-11 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
+                                <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 5.5A2.5 2.5 0 118.5 8 2.5 2.5 0 016 5.5zM11.5 11a3 3 0 00-2.994 2.824L8.5 14v2.25a.75.75 0 001.5 0V14a1.5 1.5 0 011.356-1.493L11.5 12.5h2a1.5 1.5 0 011.493 1.356L15 14v2.25a.75.75 0 001.5 0V14a3 3 0 00-3-3h-2z" clip-rule="evenodd"/><path d="M12 5.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-extrabold text-slate-900">
+                                    <span class="js-counter" data-from="0" data-to="20" data-suffix="+">0</span>
+                                </div>
+                                <div class="text-xs text-slate-500">Mitra</div>
+                            </div>
+                        </div>
+                    </div>
+                            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div class="relative">
+                <div class="aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-slate-200 shadow-lg">
+                    <img src="http://127.0.0.1:8000/storage/about/tpAb3ZFyrFwayBYLWPuGQAisUW30VPyjlke0PvHk.png" alt="Tentang ABE Group" class="w-full h-full object-cover" />
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-40 h-40 rounded-3xl bg-gradient-to-br from-slate-950 to-slate-800 hidden sm:block"></div>
+                <div class="absolute -bottom-4 -right-4 w-40 h-40 rounded-3xl bg-gradient-to-br from-[#F97316] to-[#F97316]/80 hidden sm:block"></div>
+            </div>
+
+            <div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+                    Mengenal <span class="text-[#F97316]">ABE Group</span>
+                </h2>
+
+                <p class="mt-4 text-slate-600 leading-relaxed">
+                    Didirikan dengan semangat membangun ekosistem bisnis yang kuat, <span class="font-bold">ABE Group</span> hadir sebagai entitas induk yang mengintegrasikan berbagai sektor usaha untuk menciptakan sinergi yang optimal.
+                </p>
+                <p class="mt-4 text-slate-600 leading-relaxed">
+                    Dengan portofolio yang mencakup layanan teknik & teknologi, serta platform e-commerce, ABE Group berkomitmen untuk memberikan solusi bisnis terbaik bagi mitra dan klien di seluruh Indonesia.
+                </p>
+
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 border border-slate-200">
+                        <svg class="w-4 h-4 mr-2 text-[#F97316]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                        </svg>
+                        <span class="text-sm font-medium text-slate-700">Pertumbuhan Berkelanjutan</span>
+                    </div>
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 border border-slate-200">
+                        <svg class="w-4 h-4 mr-2 text-[#F97316]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span class="text-sm font-medium text-slate-700">Integritas & Kepercayaan</span>
+                    </div>
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 border border-slate-200">
+                        <svg class="w-4 h-4 mr-2 text-[#F97316]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span class="text-sm font-medium text-slate-700">Kemitraan Strategis</span>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <a href="http://127.0.0.1:8000/bisnis" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#1E3A8A] hover:bg-[#1E3A8A]/90 text-white font-semibold transition">
+                        Lihat Perusahaan Kami
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Timeline Section -->
+<section class="py-20 relative overflow-hidden">
+    <!-- Animated Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-orange-50">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239CA3AF" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-20">
+            <div class="inline-flex items-center px-6 py-3 mb-6 rounded-full bg-gradient-to-r from-blue-500/10 to-orange-500/10 border border-blue-200/50 backdrop-blur-sm">
+                <div class="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
+                <span class="text-blue-700 font-bold text-lg">Perjalanan Kami</span>
+            </div>
+            <h2 class="text-5xl md:text-6xl font-black mb-6">
+                <span class="bg-gradient-to-r from-[#1E3A8A] via-purple-600 to-[#F97316] bg-clip-text text-transparent">
+                    Perjalanan ABE Group
+                </span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                Dari visi sederhana hingga menjadi pemimpin industri, ini adalah milestone yang membentuk ABE Group.
+            </p>
+        </div>
+        
+        <!-- Timeline Container -->
+        <div class="relative">
+            <!-- Animated Vertical Line with Gradient -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full">
+                <div class="h-full bg-gradient-to-b from-[#1E3A8A] via-purple-500 to-[#F97316] rounded-full animate-pulse"></div>
+                <div class="h-full bg-gradient-to-b from-[#1E3A8A] via-purple-500 to-[#F97316] rounded-full blur-xl opacity-30 absolute top-0 left-0"></div>
+            </div>
+
+            <!-- Timeline Item 1: Pendirian ABE Group (Left) -->
+            <div class="relative flex items-center mb-24 group">
+                <!-- Connector Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-[#1E3A8A] to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-1/2 pr-12 text-right">
+                    <div class="relative inline-block">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 transform group-hover:scale-105"></div>
+                        <div class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-blue-100/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
+                            <!-- Year Badge -->
+                            <div class="absolute -top-4 -right-4 px-4 py-2 bg-gradient-to-r from-[#1E3A8A] to-blue-600 text-white text-sm font-bold rounded-full shadow-lg flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                2010
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mt-3 mb-3">Pendirian ABE Group</h3>
+                            <p class="text-gray-600 leading-relaxed">Didirikan dengan visi menjadi perusahaan holding terdepan di Indonesia</p>
+                            <div class="mt-4 flex items-center justify-end space-x-2">
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">Startup</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">Vision</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Checkmark Circle -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#1E3A8A] to-blue-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="absolute w-20 h-20 bg-gradient-to-br from-[#1E3A8A] to-blue-600 rounded-full opacity-20 animate-ping"></div>
+                </div>
+                
+                <div class="w-1/2 pl-12 flex items-center">
+                    <div class="text-left">
+                        <div class="text-4xl font-black bg-gradient-to-r from-[#1E3A8A] to-blue-600 bg-clip-text text-transparent">2010</div>
+                        <div class="text-sm text-gray-500 font-medium">THE BEGINNING</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2: Ekspansi Bisnis (Right) -->
+            <div class="relative flex items-center mb-24 group">
+                <!-- Connector Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-l from-[#F97316] to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-1/2 pr-12 flex items-center justify-end">
+                    <div class="text-right">
+                        <div class="text-4xl font-black bg-gradient-to-r from-[#F97316] to-orange-600 bg-clip-text text-transparent">2013</div>
+                        <div class="text-sm text-gray-500 font-medium">GROWTH PHASE</div>
+                    </div>
+                </div>
+                
+                <!-- Checkmark Circle -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#F97316] to-orange-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="absolute w-20 h-20 bg-gradient-to-br from-[#F97316] to-orange-600 rounded-full opacity-20 animate-ping"></div>
+                </div>
+                
+                <div class="w-1/2 pl-12">
+                    <div class="relative inline-block">
+                        <div class="absolute inset-0 bg-gradient-to-l from-orange-500/20 to-red-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 transform group-hover:scale-105"></div>
+                        <div class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-orange-100/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:-rotate-1">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Ekspansi Bisnis</h3>
+                            <p class="text-gray-600 leading-relaxed mb-4">Meluncurkan 5 unit bisnis baru di sektor teknologi dan logistik</p>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-3 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full">Expansion</span>
+                                <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-semibold rounded-full">5 Units</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3: Transformasi Digital (Left) -->
+            <div class="relative flex items-center mb-24 group">
+                <!-- Connector Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-purple-500 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-1/2 pr-12 text-right">
+                    <div class="relative inline-block">
+                        <div class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 transform group-hover:scale-105"></div>
+                        <div class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-purple-100/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
+                            <!-- Year Badge -->
+                            <div class="absolute -top-4 -right-4 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-bold rounded-full shadow-lg flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                2018
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mt-3 mb-3">Transformasi Digital</h3>
+                            <p class="text-gray-600 leading-relaxed">Meluncurkan platform digital terintegrasi yang revolusioner</p>
+                            <div class="mt-4 flex items-center justify-end space-x-2">
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">Digital</span>
+                                <span class="px-3 py-1 bg-pink-100 text-pink-700 text-xs font-semibold rounded-full">Innovation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Checkmark Circle -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="absolute w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full opacity-20 animate-ping"></div>
+                </div>
+                
+                <div class="w-1/2 pl-12 flex items-center">
+                    <div class="text-left">
+                        <div class="text-4xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">2018</div>
+                        <div class="text-sm text-gray-500 font-medium">DIGITAL ERA</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 4: 1000+ Karyawan (Right) -->
+            <div class="relative flex items-center mb-24 group">
+                <!-- Connector Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-l from-green-500 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-1/2 pr-12 flex items-center justify-end">
+                    <div class="text-right">
+                        <div class="text-4xl font-black bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">2020</div>
+                        <div class="text-sm text-gray-500 font-medium">MILESTONE</div>
+                    </div>
+                </div>
+                
+                <!-- Checkmark Circle -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="absolute w-20 h-20 bg-gradient-to-br from-green-600 to-emerald-600 rounded-full opacity-20 animate-ping"></div>
+                </div>
+                
+                <div class="w-1/2 pl-12">
+                    <div class="relative inline-block">
+                        <div class="absolute inset-0 bg-gradient-to-l from-green-500/20 to-emerald-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 transform group-hover:scale-105"></div>
+                        <div class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-green-100/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:-rotate-1">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">1000+ Karyawan</h3>
+                            <p class="text-gray-600 leading-relaxed mb-4">Mencapai milestone 1000+ karyawan berdedikasi di seluruh Indonesia</p>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">Team</span>
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-semibold rounded-full">1000+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 5: Ekspansi Regional (Left) -->
+            <div class="relative flex items-center mb-24 group">
+                <!-- Connector Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-indigo-500 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-1/2 pr-12 text-right">
+                    <div class="relative inline-block">
+                        <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-blue-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 transform group-hover:scale-105"></div>
+                        <div class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-indigo-100/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
+                            <!-- Year Badge -->
+                            <div class="absolute -top-4 -right-4 px-4 py-2 bg-gradient-to-r from-indigo-600 to-blue-600 text-white text-sm font-bold rounded-full shadow-lg flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                </svg>
+                                2022
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mt-3 mb-3">Ekspansi Regional</h3>
+                            <p class="text-gray-600 leading-relaxed">Memperluas operasi ke pasar regional Asia Tenggara</p>
+                            <div class="mt-4 flex items-center justify-end space-x-2">
+                                <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded-full">Regional</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">ASEAN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Checkmark Circle -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-600 to-blue-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="absolute w-20 h-20 bg-gradient-to-br from-indigo-600 to-blue-600 rounded-full opacity-20 animate-ping"></div>
+                </div>
+                
+                <div class="w-1/2 pl-12 flex items-center">
+                    <div class="text-left">
+                        <div class="text-4xl font-black bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">2022</div>
+                        <div class="text-sm text-gray-500 font-medium">GLOBAL REACH</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 6: Era Baru Inovasi (Right) -->
+            <div class="relative flex items-center mb-8 group">
+                <!-- Connector Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-32 h-0.5 bg-gradient-to-l from-rose-500 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                
+                <div class="w-1/2 pr-12 flex items-center justify-end">
+                    <div class="text-right">
+                        <div class="text-4xl font-black bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">2024</div>
+                        <div class="text-sm text-gray-500 font-medium">FUTURE NOW</div>
+                    </div>
+                </div>
+                
+                <!-- Checkmark Circle with Special Animation -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-rose-600 via-pink-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl border-4 border-white group-hover:scale-110 transition-transform duration-300 animate-pulse">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="absolute w-24 h-24 bg-gradient-to-br from-rose-600 via-pink-600 to-purple-600 rounded-full opacity-30 animate-ping"></div>
+                </div>
+                
+                <div class="w-1/2 pl-12">
+                    <div class="relative inline-block">
+                        <div class="absolute inset-0 bg-gradient-to-l from-rose-500/20 via-pink-500/20 to-purple-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 transform group-hover:scale-105"></div>
+                        <div class="relative bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-rose-100/50 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 hover:-rotate-1">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-rose-500 to-pink-500 rounded-bl-3xl flex items-center justify-center">
+                                <span class="text-white font-bold text-xs">NOW</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Era Baru Inovasi</h3>
+                            <p class="text-gray-600 leading-relaxed mb-4">Memimpin era baru inovasi teknologi dengan AI dan ML</p>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-3 py-1 bg-rose-100 text-rose-700 text-xs font-semibold rounded-full">AI</span>
+                                <span class="px-3 py-1 bg-pink-100 text-pink-700 text-xs font-semibold rounded-full">ML</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-full">Future</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom CTA -->
+        <div class="text-center mt-20">
+            <div class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#1E3A8A] to-[#F97316] text-white font-bold rounded-full shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-300">
+                <span class="mr-2">Join Our Journey</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="py-16 sm:py-20 bg-gradient-to-br from-[#38466B] via-[#1B3A6B] to-navy-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="text-sm font-semibold text-orange-400">Bisnis di Bawah ABE Group</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-white">Unit Bisnis</h2>
+            <p class="mt-4 text-white/70">Portofolio perusahaan yang terus berkembang untuk memperkuat nilai dan dampak.</p>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-2 gap-6 justify-center mx-auto">
+                            <a href="#" class="group relative rounded-2xl bg-white ring-1 ring-white/10 p-6 hover:bg-gray-800 hover:-translate-y-1 transition text-center block">
+                    <div class="absolute top-6 right-6 text-gray-400 group-hover:text-white transition-colors">
+                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="mb-4">
+                        <img src="http://127.0.0.1:8000/assets/img/logoaro.png" alt="ARO Logo" class="w-16 h-16 mx-auto">
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 group-hover:text-white text-center">ARO Baskara Esa</h3>
+                    <p class="mt-2 text-sm text-gray-600 group-hover:text-white/70 text-center">Perusahaan yang bergerak di bidang konstruksi dan infrastruktur dengan pengalaman lebih dari 10 tahun dalam mengerjakan proyek-proyek strate...</p>
+                </a>
+                            <a href="#" class="group relative rounded-2xl bg-white ring-1 ring-white/10 p-6 hover:bg-gray-800 hover:-translate-y-1 transition text-center block">
+                    <div class="absolute top-6 right-6 text-gray-400 group-hover:text-white transition-colors">
+                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="mb-4">
+                        <img src="http://127.0.0.1:8000/assets/img/logoaro.png" alt="ARO Logo" class="w-16 h-16 mx-auto">
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 group-hover:text-white text-center">ABE Inteknologi Indonesia</h3>
+                    <p class="mt-2 text-sm text-gray-600 group-hover:text-white/70 text-center">Perusahaan teknologi yang menyediakan solusi IT terintegrasi untuk mendukung transformasi digital bisnis modern.</p>
+                </a>
+                    </div>
+    </div>
+</section>
+
+    <section class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="text-sm font-semibold text-orange-600">Nilai Inti Kami</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900">Prinsip yang menggerakkan ABE Group</h2>
+            <p class="mt-4 text-slate-600">Fondasi budaya kerja yang menjaga konsistensi dan kualitas keputusan bisnis.</p>
+        </div>
+
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="group rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:-translate-y-1 transition">
+                    <div class="w-12 h-12 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
+                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 3a7 7 0 100 14 7 7 0 000-14zm1 7.414V6a1 1 0 10-2 0v5a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414l-2.707-2.707z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <h3 class="mt-4 font-semibold text-slate-900">Visi Strategis</h3>
+                    <p class="mt-2 text-sm text-slate-600">Fokus jangka panjang berbasis data dan eksekusi.</p>
+                </div>
+                            <div class="group rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:-translate-y-1 transition">
+                    <div class="w-12 h-12 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
+                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path d="M11 2a1 1 0 00-2 0v1.05a6.5 6.5 0 00-3.784 11.6l.739.74a1 1 0 00.707.29h6.676a1 1 0 00.707-.29l.739-.74A6.5 6.5 0 0011 3.05V2z"/><path d="M8 18a1 1 0 001 1h2a1 1 0 001-1v-1H8v1z"/></svg>
+                    </div>
+                    <h3 class="mt-4 font-semibold text-slate-900">Inovasi Utama</h3>
+                    <p class="mt-2 text-sm text-slate-600">Membangun solusi relevan untuk kebutuhan pasar.</p>
+                </div>
+                            <div class="group rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:-translate-y-1 transition">
+                    <div class="w-12 h-12 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
+                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 2a5 5 0 00-5 5v3.086l-.707.707A1 1 0 005 12.5V16a2 2 0 002 2h6a2 2 0 002-2v-3.5a1 1 0 00.293-.707L15 10.086V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H7z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <h3 class="mt-4 font-semibold text-slate-900">Integritas &amp; Kepercayaan</h3>
+                    <p class="mt-2 text-sm text-slate-600">Menjaga kualitas dengan standar etika tinggi.</p>
+                </div>
+                            <div class="group rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:-translate-y-1 transition">
+                    <div class="w-12 h-12 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
+                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 3.75A.75.75 0 013.75 3h4.5a.75.75 0 010 1.5H5.56l3.97 3.97 2.72-2.72a.75.75 0 011.06 0l3.19 3.19V7.75a.75.75 0 011.5 0v4.5a.75.75 0 01-.75.75h-4.5a.75.75 0 010-1.5h2.69l-2.72-2.72-2.72 2.72a.75.75 0 01-1.06 0L4.5 5.56V8.25a.75.75 0 01-1.5 0v-4.5z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <h3 class="mt-4 font-semibold text-slate-900">Pertumbuhan Berkelanjutan</h3>
+                    <p class="mt-2 text-sm text-slate-600">Mendorong profit sekaligus dampak positif.</p>
+                </div>
+                    </div>
+    </div>
+</section>
+
+    <section class="py-16 sm:py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+                <p class="text-sm font-semibold text-orange-600">Komitmen Keberlanjutan</p>
+                <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900">Bertumbuh dengan tanggung jawab</h2>
+                <p class="mt-4 text-slate-600">Kami memastikan pertumbuhan bisnis berjalan selaras dengan kepatuhan, efisiensi energi, dan kontribusi sosial.</p>
+
+                <ul class="mt-6 space-y-3 text-slate-700">
+                                            <li class="flex gap-3">
+                            <span class="mt-1 w-5 h-5 rounded-full bg-orange-500/15 text-orange-600 grid place-items-center">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.415l-7.25 7.25a1 1 0 01-1.415 0l-3.25-3.25a1 1 0 111.414-1.415l2.543 2.543 6.543-6.543a1 1 0 011.415 0z" clip-rule="evenodd"/></svg>
+                            </span>
+                            <span>Efisiensi sumber daya dan pengelolaan risiko operasional</span>
+                        </li>
+                                            <li class="flex gap-3">
+                            <span class="mt-1 w-5 h-5 rounded-full bg-orange-500/15 text-orange-600 grid place-items-center">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.415l-7.25 7.25a1 1 0 01-1.415 0l-3.25-3.25a1 1 0 111.414-1.415l2.543 2.543 6.543-6.543a1 1 0 011.415 0z" clip-rule="evenodd"/></svg>
+                            </span>
+                            <span>Kepatuhan dan tata kelola yang kuat di seluruh unit bisnis</span>
+                        </li>
+                                            <li class="flex gap-3">
+                            <span class="mt-1 w-5 h-5 rounded-full bg-orange-500/15 text-orange-600 grid place-items-center">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 5.29a1 1 0 010 1.415l-7.25 7.25a1 1 0 01-1.415 0l-3.25-3.25a1 1 0 111.414-1.415l2.543 2.543 6.543-6.543a1 1 0 011.415 0z" clip-rule="evenodd"/></svg>
+                            </span>
+                            <span>Inisiatif sosial dan peningkatan kapabilitas SDM</span>
+                        </li>
+                                    </ul>
+
+                <div class="mt-8">
+                    <a href="http://127.0.0.1:8000/hubungi" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-semibold transition">Kolaborasi Bersama Kami</a>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="aspect-[4/3] rounded-3xl overflow-hidden ring-1 ring-slate-200 shadow-lg">
+                    <img src="http://127.0.0.1:8000/assets/img/forgot-password-office.jpeg" alt="Keberlanjutan" class="w-full h-full object-cover" />
+                </div>
+                <div class="absolute -top-6 -left-6 w-28 h-28 rounded-3xl bg-slate-950 hidden sm:block"></div>
+                <div class="absolute -top-4 -left-4 w-28 h-28 rounded-3xl bg-orange-500 hidden sm:block"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="py-16 sm:py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl border border-white/10 bg-white/5 p-8 sm:p-12">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Siap membangun hal besar berikutnya?</h2>
+                    <p class="mt-4 text-white/70">Hubungi kami untuk peluang kerja sama, investasi, atau informasi lebih lanjut mengenai ABE Group.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 lg:justify-end">
+                    <a href="http://127.0.0.1:8000/hubungi" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-semibold transition">Hubungi Kami</a>
+                    <a href="http://127.0.0.1:8000/karir" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold border border-white/20 transition">Peluang Karir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer class="bg-slate-950 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div class="grid md:grid-cols-4 gap-10">
+            <div class="md:col-span-2">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-400 grid place-items-center font-bold text-slate-950">A</div>
+                    <div class="font-semibold text-lg">ABE Group</div>
+                </div>
+                <p class="mt-4 text-white/70 max-w-md">Membangun perusahaan yang adaptif, profesional, dan bertumbuh berkelanjutan melalui inovasi dan tata kelola yang kuat.</p>
+            </div>
+
+            <div>
+                <div class="font-semibold">Perusahaan</div>
+                <div class="mt-3 space-y-2 text-sm text-white/70">
+                    <a href="http://127.0.0.1:8000/tentang" class="block hover:text-white">Tentang</a>
+                    <a href="http://127.0.0.1:8000/bisnis" class="block hover:text-white">Unit Bisnis</a>
+                    <a href="http://127.0.0.1:8000/tentang#nilai" class="block hover:text-white">Nilai Inti</a>
+                </div>
+            </div>
+
+            <div>
+                <div class="font-semibold">Hubungi</div>
+                <div class="mt-3 space-y-2 text-sm text-white/70">
+                    <a href="http://127.0.0.1:8000/hubungi" class="block hover:text-white">Kontak</a>
+                    <a href="http://127.0.0.1:8000/karir" class="block hover:text-white">Karir</a>
+                    <a href="http://127.0.0.1:8000/berita" class="block hover:text-white">Berita</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row gap-3 items-center justify-between text-sm text-white/60">
+            <div>&copy; 2026 ABE Group. All rights reserved.</div>
+            <div class="text-white/40">Primary: Navy • Accent: Orange</div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
