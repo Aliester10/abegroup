@@ -10,6 +10,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
+use App\Http\Controllers\Admin\NewsController;
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -18,8 +19,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang', [\App\Http\Controllers\AboutPageController::class, 'index'])->name('about');
 Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index'])->name('business');
 Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
-Route::get('/berita', [\App\Http\Controllers\NewsController::class, 'index'])->name('news');
-Route::get('/berita/{id}', [\App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
+Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
+Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::post('/hubungi', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
@@ -31,7 +32,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('auth.regist
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Admin routes (protected)
-Route::middleware('auth')->prefix('admin')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     
     // Banner routes
@@ -81,4 +82,13 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/partner/{partner}/edit', [PartnerController::class, 'edit'])->name('admin.partner.edit');
     Route::put('/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
     Route::delete('/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
+
+    // News routes
+    Route::get('/news', [NewsController::class, 'index'])->name('admin.news');
+    Route::get('/news/create', [NewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/news', [NewsController::class, 'store'])->    name('admin.news.store');
+    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+
 });
