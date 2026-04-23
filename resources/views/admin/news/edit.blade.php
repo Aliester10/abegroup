@@ -37,6 +37,25 @@
                 @enderror
             </div>
 
+            <!-- Kategori -->
+            <div class="mb-6">
+                <label for="category" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Kategori <span class="text-red-500">*</span>
+                </label>
+                <select id="category" 
+                       name="category" 
+                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white" 
+                       required>
+                    <option value="">-- Pilih Kategori --</option>
+                    @foreach($categories as $key => $label)
+                        <option value="{{ $key }}" {{ old('category', $news->category) == $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @error('category')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
             <!-- Excerpt -->
             <div class="mb-6">
                 <label for="excerpt" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

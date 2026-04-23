@@ -31,20 +31,20 @@ Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index']
 // Rute untuk halaman detail (WAJIB ADA karena dipanggil di href pertama)
 Route::get('/bisnis/{slug}', [\App\Http\Controllers\BusinessController::class, 'show'])->name('business.show');
 Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
-Route::get('/berita', [NewsController::class, 'frontendIndex'])->name('news');
+Route::get('/berita', [NewsController::class, 'index'])->name('news');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::post('/hubungi', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
 // Authentication routes with backward compatibility
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
 // Admin routes (protected)
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Banner routes
