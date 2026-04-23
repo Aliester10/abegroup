@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AboutSection;
 use App\Models\Partner;
+use App\Models\Timeline;
 
 class AboutPageController extends Controller
 {
@@ -20,6 +21,11 @@ class AboutPageController extends Controller
             ->orderByDesc('id')
             ->get();
 
-        return view('pages.about', compact('about', 'partners'));
+        $timelines = Timeline::query()
+            ->where('is_active', true)
+            ->orderBy('order')
+            ->get();
+
+        return view('pages.about', compact('about', 'partners', 'timelines'));
     }
 }

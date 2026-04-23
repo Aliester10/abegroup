@@ -83,20 +83,4 @@ Route::prefix('admin')->group(function () {
     Route::get('/partner/{partner}/edit', [PartnerController::class, 'edit'])->name('admin.partner.edit');
     Route::put('/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
     Route::delete('/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
-
-    // News routes
-    Route::get('/news', [NewsController::class, 'index'])->name('admin.news');
-    Route::get('/news/create', [NewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/news', [NewsController::class, 'store'])->    name('admin.news.store');
-    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
-
-    // Company Highlight routes
-    Route::get('/highlights', [CompanyhighlightController::class, 'index'])->name('admin.highlights.index');
-    Route::get('/highlights/create', [CompanyhighlightController::class, 'create'])->name('admin.highlights.create');
-    Route::post('/highlights', [CompanyhighlightController::class, 'store'])->name('admin.highlights.store');
-    Route::get('/highlights/{highlight}/edit', [CompanyhighlightController::class, 'edit'])->name('admin.highlights.edit');
-    Route::put('/highlights/{highlight}', [CompanyhighlightController::class, 'update'])->name('admin.highlights.update');
-    Route::delete('/highlights/{highlight}', [CompanyhighlightController::class, 'destroy'])->name('admin.highlights.destroy');
 });
