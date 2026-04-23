@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
@@ -14,6 +14,31 @@ class NewsController extends Controller
     {
         $news = News::latest()->paginate(10);
         return view('admin.news.index', compact('news'));
+    }
+
+    public function frontendIndex(Request $request)
+    {
+        $search = $request->get('search');
+        
+        // Ambil berita terbaru untuk featured section
+        $latestNews = News::where('is_active', true)->latest()->first();
+        
+        // Ambil berita lainnya (kecuali yang sudah jadi featured)
+        $query = News::where('is_active', true)
+                    ->where('id', '!=', $latestNews?->id);
+        
+        // Jika ada pencarian, filter berdasarkan judul dan konten
+        if ($search) {
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', '%' . $search . '%')
+                  ->orWhere('excerpt', 'like', '%' . $search . '%')
+                  ->orWhere('content', 'like', '%' . $search . '%');
+            });
+        }
+        
+        $otherNews = $query->latest()->paginate(8);
+        
+        return view('pages.news', compact('latestNews', 'otherNews', 'search'));
     }
 
     public function create()
@@ -83,6 +108,12 @@ class NewsController extends Controller
 
         return redirect()->route('admin.news')
             ->with('success', 'Berita berhasil diupdate');
+    }
+
+    public function show($slug)
+    {
+        $news = News::where('slug', $slug)->firstOrFail();
+        return view('pages.news-detail', compact('news'));
     }
 
     public function destroy(News $news)
