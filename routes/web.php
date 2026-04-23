@@ -10,7 +10,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
-use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyhighlightController;
 
 // Home page (public)
@@ -20,7 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang', [\App\Http\Controllers\AboutPageController::class, 'index'])->name('about');
 Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index'])->name('business');
 Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
-Route::get('/berita', [NewsController::class, 'index'])->name('news.index');
+Route::get('/berita', [NewsController::class, 'frontendIndex'])->name('news');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::post('/hubungi', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
