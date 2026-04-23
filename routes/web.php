@@ -12,6 +12,12 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyhighlightController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\Admin\TimelineController;
+
+
+
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -61,6 +67,7 @@ Route::prefix('admin')->group(function () {
     Route::put('/about/{aboutSection}', [AboutController::class, 'update'])->name('admin.about.update');
     Route::delete('/about/{aboutSection}', [AboutController::class, 'destroy'])->name('admin.about.destroy');
 
+
     // Company routes
     Route::get('/company', [CompanyController::class, 'index'])->name('admin.company');
     Route::get('/company/create', [CompanyController::class, 'create'])->name('admin.company.create');
@@ -84,4 +91,45 @@ Route::prefix('admin')->group(function () {
     Route::get('/partner/{partner}/edit', [PartnerController::class, 'edit'])->name('admin.partner.edit');
     Route::put('/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
     Route::delete('/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
+
+    // company highlight routes
+    Route::get('/highlights', [CompanyhighlightController::class, 'index'])->name('admin.highlights.index');
+    Route::get('/highlights/create', [CompanyhighlightController::class, 'create'])->name('admin.highlights.create');
+    Route::post('/highlights', [CompanyhighlightController::class, 'store'])->name('admin.highlights.store');
+    Route::get('/highlights/{id}/edit', [CompanyhighlightController::class, 'edit'])->name('admin.highlights.edit');
+    Route::put('/highlights/{id}', [CompanyhighlightController::class, 'update'])->name('admin.highlights.update');
+    Route::delete('/highlights/{id}', [CompanyhighlightController::class, 'destroy'])->name('admin.highlights.destroy');
+
+    // Testimonial routes
+    Route::get('/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
+    Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('admin.testimonials.create');
+    Route::post('/testimonials', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
+    Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('admin.testimonials.edit');
+    Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
+    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
+
+    // Business routes
+    Route::get('/business', [BusinessController::class, 'index'])->name('admin.business.index');
+    Route::get('/business/create', [BusinessController::class, 'create'])->name('admin.business.create');
+    Route::post('/business', [BusinessController::class, 'store'])->name('admin.business.store');
+    Route::get('/business/{id}/edit', [BusinessController::class, 'edit'])->name('admin.business.edit');
+    Route::put('/business/{id}', [BusinessController::class, 'update'])->name('admin.business.update');
+    Route::delete('/business/{id}', [BusinessController::class, 'destroy'])->name('admin.business.destroy');
+
+    //News routes
+    Route::get('/news', [NewsController::class, 'index'])->name('admin.news');
+    Route::get('/news/create', [NewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/timelines', [TimelineController::class, 'index'])->name('timelines.index');
+        Route::get('/timelines/create', [TimelineController::class, 'create'])->name('timelines.create');
+        Route::post('/timelines', [TimelineController::class, 'store'])->name('timelines.store');
+        Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timelines.edit');
+        Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timelines.update');
+        Route::delete('/timelines/{id}', [TimelineController::class, 'destroy'])->name('timelines.destroy');
+    });
 });
