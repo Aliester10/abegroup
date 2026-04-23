@@ -6,19 +6,30 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\NewsController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CompanyhighlightController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\BusinessunitController;
+use App\Http\Controllers\Admin\TimelineController;
+
+
+
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Public pages
 Route::get('/tentang', [\App\Http\Controllers\AboutPageController::class, 'index'])->name('about');
+// Rute untuk halaman daftar bisnis (yang kamu kasih tadi)
 Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index'])->name('business');
+
+// Rute untuk halaman detail (WAJIB ADA karena dipanggil di href pertama)
+Route::get('/bisnis/{slug}', [\App\Http\Controllers\BusinessController::class, 'show'])->name('business.show');
 Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
 Route::get('/berita', [NewsController::class, 'index'])->name('news');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
@@ -35,19 +46,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 // Admin routes (protected)
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    
-    // Messages routes
-    Route::get('/messages', [\App\Http\Controllers\ContactController::class, 'adminIndex'])->name('admin.messages');
-    Route::delete('/messages/{id}', [\App\Http\Controllers\ContactController::class, 'delete'])->name('messages.delete');
-    Route::delete('/messages', [\App\Http\Controllers\ContactController::class, 'deleteAll'])->name('messages.delete.all');
-    
-    // Contact management routes
-    Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->names([
-        'index' => 'admin.contacts.index',
-        'show' => 'admin.contacts.show',
-        'destroy' => 'admin.contacts.destroy'
-    ]);
-    
+
     // Banner routes
     Route::get('/banner', [BannerController::class, 'index'])->name('admin.banner');
     Route::get('/banner/create', [BannerController::class, 'create'])->name('admin.banner.create');
@@ -55,7 +54,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/banner/{banner}/edit', [BannerController::class, 'edit'])->name('admin.banner.edit');
     Route::put('/banner/{banner}', [BannerController::class, 'update'])->name('admin.banner.update');
     Route::delete('/banner/{banner}', [BannerController::class, 'destroy'])->name('admin.banner.destroy');
-    
+
     // Activity routes
     Route::get('/activity', [ActivityController::class, 'index'])->name('admin.activity');
     Route::get('/activity/create', [ActivityController::class, 'create'])->name('admin.activity.create');
@@ -63,7 +62,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/activity/{activity}/edit', [ActivityController::class, 'edit'])->name('admin.activity.edit');
     Route::put('/activity/{activity}', [ActivityController::class, 'update'])->name('admin.activity.update');
     Route::delete('/activity/{activity}', [ActivityController::class, 'destroy'])->name('admin.activity.destroy');
-    
+
     // About routes
     Route::get('/about', [AboutController::class, 'index'])->name('admin.about');
     Route::get('/about/create', [AboutController::class, 'create'])->name('admin.about.create');
@@ -71,6 +70,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/about/{aboutSection}/edit', [AboutController::class, 'edit'])->name('admin.about.edit');
     Route::put('/about/{aboutSection}', [AboutController::class, 'update'])->name('admin.about.update');
     Route::delete('/about/{aboutSection}', [AboutController::class, 'destroy'])->name('admin.about.destroy');
+
 
     // Company routes
     Route::get('/company', [CompanyController::class, 'index'])->name('admin.company');
@@ -96,27 +96,44 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('/partner/{partner}', [PartnerController::class, 'update'])->name('admin.partner.update');
     Route::delete('/partner/{partner}', [PartnerController::class, 'destroy'])->name('admin.partner.destroy');
 
-    // Timeline routes
-    Route::get('/timeline', [\App\Http\Controllers\Admin\TimelineController::class, 'index'])->name('admin.timelines.index');
-    Route::get('/timeline/create', [\App\Http\Controllers\Admin\TimelineController::class, 'create'])->name('admin.timelines.create');
-    Route::post('/timeline', [\App\Http\Controllers\Admin\TimelineController::class, 'store'])->name('admin.timelines.store');
-    Route::get('/timeline/{timeline}/edit', [\App\Http\Controllers\Admin\TimelineController::class, 'edit'])->name('admin.timelines.edit');
-    Route::put('/timeline/{timeline}', [\App\Http\Controllers\Admin\TimelineController::class, 'update'])->name('admin.timelines.update');
-    Route::delete('/timeline/{timeline}', [\App\Http\Controllers\Admin\TimelineController::class, 'destroy'])->name('admin.timelines.destroy');
+    // company highlight routes
+    Route::get('/highlights', [CompanyhighlightController::class, 'index'])->name('admin.highlights.index');
+    Route::get('/highlights/create', [CompanyhighlightController::class, 'create'])->name('admin.highlights.create');
+    Route::post('/highlights', [CompanyhighlightController::class, 'store'])->name('admin.highlights.store');
+    Route::get('/highlights/{id}/edit', [CompanyhighlightController::class, 'edit'])->name('admin.highlights.edit');
+    Route::put('/highlights/{id}', [CompanyhighlightController::class, 'update'])->name('admin.highlights.update');
+    Route::delete('/highlights/{id}', [CompanyhighlightController::class, 'destroy'])->name('admin.highlights.destroy');
 
-    // Highlights routes
-    Route::get('/highlights', [\App\Http\Controllers\CompanyhighlightController::class, 'index'])->name('admin.highlights.index');
-    Route::get('/highlights/create', [\App\Http\Controllers\CompanyhighlightController::class, 'create'])->name('admin.highlights.create');
-    Route::post('/highlights', [\App\Http\Controllers\CompanyhighlightController::class, 'store'])->name('admin.highlights.store');
-    Route::get('/highlights/{highlight}/edit', [\App\Http\Controllers\CompanyhighlightController::class, 'edit'])->name('admin.highlights.edit');
-    Route::put('/highlights/{highlight}', [\App\Http\Controllers\CompanyhighlightController::class, 'update'])->name('admin.highlights.update');
-    Route::delete('/highlights/{highlight}', [\App\Http\Controllers\CompanyhighlightController::class, 'destroy'])->name('admin.highlights.destroy');
+    // Testimonial routes
+    Route::get('/testimonials', [TestimonialController::class, 'index'])->name('admin.testimonials.index');
+    Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('admin.testimonials.create');
+    Route::post('/testimonials', [TestimonialController::class, 'store'])->name('admin.testimonials.store');
+    Route::get('/testimonials/{testimonial}/edit', [TestimonialController::class, 'edit'])->name('admin.testimonials.edit');
+    Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('admin.testimonials.update');
+    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
 
-    // News routes (Admin)
-    Route::get('/news', [\App\Http\Controllers\Admin\NewsController::class, 'index'])->name('admin.news');
-    Route::get('/news/create', [\App\Http\Controllers\Admin\NewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/news', [\App\Http\Controllers\Admin\NewsController::class, 'store'])->name('admin.news.store');
-    Route::get('/news/{news}/edit', [\App\Http\Controllers\Admin\NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/news/{news}', [\App\Http\Controllers\Admin\NewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/news/{news}', [\App\Http\Controllers\Admin\NewsController::class, 'destroy'])->name('admin.news.destroy');
+    // Business routes
+    Route::get('/business', [BusinessunitController::class, 'index'])->name('admin.business.index');
+    Route::get('/business/create', [BusinessunitController::class, 'create'])->name('admin.business.create');
+    Route::post('/business', [BusinessunitController::class, 'store'])->name('admin.business.store');
+    Route::get('/business/{id}/edit', [BusinessunitController::class, 'edit'])->name('admin.business.edit');
+    Route::put('/business/{id}', [BusinessunitController::class, 'update'])->name('admin.business.update');
+    Route::delete('/business/{id}', [BusinessunitController::class, 'destroy'])->name('admin.business.destroy');    
+
+    //News routes
+    Route::get('/news', [NewsController::class, 'index'])->name('admin.news');
+    Route::get('/news/create', [NewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/timelines', [TimelineController::class, 'index'])->name('timelines.index');
+        Route::get('/timelines/create', [TimelineController::class, 'create'])->name('timelines.create');
+        Route::post('/timelines', [TimelineController::class, 'store'])->name('timelines.store');
+        Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timelines.edit');
+        Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timelines.update');
+        Route::delete('/timelines/{id}', [TimelineController::class, 'destroy'])->name('timelines.destroy');
+    });
 });
