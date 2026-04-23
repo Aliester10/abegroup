@@ -22,7 +22,7 @@
                                         <a href="{{ $company->website_url ?: route('business') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">
                                             <div class="font-medium text-slate-900">{{ $company->name }}</div>
                                             <div class="text-xs text-slate-500">{{ Str::limit($company->description, 60) }}</div>
-                                        </a>
+                                        </a> 
                                     @empty
                                         <a href="{{ route('business') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">
                                             <div class="font-medium text-slate-900">Unit Bisnis</div>

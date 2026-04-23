@@ -19,6 +19,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // Public pages
 Route::get('/tentang', [\App\Http\Controllers\AboutPageController::class, 'index'])->name('about');
 Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index'])->name('business');
+Route::get('/bisnis/{slug}', [\App\Http\Controllers\BusinessController::class, 'show'])->name('business.show');
 Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
 Route::get('/berita', [NewsController::class, 'frontendIndex'])->name('news');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
