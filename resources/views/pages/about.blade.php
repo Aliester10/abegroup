@@ -236,99 +236,70 @@
     </section>
 
     <!-- Vision & Mission Section -->
-    <section class="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-20 bg-[#2B4570] relative overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-400/5 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
             <!-- Section Header -->
             <div class="text-center mb-16">
-                <div class="inline-flex items-center px-4 py-2 mb-4 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200">
-                    <span class="text-sm font-semibold text-gray-700">Arah & Tujuan</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    Visi & Misi
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">
+                    Visi Misi
                 </h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-blue-600 mx-auto"></div>
             </div>
             
-            <div class="flex flex-col gap-8 max-w-5xl mx-auto">
+            <!-- Cards Grid -->
+            <div class="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
                 <!-- Vision Card -->
-                <div class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 relative overflow-hidden md:mr-auto md:w-4/5" data-aos="fade-up" data-aos-delay="100">
-                    <!-- Decorative gradient circle -->
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/20 to-orange-500/20 rounded-full blur-2xl"></div>
-                    
-                    <!-- Icon -->
-                    <div class="relative mb-6">
-                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                <div class="bg-[#3d5278]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                    <!-- Icon & Title -->
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="6" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="2" fill="currentColor"/>
                             </svg>
                         </div>
+                        <h3 class="text-xl font-bold text-white">Visi</h3>
                     </div>
                     
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Visi</h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Menjadi perusahaan holding terdepan di Indonesia yang dikenal dengan inovasi, integritas, dan keunggulan dalam memberikan solusi bisnis terintegrasi yang berkelanjutan untuk kemajuan bangsa.
+                    <!-- Content -->
+                    <p class="text-white/80 text-sm leading-relaxed">
+                        Menjadi konglomerasi terkemuka di Asia Tenggara yang memberikan nilai tambah berkelanjutan bagi semua pemangku kepentingan melalui inovasi, transformasi digital, dan komitmen terhadap pembangunan ekonomi yang inklusif dan berkelanjutan.
                     </p>
-                    
-                    <!-- Bottom accent line -->
-                    <div class="mt-6 flex items-center space-x-2">
-                        <div class="w-8 h-0.5 bg-orange-500"></div>
-                        <div class="w-8 h-0.5 bg-blue-600"></div>
-                    </div>
                 </div>
                 
                 <!-- Mission Card -->
-                <div class="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 relative overflow-hidden md:ml-auto md:w-4/5" data-aos="fade-up" data-aos-delay="200">
-                    <!-- Decorative gradient circle -->
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500/20 to-orange-500/20 rounded-full blur-2xl"></div>
-                    
-                    <!-- Icon -->
-                    <div class="relative mb-6">
-                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center shadow-lg">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <div class="bg-[#3d5278]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                    <!-- Icon & Title -->
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
                             </svg>
                         </div>
+                        <h3 class="text-xl font-bold text-white">Misi</h3>
                     </div>
                     
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Misi</h3>
-                    <ul class="text-gray-700 space-y-3">
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Mengembangkan portfolio bisnis yang berkelanjutan dan menguntungkan</span>
+                    <!-- Content -->
+                    <ul class="text-white/80 text-sm space-y-3">
+                        <li class="flex items-start gap-2">
+                            <span class="text-white/60 mt-1">•</span>
+                            <span>Memberikan produk dan layanan berkualitas tinggi kepada pelanggan</span>
                         </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Memberikan nilai tambah kepada seluruh pemangku kepentingan</span>
+                        <li class="flex items-start gap-2">
+                            <span class="text-white/60 mt-1">•</span>
+                            <span>Mengembangkan talenta dan menciptakan lingkungan kerja yang inspiring</span>
                         </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Mendorong inovasi dan transformasi digital di setiap unit bisnis</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Membangun tim profesional yang kompeten dan berintegritas</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="w-5 h-5 text-orange-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span>Berkontribusi positif terhadap kemajuan ekonomi dan masyarakat Indonesia</span>
+                        <li class="flex items-start gap-2">
+                            <span class="text-white/60 mt-1">•</span>
+                            <span>Mendorong inovasi berkelanjutan di setiap lini bisnis</span>
                         </li>
                     </ul>
-                    
-                    <!-- Bottom accent line -->
-                    <div class="mt-6 flex items-center space-x-2">
-                        <div class="w-8 h-0.5 bg-orange-500"></div>
-                        <div class="w-8 h-0.5 bg-blue-600"></div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -337,55 +308,57 @@
     <!-- Company Values Section -->
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Nilai Perusahaan</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Prinsip-prinsip yang membimbing setiap keputusan dan tindakan kami.
-                </p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                    Nilai <span class="text-orange-500">perusahaan</span>
+                </h2>
+                <div class="w-16 h-1 bg-orange-500 mx-auto"></div>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Values Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                 <!-- Integritas -->
-                <div class="text-center group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <span class="text-3xl font-bold text-white">01</span>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                    <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-lg font-bold text-white">1</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Integritas</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Berlaku jujur dan transparan dalam setiap interaksi bisnis, membangun kepercayaan yang abadi.
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Integritas</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Berkomitmen pada kejujuran dan transparansi dalam setiap tindakan
                     </p>
                 </div>
                 
                 <!-- Inovasi -->
-                <div class="text-center group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <span class="text-3xl font-bold text-white">02</span>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-lg font-bold text-white">2</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Inovasi</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Terus berinovasi dan mengeksplorasi kemungkinan baru untuk menciptakan solusi yang lebih baik.
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Inovasi</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Mengembangkan solusi kreatif untuk menghadapi tantangan bisnis
                     </p>
                 </div>
                 
                 <!-- Kolaborasi -->
-                <div class="text-center group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <span class="text-3xl font-bold text-white">03</span>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                    <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-lg font-bold text-white">3</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Kolaborasi</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Bekerja sama sebagai tim yang solid untuk mencapai tujuan bersama yang lebih besar.
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Kolaborasi</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Membangun kemitraan yang kuat untuk pertumbuhan bersama
                     </p>
                 </div>
                 
                 <!-- Keunggulan -->
-                <div class="text-center group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <span class="text-3xl font-bold text-white">04</span>
+                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                        <span class="text-lg font-bold text-white">4</span>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Keunggulan</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Berkomitmen untuk memberikan yang terbaik dalam setiap aspek layanan dan solusi.
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Keunggulan</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        Berkomitmen memberikan kualitas terbaik dalam setiap layanan
                     </p>
                 </div>
             </div>

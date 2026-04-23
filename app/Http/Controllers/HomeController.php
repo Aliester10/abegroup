@@ -8,6 +8,7 @@ use App\Models\Activity;
 use App\Models\Banner;
 use App\Models\Career;
 use App\Models\Company;
+use App\Models\Business;
 
 class HomeController extends Controller
 {
@@ -34,6 +35,11 @@ class HomeController extends Controller
             ->orderBy('order')
             ->orderByDesc('id')
             ->take(4)
+            ->get();
+
+        $businesses = Business::query()
+            ->where('is_active', true)
+            ->orderBy('order')
             ->get();
 
         $stats = [
@@ -112,6 +118,7 @@ class HomeController extends Controller
             'sustainabilityImageUrl' => null,
             'activities' => $activities,
             'careers' => $careers,
+            'businesses' => $businesses,
         ]);
     }
 }

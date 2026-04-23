@@ -2,9 +2,8 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="grid md:grid-cols-4 gap-10">
             <div class="md:col-span-2">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-orange-400 grid place-items-center font-bold text-slate-950">A</div>
-                    <div class="font-semibold text-lg">ABE Group</div>
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="{{ asset('assets/img/LOGO ABE GROUP-02.png') }}" alt="ABE Group Logo" class="h-10 w-auto">
                 </div>
                 <p class="mt-4 text-white/70 max-w-md">Membangun perusahaan yang adaptif, profesional, dan bertumbuh berkelanjutan melalui inovasi dan tata kelola yang kuat.</p>
             </div>
