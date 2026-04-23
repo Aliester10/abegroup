@@ -78,6 +78,74 @@
         </div>
 
         
+        <!-- Business Section -->
+        <section class="py-20 bg-[#38466B] relative overflow-hidden -mx-4 sm:-mx-6 lg:-mx-8 mt-16">
+            <!-- Decorative Background Elements -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-400/5 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-orange-400/5 rounded-full blur-3xl"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <!-- Header Section -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="flex items-center justify-center gap-2 mb-6">
+                        <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                        <span class="text-white/80 font-normal tracking-wide text-sm">Unit Bisnis</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight mb-6">
+                        Bisnis di Bawah <span class="text-orange-500">ABE Group</span>
+                    </h2>
+                    <p class="text-base sm:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto">
+                        Dua entitas bisnis yang saling bersinergi untuk memberikan layanan terbaik bagi klien dan mitra di seluruh Indonesia.
+                    </p>
+                </div>
+
+                <!-- Business Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+                    <!-- ABE Intekno Indonesia -->
+                    <a href="#" class="group relative bg-[#4a5a7a]/40 backdrop-blur-sm border border-white/5 rounded-2xl p-8 hover:bg-[#4a5a7a]/60 transition-all duration-300 flex flex-col min-h-[240px]">
+                        <!-- Arrow Icon -->
+                        <div class="absolute top-8 right-8 text-white/20 group-hover:text-white/40 transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex-1 flex flex-col justify-end">
+                            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 pr-12">
+                                ABE Intekno Indonesia
+                            </h3>
+                            <p class="text-white/60 text-sm sm:text-base leading-relaxed">
+                                ABE Intekno Indonesia adalah perusahaan teknologi yang menyediakan solusi digital inovatif, sistem integrasi, dan layanan IT profesional.
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- ARO Baskara Esa -->
+                    <a href="#" class="group relative bg-[#4a5a7a]/40 backdrop-blur-sm border border-white/5 rounded-2xl p-8 hover:bg-[#4a5a7a]/60 transition-all duration-300 flex flex-col min-h-[240px]">
+                        <!-- Arrow Icon -->
+                        <div class="absolute top-8 right-8 text-white/20 group-hover:text-white/40 transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="flex-1 flex flex-col justify-end">
+                            <h3 class="text-2xl sm:text-3xl font-bold text-white mb-4 pr-12">
+                                ARO Baskara Esa
+                            </h3>
+                            <p class="text-white/60 text-sm sm:text-base leading-relaxed">
+                                ARO Baskara Esa menyediakan perusahaan yang bergerak di bidang konstruksi, infrastruktur, dan pengembangan proyek fisik berkualitas tinggi.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Admin Access Card -->
         <div class="mt-16 bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
             <div class="text-center">
