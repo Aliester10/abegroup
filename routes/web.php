@@ -11,6 +11,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\ContactController;
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -25,8 +26,8 @@ Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index']
 Route::post('/hubungi', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
 // Authentication routes with backward compatibility
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login.post');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('auth.register');
 Route::post('/register', [AuthController::class, 'register'])->name('auth.register.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
@@ -34,6 +35,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 // Admin routes (protected)
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    
+    // Messages routes
+    Route::get('/messages', [\App\Http\Controllers\ContactController::class, 'adminIndex'])->name('admin.messages');
+    Route::delete('/messages/{id}', [\App\Http\Controllers\ContactController::class, 'delete'])->name('messages.delete');
     
     // Banner routes
     Route::get('/banner', [BannerController::class, 'index'])->name('admin.banner');

@@ -6,13 +6,13 @@
     @include('partials.marketing.navbar')
 
     <!-- Header Section -->
-    <section class="py-12 sm:py-20">
+    <section class="py-10 sm:py-18">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto">
                 <span class="inline-block px-4 py-1.5 bg-orange-50 text-orange-600 text-xs font-bold rounded-full tracking-wider uppercase mb-4">
                     Update Terkini
                 </span>
-                <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+                <h1 class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
                     Aktivitas & Informasi <span class="text-orange-500">Terbaru</span>
                 </h1>
                 <p class="mt-6 text-lg text-slate-600 leading-relaxed">
@@ -24,7 +24,7 @@
 
     <!-- Featured News Section -->
     @if($latestNews)
-    <section class="pb-16 sm:pb-24">
+    <section class="pb-6 sm:pb-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-[2rem] shadow-2xl shadow-slate-200/60 overflow-hidden border border-slate-100">
                 <div class="flex flex-col lg:flex-row min-h-[450px]">
@@ -96,7 +96,7 @@
     @endif
 
     <!-- Search Section -->
-    <section class="pb-16 sm:pb-24">
+    <section class="pb-6 sm:pb-10">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="relative group">
                 <form action="{{ route('news') }}" method="GET">
