@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyhighlightController;
 use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\BusinessunitController;
 use App\Http\Controllers\Admin\TimelineController;
 
 
@@ -24,7 +25,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Public pages
 Route::get('/tentang', [\App\Http\Controllers\AboutPageController::class, 'index'])->name('about');
+// Rute untuk halaman daftar bisnis (yang kamu kasih tadi)
 Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index'])->name('business');
+
+// Rute untuk halaman detail (WAJIB ADA karena dipanggil di href pertama)
 Route::get('/bisnis/{slug}', [\App\Http\Controllers\BusinessController::class, 'show'])->name('business.show');
 Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
 Route::get('/berita', [NewsController::class, 'frontendIndex'])->name('news');
@@ -109,12 +113,12 @@ Route::prefix('admin')->group(function () {
     Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
 
     // Business routes
-    Route::get('/business', [BusinessController::class, 'index'])->name('admin.business.index');
-    Route::get('/business/create', [BusinessController::class, 'create'])->name('admin.business.create');
-    Route::post('/business', [BusinessController::class, 'store'])->name('admin.business.store');
-    Route::get('/business/{id}/edit', [BusinessController::class, 'edit'])->name('admin.business.edit');
-    Route::put('/business/{id}', [BusinessController::class, 'update'])->name('admin.business.update');
-    Route::delete('/business/{id}', [BusinessController::class, 'destroy'])->name('admin.business.destroy');
+    Route::get('/business', [BusinessunitController::class, 'index'])->name('admin.business.index');
+    Route::get('/business/create', [BusinessunitController::class, 'create'])->name('admin.business.create');
+    Route::post('/business', [BusinessunitController::class, 'store'])->name('admin.business.store');
+    Route::get('/business/{id}/edit', [BusinessunitController::class, 'edit'])->name('admin.business.edit');
+    Route::put('/business/{id}', [BusinessunitController::class, 'update'])->name('admin.business.update');
+    Route::delete('/business/{id}', [BusinessunitController::class, 'destroy'])->name('admin.business.destroy');    
 
     //News routes
     Route::get('/news', [NewsController::class, 'index'])->name('admin.news');

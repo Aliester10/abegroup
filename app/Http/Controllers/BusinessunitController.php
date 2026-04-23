@@ -9,26 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class BusinessunitController extends Controller
 {
-    /**
-     * Menampilkan daftar semua unit bisnis.
-     */
     public function index()
     {
         $businesses = Business::orderBy('order', 'asc')->get();
         return view('admin.business.index', compact('businesses'));
     }
 
-    /**
-     * Menampilkan form untuk menambah unit bisnis baru.
-     */
     public function create()
     {
         return view('admin.business.create');
     }
 
-    /**
-     * Menyimpan data unit bisnis ke database.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -41,15 +32,14 @@ class BusinessunitController extends Controller
 
         $data = $request->all();
 
-        // Proses Upload Gambar
+        // Upload Gambar
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('assets/business', 'public');
         }
 
-        // Slug otomatis dari nama
-        $data['slug'] = Str::slug($request->name);
+        // ✅ SLUG AUTO UNIQUE
+        $data['slug'] = $this->generateUniqueSlug($request->name);
 
-        // Handle checkbox is_active
         $data['is_active'] = $request->has('is_active');
 
         Business::create($data);
@@ -58,18 +48,12 @@ class BusinessunitController extends Controller
             ->with('success', 'Unit bisnis berhasil ditambahkan.');
     }
 
-    /**
-     * Menampilkan form edit untuk unit bisnis tertentu.
-     */
     public function edit($id)
     {
         $business = Business::findOrFail($id);
         return view('admin.business.edit', compact('business'));
     }
 
-    /**
-     * Memperbarui data unit bisnis di database.
-     */
     public function update(Request $request, $id)
     {
         $business = Business::findOrFail($id);
@@ -84,16 +68,17 @@ class BusinessunitController extends Controller
 
         $data = $request->all();
 
-        // Update Gambar jika ada file baru
+        // Update Gambar
         if ($request->hasFile('image')) {
-            // Hapus gambar lama
             if ($business->image) {
                 Storage::disk('public')->delete($business->image);
             }
             $data['image'] = $request->file('image')->store('assets/business', 'public');
         }
 
-        $data['slug'] = Str::slug($request->name);
+        // ✅ SLUG AUTO UNIQUE (EXCLUDE ID SENDIRI)
+        $data['slug'] = $this->generateUniqueSlug($request->name, $business->id);
+
         $data['is_active'] = $request->has('is_active');
 
         $business->update($data);
@@ -102,14 +87,10 @@ class BusinessunitController extends Controller
             ->with('success', 'Unit bisnis berhasil diperbarui.');
     }
 
-    /**
-     * Menghapus unit bisnis dari database.
-     */
     public function destroy($id)
     {
         $business = Business::findOrFail($id);
 
-        // Hapus file gambar dari storage
         if ($business->image) {
             Storage::disk('public')->delete($business->image);
         }
@@ -118,5 +99,23 @@ class BusinessunitController extends Controller
 
         return redirect()->route('admin.business.index')
             ->with('success', 'Unit bisnis berhasil dihapus.');
+    }
+
+    // ✅ FUNCTION SLUG UNIQUE
+    private function generateUniqueSlug($name, $id = null)
+    {
+        $slug = Str::slug($name);
+        $originalSlug = $slug;
+        $count = 1;
+
+        while (Business::where('slug', $slug)
+            ->when($id, fn($q) => $q->where('id', '!=', $id))
+            ->exists()) {
+
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
+
+        return $slug;
     }
 }
