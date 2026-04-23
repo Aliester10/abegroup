@@ -10,29 +10,41 @@
                     <a href="{{ route('home') }}" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Beranda</a>
                     <a href="{{ route('about') }}" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Tentang</a>
 
-                    <div class="relative group">
-                        <button type="button" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition inline-flex items-center gap-2 font-bold font-poppins">
-                            Bisnis
-                            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
-                        </button>
-                        <div class="absolute left-0 top-full pt-2 hidden group-hover:block">
-                            <div class="w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
-                                <div class="p-2">
-                                    @forelse(($companies ?? []) as $company)
-                                        <a href="{{ $company->website_url ?: route('business') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">
-                                            <div class="font-medium text-slate-900">{{ $company->name }}</div>
-                                            <div class="text-xs text-slate-500">{{ Str::limit($company->description, 60) }}</div>
-                                        </a> 
-                                    @empty
-                                        <a href="{{ route('business') }}" class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">
-                                            <div class="font-medium text-slate-900">Unit Bisnis</div>
-                                            <div class="text-xs text-slate-500">Lihat portofolio bisnis ABE Group.</div>
-                                        </a>
-                                    @endforelse
-                                </div>
-                            </div>
+   <div class="relative group">
+    <a href="{{ route('business') }}" 
+       class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition inline-flex items-center gap-2 font-bold font-poppins cursor-pointer">
+        Bisnis
+        <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+        </svg>
+    </a>
+
+    <div class="absolute left-0 top-full pt-2 hidden group-hover:block z-50">
+        <div class="w-72 rounded-xl bg-white shadow-xl ring-1 ring-black/5 overflow-hidden">
+            <div class="p-2">
+                @forelse(($businesses ?? []) as $business)
+                    {{-- Link ke detail masing-masing bisnis --}}
+                    <a href="{{ $business->website_url ?: route('business.show', $business->slug) }}" 
+                       class="block px-3 py-2 rounded-lg hover:bg-slate-50 transition">
+                        
+                        <div class="font-medium text-slate-900">
+                            {{ $business->name }}
                         </div>
-                    </div>
+
+                        <div class="text-xs text-slate-500">
+                            {{ \Illuminate\Support\Str::limit($business->description, 60) }}
+                        </div>
+                    </a>
+                @empty
+                    {{-- Link jika data kosong, arahkan ke halaman utama bisnis --}}
+                    <a href="{{ route('business') }}" class="block px-3 py-2 text-slate-500 hover:text-slate-700 text-sm">
+                        Belum ada unit bisnis.
+                    </a>
+                @endforelse
+            </div>
+        </div>
+    </div>
+</div>
 
                     <a href="{{ route('career') }}" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Karir</a>
                     <a href="{{ route('news') }}" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Berita Terkini</a>
