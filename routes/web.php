@@ -35,7 +35,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 // Admin routes (protected)
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    
+
     // Banner routes
     Route::get('/banner', [BannerController::class, 'index'])->name('admin.banner');
     Route::get('/banner/create', [BannerController::class, 'create'])->name('admin.banner.create');
@@ -43,7 +43,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/banner/{banner}/edit', [BannerController::class, 'edit'])->name('admin.banner.edit');
     Route::put('/banner/{banner}', [BannerController::class, 'update'])->name('admin.banner.update');
     Route::delete('/banner/{banner}', [BannerController::class, 'destroy'])->name('admin.banner.destroy');
-    
+
     // Activity routes
     Route::get('/activity', [ActivityController::class, 'index'])->name('admin.activity');
     Route::get('/activity/create', [ActivityController::class, 'create'])->name('admin.activity.create');
@@ -51,7 +51,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/activity/{activity}/edit', [ActivityController::class, 'edit'])->name('admin.activity.edit');
     Route::put('/activity/{activity}', [ActivityController::class, 'update'])->name('admin.activity.update');
     Route::delete('/activity/{activity}', [ActivityController::class, 'destroy'])->name('admin.activity.destroy');
-    
+
     // About routes
     Route::get('/about', [AboutController::class, 'index'])->name('admin.about');
     Route::get('/about/create', [AboutController::class, 'create'])->name('admin.about.create');
