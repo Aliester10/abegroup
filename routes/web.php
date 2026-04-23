@@ -39,6 +39,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Messages routes
     Route::get('/messages', [\App\Http\Controllers\ContactController::class, 'adminIndex'])->name('admin.messages');
     Route::delete('/messages/{id}', [\App\Http\Controllers\ContactController::class, 'delete'])->name('messages.delete');
+    Route::delete('/messages', [\App\Http\Controllers\ContactController::class, 'deleteAll'])->name('messages.delete.all');
+    
+    // Contact management routes
+    Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->names([
+        'index' => 'admin.contacts.index',
+        'show' => 'admin.contacts.show',
+        'destroy' => 'admin.contacts.destroy'
+    ]);
     
     // Banner routes
     Route::get('/banner', [BannerController::class, 'index'])->name('admin.banner');

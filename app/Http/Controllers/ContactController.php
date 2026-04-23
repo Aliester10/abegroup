@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ContactMessage;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,7 +33,7 @@ class ContactController extends Controller
         }
 
         // Simpan ke database
-        ContactMessage::create([
+        Contact::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -65,15 +65,21 @@ class ContactController extends Controller
     // Untuk admin lihat pesan
     public function adminIndex()
     {
-        $messages = ContactMessage::latest()->paginate(20);
+        $messages = Contact::latest()->paginate(20);
         return view('admin.messages', compact('messages'));
     }
 
     public function delete($id)
     {
-        $message = ContactMessage::findOrFail($id);
+        $message = Contact::findOrFail($id);
         $message->delete();
 
         return back()->with('success', 'Pesan berhasil dihapus');
+    }
+
+    public function deleteAll()
+    {
+        Contact::truncate();
+        return back()->with('success', 'Semua pesan berhasil dihapus');
     }
 }

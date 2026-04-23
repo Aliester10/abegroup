@@ -38,12 +38,7 @@
                     <a href="{{ route('news') }}" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 transition font-bold font-poppins">Berita Terkini</a>
                 </nav>
 
-                <div class="hidden md:flex items-center gap-3">
-                    <a href="{{ route('contact') }}" class="inline-flex items-center px-4 py-2 rounded-lg bg-[#FF6900] hover:bg-orange-600 text-white font-semibold transition">
-                        Hubungi Kami
-                    </a>
-                </div>
-
+                
                 <button type="button" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-gray-700 hover:bg-gray-100" data-mobile-menu-button aria-label="Open menu">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -64,10 +59,7 @@
                     <a href="{{ route('business') }}" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 font-bold font-poppins">Bisnis</a>
                     <a href="{{ route('career') }}" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 font-bold font-poppins">Karir</a>
                     <a href="{{ route('news') }}" class="px-3 py-2 rounded-md text-[#1B3A6B] hover:bg-gray-100 font-bold font-poppins">Berita Terkini</a>
-                    <a href="{{ route('contact') }}" class="mt-2 inline-flex items-center justify-center px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold">
-                        Hubungi Kami
-                    </a>
-                </div>
+                                    </div>
             </div>
         </div>
     </div>
