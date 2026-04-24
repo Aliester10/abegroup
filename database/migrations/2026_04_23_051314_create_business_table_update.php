@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('businesses', function (Blueprint $table) {
+        Schema::table('businesses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('category'); // Sesuai kebutuhan halaman detail
@@ -32,8 +32,10 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+   public function down(): void
     {
-        Schema::dropIfExists('businesses');
+        Schema::table('businesses', function (Blueprint $table) {
+            $table->dropColumn('ecomerce_link');
+        });
     }
 };

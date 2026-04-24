@@ -10,7 +10,7 @@
             @foreach(($coreValues ?? []) as $value)
                 <div class="group rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:-translate-y-1 transition">
                     <div class="w-12 h-12 rounded-xl bg-slate-950 text-white grid place-items-center group-hover:bg-orange-500 transition">
-                        {!! $value['icon'] !!}
+                        <span class="text-2xl">{!! $value['icon'] !!}</span>
                     </div>
                     <h3 class="mt-4 font-semibold text-slate-900">{{ $value['title'] }}</h3>
                     <p class="mt-2 text-sm text-slate-600">{{ $value['desc'] }}</p>

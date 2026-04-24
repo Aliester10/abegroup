@@ -9,11 +9,9 @@
 <section class="relative overflow-hidden">
         <!-- Overlay Gelap -->
         <div class="absolute inset-0 bg-slate-950/70"></div>
-
         <!-- Gradient Halus -->
         <div class="absolute inset-0 bg-gradient-to-tr from-slate-950 via-slate-950/70 to-orange-500/10"></div>
     </div>
-
     <!-- Content -->
     <div class="relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

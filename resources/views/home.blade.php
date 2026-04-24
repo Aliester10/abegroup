@@ -16,7 +16,7 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <a href="{{ route('auth.login') }}" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                        Login Admin
+                        Login
                     </a>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 Selamat Datang di ABE Group
             </h1>
             <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                Sistem manajemen modern untuk kebutuhan bisnis Anda. Kelola semuanya dengan mudah melalui dashboard admin kami.
+                Sistem manajemen modern untuk kebutuhan bisnis Anda. Kelola semuanya dengan mudah melalui dashboard kami.
             </p>
             
             <!-- CTA Button -->
@@ -39,7 +39,7 @@
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
                     </svg>
-                    Masuk ke Dashboard Admin
+                    Masuk ke Dashboard
                 </a>
             </div>
         </div>
@@ -149,13 +149,13 @@
         <!-- Admin Access Card -->
         <div class="mt-16 bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
             <div class="text-center">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">Akses Admin</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Akses</h2>
                 <p class="text-gray-600 mb-6">
-                    Untuk mengakses dashboard admin, silakan login menggunakan kredensial yang telah disediakan.
+                    Untuk mengakses dashboard, silakan login menggunakan kredensial yang telah disediakan.
                 </p>
                 <div class="flex justify-center space-x-4">
                     <a href="{{ route('auth.login') }}" class="px-6 py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors duration-200">
-                        Login Admin
+                        Login
                     </a>
                     <a href="{{ route('auth.register') }}" class="px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors duration-200">
                         Daftar Baru

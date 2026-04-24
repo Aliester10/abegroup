@@ -17,12 +17,15 @@ use App\Http\Controllers\CompanyhighlightController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\BusinessunitController;
 use App\Http\Controllers\Admin\TimelineController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobVacancyController;
 use App\Http\Controllers\Admin\BenefitController;
 use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
-use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\HomeStatController;
+use App\Http\Controllers\CoreValueController;
+use App\Http\Controllers\SustainabilityController;
 use App\Http\Controllers\Admin\AboutController as AdminAboutController;
 use App\Http\Controllers\AboutguestController;
 use App\Http\Controllers\VisiMisiController;
@@ -82,6 +85,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('/about/{aboutSection}', [AboutController::class, 'update'])->name('admin.about.update');
     Route::delete('/about/{aboutSection}', [AboutController::class, 'destroy'])->name('admin.about.destroy');
 
+    
 
     // Company routes
     Route::get('/company', [CompanyController::class, 'index'])->name('admin.company');
@@ -141,7 +145,36 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('/news/{news}', [AdminNewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/news/{news}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
 
-    Route::prefix('admin')->name('admin.')->group(function () {
+    // Contact routes
+    Route::get('/contacts', [AdminContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('/contacts/{contact}', [AdminContactController::class, 'show'])->name('admin.contacts.show');
+    Route::delete('/contacts/{contact}', [AdminContactController::class, 'destroy'])->name('admin.contacts.destroy');
+
+    // Home Statistics routes
+    Route::get('/home-stats', [HomeStatController::class, 'index'])->name('admin.home-stats.index');
+    Route::get('/home-stats/create', [HomeStatController::class, 'create'])->name('admin.home-stats.create');
+    Route::post('/home-stats', [HomeStatController::class, 'store'])->name('admin.home-stats.store');
+    Route::get('/home-stats/{homeStat}/edit', [HomeStatController::class, 'edit'])->name('admin.home-stats.edit');
+    Route::put('/home-stats/{homeStat}', [HomeStatController::class, 'update'])->name('admin.home-stats.update');
+    Route::delete('/home-stats/{homeStat}', [HomeStatController::class, 'destroy'])->name('admin.home-stats.destroy');
+
+    // Core Values routes
+    Route::get('/core-values', [CoreValueController::class, 'index'])->name('admin.core-values.index');
+    Route::get('/core-values/create', [CoreValueController::class, 'create'])->name('admin.core-values.create');
+    Route::post('/core-values', [CoreValueController::class, 'store'])->name('admin.core-values.store');
+    Route::get('/core-values/{coreValue}/edit', [CoreValueController::class, 'edit'])->name('admin.core-values.edit');
+    Route::put('/core-values/{coreValue}', [CoreValueController::class, 'update'])->name('admin.core-values.update');
+    Route::delete('/core-values/{coreValue}', [CoreValueController::class, 'destroy'])->name('admin.core-values.destroy');
+
+    // Sustainability routes
+    Route::get('/sustainability', [SustainabilityController::class, 'index'])->name('admin.sustainability.index');
+    Route::get('/sustainability/create', [SustainabilityController::class, 'create'])->name('admin.sustainability.create');
+    Route::post('/sustainability', [SustainabilityController::class, 'store'])->name('admin.sustainability.store');
+    Route::get('/sustainability/{sustainability}/edit', [SustainabilityController::class, 'edit'])->name('admin.sustainability.edit');
+    Route::put('/sustainability/{sustainability}', [SustainabilityController::class, 'update'])->name('admin.sustainability.update');
+    Route::delete('/sustainability/{sustainability}', [SustainabilityController::class, 'destroy'])->name('admin.sustainability.destroy');
+
+    Route::name('admin.')->group(function () {
         Route::get('/timelines', [TimelineController::class, 'index'])->name('timelines.index');
         Route::get('/timelines/create', [TimelineController::class, 'create'])->name('timelines.create');
         Route::post('/timelines', [TimelineController::class, 'store'])->name('timelines.store');
