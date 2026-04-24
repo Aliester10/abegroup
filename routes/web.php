@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobVacancyController;
 use App\Http\Controllers\Admin\BenefitController;
 use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 
 
@@ -144,5 +145,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timelines.edit');
         Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timelines.update');
         Route::delete('/timelines/{id}', [TimelineController::class, 'destroy'])->name('timelines.destroy');
+
+        // Contact Messages
+        Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts.index');
+        Route::get('/contacts/{contact}', [AdminContactController::class, 'show'])->name('contacts.show');
+        Route::delete('/contacts/{contact}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
     });
 });
