@@ -13,6 +13,8 @@ class HomeStatSeeder extends Seeder
      */
     public function run(): void
     {
+        HomeStat::truncate();
+
         HomeStat::create([
             'label' => 'Pendapatan Tahunan',
             'value' => 115,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\About;
 use App\Models\AboutSection;
 use App\Models\Activity;
 use App\Models\Banner;
@@ -18,7 +19,8 @@ class HomeController extends Controller
     public function index()
     {
         $hero = Banner::query()->where('is_active', true)->latest()->first();
-        $about = AboutSection::query()->where('is_active', true)->first();
+        $about_company = About::latest()->first();
+        $about_section = AboutSection::query()->where('is_active', true)->first();
 
         $companies = Company::query()
             ->where('is_active', true)
@@ -97,10 +99,11 @@ class HomeController extends Controller
         return view('pages.home', [
             'heroImageUrl' => $hero?->image ? asset('storage/' . $hero->image) : null,
             'heroSubtitle' => $hero?->description,
-            'aboutTitle' => $about?->title,
-            'aboutContent' => $about?->content,
-            'aboutImageUrl' => $about?->image ? asset('storage/' . $about->image) : null,
-            'aboutSection' => $about, // New variable for the about section
+            'aboutTitle' => $about_section?->title,
+            'aboutContent' => $about_section?->content,
+            'aboutImageUrl' => $about_section?->image ? asset('storage/' . $about_section->image) : null,
+            'aboutSection' => $about_section,
+            'about_company' => $about_company,
             'stats' => $stats,
             'aboutHighlights' => $aboutHighlights,
             'companies' => $companies,

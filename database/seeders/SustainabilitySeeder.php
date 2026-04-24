@@ -13,6 +13,8 @@ class SustainabilitySeeder extends Seeder
      */
     public function run(): void
     {
+        Sustainability::truncate();
+
         Sustainability::create([
             'title' => 'Komitmen Keberlanjutan',
             'subtitle' => 'Bertumbuh dengan tanggung jawab',

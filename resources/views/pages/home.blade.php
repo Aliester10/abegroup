@@ -16,6 +16,7 @@
         'aboutContent' => $aboutContent,
         'aboutImageUrl' => $aboutImageUrl,
         'aboutHighlights' => $aboutHighlights,
+        'about_company' => $about_company,
     ])
 
     @include('partials.marketing.business', ['businesses' => $businesses])

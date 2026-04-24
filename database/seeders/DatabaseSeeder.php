@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
             NewsSeeder::class,
             TimelineSeeder::class,
             CareerSeeder::class,
+            HomeStatSeeder::class,
+            CoreValueSeeder::class,
+            SustainabilitySeeder::class,
         ]);
     }
 }
