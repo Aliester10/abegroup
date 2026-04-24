@@ -1,113 +1,107 @@
 @extends('layouts.dashboard')
+
 @push('styles')
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
 @endpush
 
 @section('title', 'Add Benefit')
-@section('page-title', 'Create New Benefit')
-@section('breadcrumb', 'Benefit')
 
 @section('content')
-<div class="row">
-    <div class="col-md-8">
-        <div class="card card-success shadow-sm">
-            <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-plus-circle mr-2"></i> Benefit Information</h3>
-            </div>
-            
-            <form action="{{ route('admin.benefits.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label for="title"><i class="fas fa-tag mr-1"></i> Benefit Title <span class="text-danger">*</span></label>
-                                <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" placeholder="e.g. Flexible Working Hours" required>
-                                @error('title') <span class="text-danger small">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="order"><i class="fas fa-sort-numeric-down mr-1"></i> Display Order</label>
-                                <input type="number" name="order" id="order" class="form-control" value="{{ old('order', 0) }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-2">
-                        <div class="col-md-7">
-                            <div class="form-group">
-                             <label for="icon"><i class="fas fa-image mr-1"></i> Benefit Icon</label>
-                                <div class="custom-file">
-                                    <input type="file" name="icon" class="custom-file-input @error('icon') is-invalid @enderror" id="icon" accept="image/*">
-                                    <label class="custom-file-label" for="icon">Choose image...</label>
-                                </div>
-                                @error('icon') <span class="text-danger small">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label for="status"><i class="fas fa-toggle-on mr-1"></i> Visibility Status</label>
-                                <select name="status" id="status" class="form-control shadow-sm">
-                                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active (Visible)</option>
-                                    <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive (Draft)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="form-group">
-                        <label for="description"><i class="fas fa-align-left mr-1"></i> Short Description <span class="text-danger">*</span></label>
-                        <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="4" placeholder="Explain the value of this benefit to the candidates..." required>{{ old('description') }}</textarea>
-                        @error('description') <span class="text-danger small">{{ $message }}</span> @enderror
-                    </div>
-                </div>
-
-                <div class="card-footer border-top">
-                    <a href="{{ route('admin.benefits.index') }}" class="btn btn-default">
-                        <i class="fas fa-times mr-1"></i> Cancel
-                    </a>
-                    <button type="submit" class="btn btn-success float-right px-4">
-                        <i class="fas fa-save mr-1"></i> Save Benefit
-                    </button>
-                </div>
-            </form>
-        </div>
+<div class="container px-6 mx-auto grid">
+    <div class="flex items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Add New Benefit
+        </h2>
     </div>
 
-    <div class="col-md-4">
-        <div class="card card-info shadow-sm">
-            <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-info-circle mr-2"></i> Creation Guide</h3>
+    <div class="grid gap-6 mb-8 md:grid-cols-3">
+        {{-- ================= FORM ================= --}}
+        <div class="md:col-span-2">
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <form action="{{ route('admin.benefits.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-3 mb-4">
+                        <label class="block text-sm md:col-span-2">
+                            <span class="text-gray-700 dark:text-gray-400">Benefit Title <span class="text-red-500">*</span></span>
+                            <input type="text" name="title" value="{{ old('title') }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm @error('title') border-red-500 @enderror" 
+                                   placeholder="e.g. Flexible Working Hours" required>
+                            @error('title') <span class="text-xs text-red-600">{{ $message }}</span> @enderror
+                        </label>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Display Order</span>
+                            <input type="number" name="order" value="{{ old('order', 0) }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm">
+                        </label>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-4">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Benefit Icon</span>
+                            <input type="file" name="icon" 
+                                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border border-gray-300 shadow-sm p-2 @error('icon') border-red-500 @enderror" 
+                                   accept="image/*">
+                            @error('icon') <span class="text-xs text-red-600">{{ $message }}</span> @enderror
+                        </label>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Visibility Status</span>
+                            <select name="status" 
+                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm">
+                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active (Visible)</option>
+                                <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive (Draft)</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <label class="block text-sm mb-6">
+                        <span class="text-gray-700 dark:text-gray-400">Short Description <span class="text-red-500">*</span></span>
+                        <textarea name="description" rows="4" 
+                                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm @error('description') border-red-500 @enderror" 
+                                  placeholder="Explain the value of this benefit to the candidates..." required>{{ old('description') }}</textarea>
+                        @error('description') <span class="text-xs text-red-600">{{ $message }}</span> @enderror
+                    </label>
+
+                    <div class="flex justify-end space-x-4">
+                        <a href="{{ route('admin.benefits.index') }}" 
+                           class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 bg-white border border-gray-300 rounded-lg dark:text-gray-400 dark:bg-gray-700 dark:border-gray-600 active:bg-transparent hover:bg-gray-50 focus:outline-none focus:shadow-outline-gray">
+                            Cancel
+                        </a>
+                        <button type="submit" 
+                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-orange-500 border border-transparent rounded-lg active:bg-orange-600 hover:bg-orange-700 focus:outline-none focus:shadow-outline-orange">
+                            Save Benefit
+                        </button>
+                    </div>
+                </form>
             </div>
-            <div class="card-body">
-                <h6 class="font-weight-bold text-info"><i class="fas fa-pencil-alt mr-1"></i> Writing Tips</h6>
-                <p class="small text-muted text-justify">
-                    Use clear and punchy titles like <strong>"Comprehensive Healthcare"</strong> or <strong>"Remote Work Option"</strong>. Avoid overly long sentences in the description.
-                </p>
+        </div>
 
-                <hr>
-
-                <h6 class="font-weight-bold text-info"><i class="fas fa-file-image mr-1"></i> Icon Standards</h6>
-                <ul class="small text-muted pl-3">
-                    <li>Use PNG or SVG files for better quality.</li>
-                    <li>Recommended size is 512x512 pixels.</li>
-                    <li>Ensure the background is transparent.</li>
+        {{-- ================= GUIDE ================= --}}
+        <div>
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 border-l-4 border-orange-500">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    <i class="fas fa-info-circle mr-2 text-orange-500"></i> Creation Guide
+                </h4>
+                <ul class="space-y-4">
+                    <li>
+                        <p class="text-sm font-bold text-orange-500 mb-1">Writing Tips</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Use clear and punchy titles like "Comprehensive Healthcare". Avoid overly long sentences.</p>
+                    </li>
+                    <li>
+                        <p class="text-sm font-bold text-orange-500 mb-1">Icon Standards</p>
+                        <ul class="text-xs text-gray-600 dark:text-gray-400 list-disc ml-4 space-y-1">
+                            <li>PNG or SVG files preferred.</li>
+                            <li>Recommended size: 512x512 pixels.</li>
+                            <li>Transparent background is better.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p class="text-sm font-bold text-orange-500 mb-1">Display Order</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Lower numbers (e.g., 0, 1) will appear first on the landing page.</p>
+                    </li>
                 </ul>
-
-                <hr>
-
-                <h6 class="font-weight-bold text-info"><i class="fas fa-layer-group mr-1"></i> Display Order</h6>
-                <p class="small text-muted text-justify">
-                    The <strong>Order</strong> value determines the sequence of cards on the landing page. Lower numbers (e.g., 0, 1) will appear first.
-                </p>
-
-                <div class="alert alert-warning mt-4 py-2 border-0 shadow-sm">
-                    <small><i class="fas fa-exclamation-triangle mr-1"></i> Fields marked with <strong>*</strong> are mandatory and must be filled.</small>
-                </div>
             </div>
         </div>
     </div>
@@ -115,15 +109,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    // Show filename in custom file input
-    document.querySelector('.custom-file-input').addEventListener('change', function(e) {
-        var fileName = document.getElementById("icon").files[0].name;
-        var nextSibling = e.target.nextElementSibling;
-        nextSibling.innerText = fileName;
-    });
-</script>
-@endpush
-@push('scripts')
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+    {{-- No Bootstrap JS needed --}}
 @endpush
