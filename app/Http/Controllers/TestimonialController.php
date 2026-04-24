@@ -35,7 +35,7 @@ class TestimonialController extends Controller
 
         $data = $request->all();
 
-        // Logika upload gambar
+        // Logika upload gambar menggunakan disk public
         if ($request->hasFile('profile_image')) {
             $data['profile_image'] = $request->file('profile_image')->store('testimonials', 'public');
         }
@@ -66,9 +66,9 @@ class TestimonialController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('profile_image')) {
-            // Hapus gambar lama jika ada
+            // Hapus gambar lama jika ada dari disk public
             if ($testimonial->profile_image) {
-                Storage::disk('storage')->delete($testimonial->profile_image);
+                Storage::disk('public')->delete($testimonial->profile_image);
             }
             $data['profile_image'] = $request->file('profile_image')->store('testimonials', 'public');
         }
@@ -76,13 +76,14 @@ class TestimonialController extends Controller
         $testimonial->update($data);
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimoni berhasil diperbarui.');
-    }
+    } 
 
     // Menghapus data
     public function destroy(Testimonial $testimonial)
     {
+        // Cek apakah ada file gambar yang tersimpan di disk public
         if ($testimonial->profile_image) {
-            Storage::disk('storage')->delete($testimonial->profile_image);
+            Storage::disk('public')->delete($testimonial->profile_image);
         }
 
         $testimonial->delete();
