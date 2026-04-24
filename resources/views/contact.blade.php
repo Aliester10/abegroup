@@ -20,12 +20,10 @@
             <div class="min-h-[78vh] flex items-center justify-center py-16">
                 
                 <div class="max-w-3xl text-center">
-
                     <!-- Title -->
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
                         Hubungi Kami
                     </h1>
-
                     <!-- Description -->
                     <p class="mt-5 text-base sm:text-lg text-white max-w-2xl mx-auto">
                         Kami siap membantu Anda. Hubungi kami untuk informasi, kerjasama, atau pertanyaan lainnya.
