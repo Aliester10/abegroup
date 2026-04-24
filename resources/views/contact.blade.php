@@ -3,7 +3,7 @@
 @section('title', 'Hubungi Kami - ABE Group')
 
 @section('content')
-    @include('partials.marketing.navbar')
+
 
 <!-- Hero Section -->
 <section class="relative overflow-hidden">

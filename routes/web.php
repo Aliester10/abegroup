@@ -10,6 +10,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyhighlightController;
@@ -17,9 +18,12 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\BusinessunitController;
 use App\Http\Controllers\Admin\TimelineController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
-
-
-
+use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\JobVacancyController;
+use App\Http\Controllers\Admin\BenefitController;
+use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -31,7 +35,8 @@ Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index']
 
 // Rute untuk halaman detail (WAJIB ADA karena dipanggil di href pertama)
 Route::get('/bisnis/{slug}', [\App\Http\Controllers\BusinessController::class, 'show'])->name('business.show');
-Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
+Route::get('/karir', [CareerController::class, 'index'])->name('career');
+Route::post('/apply', [JobApplicationController::class, 'store'])->name('apply');
 Route::get('/berita', [NewsController::class, 'index'])->name('news');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
@@ -81,13 +86,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('/company/{company}', [CompanyController::class, 'update'])->name('admin.company.update');
     Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name('admin.company.destroy');
 
-    // Career routes
-    Route::get('/career', [CareerController::class, 'index'])->name('admin.career');
-    Route::get('/career/create', [CareerController::class, 'create'])->name('admin.career.create');
-    Route::post('/career', [CareerController::class, 'store'])->name('admin.career.store');
-    Route::get('/career/{career}/edit', [CareerController::class, 'edit'])->name('admin.career.edit');
-    Route::put('/career/{career}', [CareerController::class, 'update'])->name('admin.career.update');
-    Route::delete('/career/{career}', [CareerController::class, 'destroy'])->name('admin.career.destroy');
+    // Career routes (Resource)
+    Route::resource('job_categories', JobCategoryController::class, ['as' => 'admin']);
+    Route::resource('job_vacancies', JobVacancyController::class, ['as' => 'admin']);
+    Route::resource('benefits', BenefitController::class, ['as' => 'admin']);
+    
+    // Job Applications routes
+    Route::get('/job_applications', [AdminJobApplicationController::class, 'index'])->name('admin.applications.index');
+    Route::get('/job_applications/{id}', [AdminJobApplicationController::class, 'show'])->name('admin.applications.show');
+    Route::delete('/job_applications/{id}', [AdminJobApplicationController::class, 'destroy'])->name('admin.applications.destroy');
 
     // Partner routes
     Route::get('/partner', [PartnerController::class, 'index'])->name('admin.partner');
@@ -122,12 +129,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('/business/{id}', [BusinessunitController::class, 'destroy'])->name('admin.business.destroy');    
 
     //News routes
-    Route::get('/news', [NewsController::class, 'index'])->name('admin.news');
-    Route::get('/news/create', [NewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/news', [NewsController::class, 'store'])->name('admin.news.store');
-    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+    Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.news');
+    Route::get('/news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/news', [AdminNewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/news/{news}/edit', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/news/{news}', [AdminNewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/news/{news}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
 
     // Contact routes
     Route::get('/contacts', [AdminContactController::class, 'index'])->name('admin.contacts.index');
@@ -141,5 +148,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timelines.edit');
         Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timelines.update');
         Route::delete('/timelines/{id}', [TimelineController::class, 'destroy'])->name('timelines.destroy');
+
+        // Contact Messages
+        Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts.index');
+        Route::get('/contacts/{contact}', [AdminContactController::class, 'show'])->name('contacts.show');
+        Route::delete('/contacts/{contact}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
     });
 });

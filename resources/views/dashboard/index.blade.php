@@ -38,34 +38,7 @@
       </div>
     </div>
     
-    <!-- Total Activity Card -->
-    <div
-      class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
-    >
-      <div
-        class="p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </div>
-      <div>
-        <p
-          class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
-        >
-          Total Activity
-        </p>
-        <p
-          class="text-lg font-semibold text-gray-700 dark:text-gray-200"
-        >
-          {{ $stats['total_activity'] }}
-        </p>
-      </div>
-    </div>
+
     
     <!-- Total About Section Card -->
     <div
@@ -123,7 +96,7 @@
         <p
           class="text-lg font-semibold text-gray-700 dark:text-gray-200"
         >
-          {{ $stats['total_banner'] + $stats['total_activity'] + $stats['total_about'] }}
+          {{ $stats['total_banner'] + $stats['total_about'] }}
         </p>
       </div>
     </div>
@@ -166,40 +139,7 @@
       </div>
     </div>
     
-    <!-- Recent Activities -->
-    <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-      <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-        Activity Terbaru
-      </h4>
-      <div class="overflow-x-auto">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-              <th class="px-2 py-2">ID</th>
-              <th class="px-2 py-2">Dibuat</th>
-            </tr>
-          </thead>
-          <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-            @forelse ($recent_activities as $activity)
-              <tr class="text-gray-700 dark:text-gray-400">
-                <td class="px-2 py-2">
-                  <p class="text-sm font-medium">#{{ $activity->id }}</p>
-                </td>
-                <td class="px-2 py-2">
-                  <p class="text-sm">{{ $activity->created_at->format('d M Y') }}</p>
-                </td>
-              </tr>
-            @empty
-              <tr>
-                <td colspan="2" class="px-2 py-4 text-center text-gray-500 dark:text-gray-400">
-                  Belum ada data activity
-                </td>
-              </tr>
-            @endforelse
-          </tbody>
-        </table>
-      </div>
-    </div>
+
   </div>
 
   </div>

@@ -3,7 +3,6 @@
 @section('title', 'Unit Bisnis - ABE Group')
 
 @section('content')
-@include('partials.marketing.navbar', ['businesses' => $businesses])
 
 
 {{-- HERO SECTION --}}

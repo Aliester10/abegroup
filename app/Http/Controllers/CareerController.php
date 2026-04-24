@@ -2,68 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Career;
 use Illuminate\Http\Request;
+use App\Models\JobVacancy;
+use App\Models\JobCategory;
+use App\Models\Banner;
+use App\Models\Benefits;
 
 class CareerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $careers = Career::orderBy('order')->orderByDesc('id')->get();
-        return view('admin.career.index', compact('careers'));
-    }
+        // 1. Ambil Banner, Benefit, dan Kategori
+        $banners = Banner::orderBy('order')->get();
+        $benefits = Benefits::where('status', 'active')->orderBy('order', 'asc')->get();
+        $jobCategories = JobCategory::all();
 
-    public function create()
-    {
-        return view('admin.career.create');
-    }
+        // 2. Query Lowongan Pekerjaan Aktif
+        $query = JobVacancy::where('status', 'active');
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'location' => 'nullable|string|max:255',
-            'type' => 'nullable|string|max:255',
-            'apply_url' => 'nullable|url|max:255',
-            'is_active' => 'boolean',
-            'order' => 'nullable|integer',
-        ]);
+        // Logic Search (disesuaikan dengan key 'q' dari script AJAX)
+// Logic Search - Ubah dari 'q' menjadi 'search'
+        if ($request->filled('search')) {
+            $search = $request->search; // Ambil dari name="search"
+            $query->where('name', 'like', '%' . $search . '%');
+        }
 
-        $validated['order'] = $validated['order'] ?? 0;
+        // Logic Filter Kategori (Update: Menggunakan has & array_filter)
+        if ($request->has('category')) {
+            // Kita bungkus ke array dan bersihkan dari nilai kosong/null
+            $categoryIds = array_filter((array)$request->category);
 
-        Career::create($validated);
+            // Jika array tidak kosong (berarti user pilih kategori spesifik), jalankan filter
+            if (!empty($categoryIds)) {
+                $query->whereIn('job_category_id', $categoryIds);
+            }
+            // Jika array kosong (user pilih 'Semua Departemen'), filter whereIn akan dilewati 
+            // sehingga semua data 'Active' akan tampil.
+        }
 
-        return redirect()->route('admin.career')->with('success', 'Career created successfully.');
-    }
+        $vacancies = $query->latest()->paginate(4)->withQueryString();
 
-    public function edit(Career $career)
-    {
-        return view('admin.career.edit', compact('career'));
-    }
+        // 3. HANDLE AJAX RESPONSE
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('partials.job_card_list', compact('vacancies'))->render()
+            ]);
+        }
 
-    public function update(Request $request, Career $career)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'location' => 'nullable|string|max:255',
-            'type' => 'nullable|string|max:255',
-            'apply_url' => 'nullable|url|max:255',
-            'is_active' => 'boolean',
-            'order' => 'nullable|integer',
-        ]);
-
-        $validated['order'] = $validated['order'] ?? 0;
-
-        $career->update($validated);
-
-        return redirect()->route('admin.career')->with('success', 'Career updated successfully.');
-    }
-
-    public function destroy(Career $career)
-    {
-        $career->delete();
-        return redirect()->route('admin.career')->with('success', 'Career deleted successfully.');
+        // 4. Return View Normal
+        return view('career', compact('banners', 'benefits', 'jobCategories', 'vacancies'));
     }
 }

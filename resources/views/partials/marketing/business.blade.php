@@ -23,7 +23,7 @@
         {{-- Business Cards Grid --}}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             @forelse(($businesses ?? []) as $business)
-                <a href="{{ $business->website_link ?: '#' }}" 
+                <a href="{{ route('business.show', $business->slug) }}" 
                    class="group relative bg-[#4a5a7a]/40 backdrop-blur-sm border border-white/5 rounded-2xl p-8 hover:bg-[#4a5a7a]/60 transition-all duration-300 flex flex-col min-h-[240px]">
                     
                     {{-- Arrow Icon --}}
@@ -39,8 +39,8 @@
                             {{ $business->name }}
                         </h3>
 
-                        <p class="text-white/60 text-sm sm:text-base leading-relaxed">
-                            {{ $business->description }}
+                        <p class="text-white/60 text-sm sm:text-base leading-relaxed line-clamp-3">
+                            {{ Str::limit(strip_tags($business->description), 150) }}
                         </p>
                     </div>
                 </a>

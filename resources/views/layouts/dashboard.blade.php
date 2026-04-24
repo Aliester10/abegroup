@@ -7,12 +7,25 @@
     <title>@yield('title', 'Dashboard') - ABE Group</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @stack('styles')
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-900 h-screen overflow-hidden" x-data="data()" x-init="init()">
     <div class="flex h-full bg-gray-50 dark:bg-gray-900">
+        <!-- Mobile sidebar backdrop -->
+        <div x-show="isSideMenuOpen" 
+             x-transition:enter="transition ease-in-out duration-150" 
+             x-transition:enter-start="opacity-0" 
+             x-transition:enter-end="opacity-100" 
+             x-transition:leave="transition ease-in-out duration-150" 
+             x-transition:leave-start="opacity-100" 
+             x-transition:leave-end="opacity-0" 
+             class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center lg:hidden"
+             @click="closeSideMenu"></div>
+
         <!-- Sidebar -->
-        <aside class="z-20 flex-shrink-0 w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
+        <aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 lg:static lg:block lg:mt-0"
+               :class="isSideMenuOpen ? 'block' : 'hidden'">
             <div class="h-full px-3 py-4 flex flex-col">
                 <!-- Logo -->
                 <div class="mb-8">
@@ -34,12 +47,7 @@
                         </svg>
                         Banner
                     </a>
-                    <a href="{{ route('admin.activity') }}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 {{ request()->routeIs('admin.activity*') ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }} rounded-lg">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-                        </svg>
-                        Activity
-                    </a>
+
                     <a href="{{ route('admin.about') }}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 {{ request()->routeIs('admin.about*') ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }} rounded-lg">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -53,19 +61,36 @@
                         Timeline
                     </a>
 
-                    <a href="{{ route('admin.company') }}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 {{ request()->routeIs('admin.company*') ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }} rounded-lg">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path>
-                        </svg>
-                        Company
-                    </a>
 
-                    <a href="{{ route('admin.career') }}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 {{ request()->routeIs('admin.career*') ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }} rounded-lg">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m-4 4h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2V10z"></path>
-                        </svg>
-                        Career
-                    </a>
+
+                    <!-- Career Module -->
+                    <div x-data="{ open: {{ request()->routeIs('admin.job-*') || request()->routeIs('admin.benefits*') ? 'true' : 'false' }} }" class="space-y-1">
+                        <button @click="open = !open" class="w-full flex items-center justify-between px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m-4 4h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2V10z"></path>
+                                </svg>
+                                Career
+                            </div>
+                            <svg class="w-4 h-4 transition-transform" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" class="pl-8 space-y-1">
+                            <a href="{{ route('admin.job_vacancies.index') }}" class="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white {{ request()->routeIs('admin.job_vacancies*') ? 'font-bold text-orange-500' : '' }}">
+                                Vacancies
+                            </a>
+                            <a href="{{ route('admin.job_categories.index') }}" class="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white {{ request()->routeIs('admin.job_categories*') ? 'font-bold text-orange-500' : '' }}">
+                                Categories
+                            </a>
+                            <a href="{{ route('admin.benefits.index') }}" class="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white {{ request()->routeIs('admin.benefits*') ? 'font-bold text-orange-500' : '' }}">
+                                Benefits
+                            </a>
+                            <a href="{{ route('admin.applications.index') }}" class="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white {{ request()->routeIs('admin.applications*') ? 'font-bold text-orange-500' : '' }}">
+                                Applications
+                            </a>
+                        </div>
+                    </div>
 
                     <a href="{{ route('admin.news') }}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 {{ request()->routeIs('admin.news*') ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }} rounded-lg">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,11 +162,21 @@
 
         <!-- Main Content -->
         <div class="flex-1 flex flex-col h-full">
-            <!-- Top Bar -->
-            <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
+            <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex-shrink-0 sticky top-0 z-30">
                 <div class="px-4 py-4">
                     <div class="flex items-center justify-between">
-                        <h1 class="text-lg font-semibold text-gray-900 dark:text-white">@yield('title', 'Dashboard')</h1>
+                        <div class="flex items-center">
+                            <!-- Mobile hamburger -->
+                            <button @click="toggleSideMenu" class="p-2 mr-4 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 lg:hidden">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path x-show="!isSideMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                                    <path x-show="isSideMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                            <!-- Logo (Mobile only) -->
+                            <img src="{{ asset('assets/img/LOGO ABE GROUP-02.png') }}" alt="ABE Group Logo" class="h-6 w-auto lg:hidden mr-4">
+                            <h1 class="text-lg font-semibold text-gray-900 dark:text-white">@yield('title', 'Dashboard')</h1>
+                        </div>
                         <div class="flex items-center space-x-4">
                             <!-- Theme Toggle Button -->
                             <button @click="toggleTheme()" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
@@ -152,7 +187,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                                 </svg>
                             </button>
-                            <span class="text-sm text-gray-600 dark:text-gray-400">Admin</span>
+                            <span class="text-sm text-gray-600 dark:text-gray-400 hidden sm:inline">Admin</span>
                         </div>
                     </div>
                 </div>
@@ -217,6 +252,7 @@
             }
         }
     </script>
+@stack("scripts")
 </body>
 
 </html>

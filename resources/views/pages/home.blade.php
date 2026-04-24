@@ -3,7 +3,6 @@
 @section('title', 'ABE Group')
 
 @section('content')
-    @include('partials.marketing.navbar', ['businesses' => $businesses])
 
     @include('partials.marketing.hero', [
         'heroImageUrl' => $heroImageUrl,
