@@ -143,9 +143,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/timelines', [TimelineController::class, 'index'])->name('timelines.index');
         Route::get('/timelines/create', [TimelineController::class, 'create'])->name('timelines.create');
         Route::post('/timelines', [TimelineController::class, 'store'])->name('timelines.store');
-        Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timelines.edit');
-        Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timelines.update');
-        Route::delete('/timelines/{id}', [TimelineController::class, 'destroy'])->name('timelines.destroy');
+        Route::get('/timelines/{timeline}/edit', [TimelineController::class, 'edit'])->name('timelines.edit');
+        Route::put('/timelines/{timeline}', [TimelineController::class, 'update'])->name('timelines.update');
+        Route::delete('/timelines/{timeline}', [TimelineController::class, 'destroy'])->name('timelines.destroy');
 
         // Contact Messages
         Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts.index');
