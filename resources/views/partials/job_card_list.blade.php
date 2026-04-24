@@ -25,9 +25,14 @@
         @if($job->responsibility)
         <div class="mb-4">
             <div class="detail-title">Tanggung Jawab</div>
-            <ul class="detail-list ps-4">
+            <ul class="detail-list list-unstyled ps-0">
                 @foreach(explode("\n", str_replace("\r", "", $job->responsibility)) as $line)
-                    @if(trim($line)) <li class="mb-1">{{ trim($line) }}</li> @endif
+                    @if(trim($line)) 
+                        <li class="mb-2 d-flex align-items-start">
+                            <i class="fas fa-check-circle mt-1 me-2" style="font-size: 12px; color: #f37021;"></i>
+                            <span class="detail-text">{{ trim($line) }}</span>
+                        </li> 
+                    @endif
                 @endforeach
             </ul>
         </div>
@@ -35,9 +40,14 @@
         @if($job->qualification)
         <div class="mb-2">
             <div class="detail-title">Kualifikasi</div>
-            <ul class="detail-list ps-4">
+            <ul class="detail-list list-unstyled ps-0">
                 @foreach(explode("\n", str_replace("\r", "", $job->qualification)) as $line)
-                    @if(trim($line)) <li class="mb-1">{{ trim($line) }}</li> @endif
+                    @if(trim($line)) 
+                        <li class="mb-2 d-flex align-items-start">
+                            <i class="fas fa-check-circle mt-1 me-2" style="font-size: 12px; color: #f37021;"></i>
+                            <span class="detail-text">{{ trim($line) }}</span>
+                        </li> 
+                    @endif
                 @endforeach
             </ul>
         </div>
