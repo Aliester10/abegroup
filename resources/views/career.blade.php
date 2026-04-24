@@ -867,34 +867,24 @@
                             'X-Requested-With': 'XMLHttpRequest'
                         }
                     })
-                    .then(response => response.text())
-                    .then(html => {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, 'text/html');
-
+                    .then(response => response.json())
+                    .then(data => {
                         // Update list pekerjaan
-                        const newList = doc.getElementById('job-list-container');
-                        if (newList) {
-                            jobListContainer.innerHTML = newList.innerHTML;
+                        if (data.html !== undefined) {
+                            jobListContainer.innerHTML = data.html;
                         }
 
                         // Update pagination
-                        const newPagination = doc.querySelector('.custom-pagination-wrapper');
-                        if (newPagination && paginationContainer) {
-                            paginationContainer.innerHTML = newPagination.innerHTML;
-                        } else if (paginationContainer) {
-                            paginationContainer.innerHTML = '';
+                        if (paginationContainer) {
+                            paginationContainer.innerHTML = data.pagination || '';
                         }
 
                         // Update count
-                        const newCount = doc.querySelector('.text-muted.mb-0.fw-medium');
-                        if (newCount && vacancyCount) {
-                            vacancyCount.innerHTML = newCount.innerHTML;
+                        if (vacancyCount && data.total !== undefined) {
+                            vacancyCount.innerHTML = `Ditemukan ${data.total} Lowongan`;
                         }
 
                         jobListContainer.style.opacity = '1';
-                        
-                        // Re-initialize any bootstrap tooltips or modals if needed
                     })
                     .catch(error => {
                         console.error('Error fetching jobs:', error);
@@ -930,12 +920,17 @@
                             'X-Requested-With': 'XMLHttpRequest'
                         }
                     })
-                    .then(response => response.text())
-                    .then(html => {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, 'text/html');
-                        jobListContainer.innerHTML = doc.getElementById('job-list-container').innerHTML;
-                        paginationContainer.innerHTML = doc.querySelector('.custom-pagination-wrapper').innerHTML;
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.html !== undefined) {
+                            jobListContainer.innerHTML = data.html;
+                        }
+                        if (paginationContainer) {
+                            paginationContainer.innerHTML = data.pagination || '';
+                        }
+                        if (vacancyCount && data.total !== undefined) {
+                            vacancyCount.innerHTML = `Ditemukan ${data.total} Lowongan`;
+                        }
                         window.scrollTo({ top: jobListContainer.offsetTop - 100, behavior: 'smooth' });
                         jobListContainer.style.opacity = '1';
                     });
@@ -943,12 +938,10 @@
             });
         });
 
-        function openApplyModal(id, name) {
-            document.getElementById('vacancy_id').value = id;
+        function setVacancyData(id, name) {
+            document.getElementById('modal_job_vacancy_id').value = id;
             document.getElementById('vacancy_name_text').innerText = name;
-                document.getElementById('search-form').submit();
-            }
-        });
+        }
 
     </script>
 
@@ -956,4 +949,32 @@
 @endsection
 @push("scripts")
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: "{!! session('success') !!}",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                });
+            @endif
+
+            @if(session('error'))
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: "{!! session('error') !!}",
+                    showConfirmButton: false,
+                    timer: 4000,
+                    timerProgressBar: true,
+                });
+            @endif
+        });
+    </script>
 @endpush

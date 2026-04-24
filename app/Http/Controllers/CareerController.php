@@ -45,7 +45,9 @@ class CareerController extends Controller
         // 3. HANDLE AJAX RESPONSE
         if ($request->ajax()) {
             return response()->json([
-                'html' => view('partials.job_card_list', compact('vacancies'))->render()
+                'html' => view('partials.job_card_list', compact('vacancies'))->render(),
+                'pagination' => (string) $vacancies->onEachSide(1)->links(),
+                'total' => $vacancies->total()
             ]);
         }
 

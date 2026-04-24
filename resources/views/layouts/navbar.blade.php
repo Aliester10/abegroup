@@ -17,14 +17,15 @@
 
                 @foreach($navItems as $item)
                     <a href="{{ route($item['route']) }}" 
-                       class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
+                       class="{{ request()->routeIs($item['route']) ? 'text-[#f37021]' : 'text-[#1B3A6B]' }} font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
                         {{ $item['label'] }}
                     </a>
                 @endforeach
 
                 {{-- DROPDOWN BISNIS --}}
                 <div class="relative group">
-                    <a href="{{ route('business') }}" class="flex items-center gap-1.5 text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
+                    <a href="{{ route('business') }}" 
+                       class="{{ request()->routeIs('business*') ? 'text-[#f37021]' : 'text-[#1B3A6B]' }} flex items-center gap-1.5 font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
                         Bisnis
                         <svg class="w-4 h-4 mt-0.5 transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
@@ -48,18 +49,18 @@
                 </div>
 
                 <a href="{{ route('career') }}" 
-                   class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
+                   class="{{ request()->routeIs('career') ? 'text-[#f37021]' : 'text-[#1B3A6B]' }} font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
                     Karir
                 </a>
 
                 <a href="{{ route('news') }}" 
-                   class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
+                   class="{{ request()->routeIs('news*') ? 'text-[#f37021]' : 'text-[#1B3A6B]' }} font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
                     Berita Terkini
                 </a>
 
                 {{-- CTA BUTTON --}}
                 <a href="{{ route('contact') }}" 
-                   class="ml-4 px-8 py-3 text-white font-bold font-poppins text-[15px] transition-all duration-300 hover:brightness-110 active:scale-95 shadow-md hover:shadow-lg" 
+                   class="ml-4 px-8 py-3 text-white font-bold font-poppins text-[15px] transition-all duration-300 hover:brightness-110 active:scale-95 shadow-md hover:shadow-lg {{ request()->routeIs('contact') ? 'brightness-90 ring-2 ring-orange-200' : '' }}" 
                    style="background-color: #f37021 !important; border-radius: 15px !important;">
                     Hubungi Kami
                 </a>

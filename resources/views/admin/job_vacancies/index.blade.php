@@ -60,7 +60,7 @@
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         {{-- Trigger Modal --}}
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete-{{ $job->id }}">
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-bs-toggle="modal" data-target="#modal-delete-{{ $job->id }}" data-bs-target="#modal-delete-{{ $job->id }}">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -80,7 +80,7 @@
                                                     </p>
                                                     
                                                     <div class="d-flex justify-content-center" style="gap: 15px;">
-                                                        <button type="button" class="btn btn-light btn-lg px-4" data-dismiss="modal" style="font-weight: 600; background-color: #f8f9fa; color: #444; border: none; min-width: 120px; border-radius: 8px;">
+                                                        <button type="button" class="btn btn-light btn-lg px-4" data-dismiss="modal" data-bs-dismiss="modal" style="font-weight: 600; background-color: #f8f9fa; color: #444; border: none; min-width: 120px; border-radius: 8px;">
                                                             Cancel
                                                         </button>
                                                         
