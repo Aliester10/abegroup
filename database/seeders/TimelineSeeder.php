@@ -13,6 +13,9 @@ class TimelineSeeder extends Seeder
      */
     public function run(): void
     {
+        // Truncate table before seeding to avoid duplicates
+        Timeline::truncate();
+
         Timeline::create([
             'year' => '2010',
             'title' => 'Pendirian ABE Group',
@@ -38,9 +41,9 @@ class TimelineSeeder extends Seeder
         ]);
 
         Timeline::create([
-            'year' => '2018',
+            'year' => '2016',
             'title' => 'Transformasi Digital',
-            'description' => 'Meluncurkan platform digital terintegrasi yang revolusioner',
+            'description' => 'Memulai inisiatif transformasi digital di seluruh unit bisnis',
             'label' => 'DIGITAL ERA',
             'position' => 'left',
             'theme' => 'blue',
@@ -50,9 +53,9 @@ class TimelineSeeder extends Seeder
         ]);
 
         Timeline::create([
-            'year' => '2020',
-            'title' => '1000+ Karyawan',
-            'description' => 'Mencapai milestone 1000+ karyawan berdedikasi di seluruh Indonesia',
+            'year' => '2019',
+            'title' => 'Pencapaian 1000+ Karyawan',
+            'description' => 'Milestone penting dengan tim yang terus berkembang',
             'label' => 'MILESTONE',
             'position' => 'right',
             'theme' => 'orange',
@@ -64,23 +67,23 @@ class TimelineSeeder extends Seeder
         Timeline::create([
             'year' => '2022',
             'title' => 'Ekspansi Regional',
-            'description' => 'Memperluas operasi ke pasar regional Asia Tenggara',
-            'label' => 'GLOBAL REACH',
+            'description' => 'Membuka kantor di 20+ kota di Indonesia',
+            'label' => 'REGIONAL EXPANSION',
             'position' => 'left',
             'theme' => 'blue',
-            'tags' => ['Regional', 'ASEAN'],
+            'tags' => ['Regional', 'Expansion'],
             'is_active' => true,
             'order' => 5,
         ]);
 
         Timeline::create([
-            'year' => '2024',
+            'year' => '2026',
             'title' => 'Era Baru Inovasi',
-            'description' => 'Memimpin era baru inovasi teknologi dengan AI dan ML',
+            'description' => 'Fokus pada AI, sustainability, dan teknologi masa depan',
             'label' => 'FUTURE NOW',
             'position' => 'right',
             'theme' => 'orange',
-            'tags' => ['AI', 'ML', 'Future'],
+            'tags' => ['AI', 'Sustainability', 'Future'],
             'is_active' => true,
             'order' => 6,
         ]);

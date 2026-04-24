@@ -18,7 +18,7 @@ class CareerController extends Controller
         $jobCategories = JobCategory::all();
 
         // 2. Query Lowongan Pekerjaan Aktif
-        $query = JobVacancy::where('status', 'active');
+        $query = JobVacancy::where('status', 'Active');
 
         // Logic Search (disesuaikan dengan key 'q' dari script AJAX)
 // Logic Search - Ubah dari 'q' menjadi 'search'

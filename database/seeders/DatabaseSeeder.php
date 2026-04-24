@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             CompanySeeder::class,
             PartnerSeeder::class,
             NewsSeeder::class,
+            TimelineSeeder::class,
+            CareerSeeder::class,
         ]);
     }
 }

@@ -10,12 +10,17 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CareerController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\CompanyhighlightController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\BusinessunitController;
 use App\Http\Controllers\Admin\TimelineController;
+use App\Http\Controllers\Admin\JobCategoryController;
+use App\Http\Controllers\Admin\JobVacancyController;
+use App\Http\Controllers\Admin\BenefitController;
+use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
 
 
 
@@ -30,7 +35,8 @@ Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index']
 
 // Rute untuk halaman detail (WAJIB ADA karena dipanggil di href pertama)
 Route::get('/bisnis/{slug}', [\App\Http\Controllers\BusinessController::class, 'show'])->name('business.show');
-Route::get('/karir', [\App\Http\Controllers\CareerPageController::class, 'index'])->name('career');
+Route::get('/karir', [CareerController::class, 'index'])->name('career');
+Route::post('/apply', [JobApplicationController::class, 'store'])->name('apply');
 Route::get('/berita', [NewsController::class, 'index'])->name('news');
 Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show');
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
@@ -80,13 +86,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('/company/{company}', [CompanyController::class, 'update'])->name('admin.company.update');
     Route::delete('/company/{company}', [CompanyController::class, 'destroy'])->name('admin.company.destroy');
 
-    // Career routes
-    Route::get('/career', [CareerController::class, 'index'])->name('admin.career');
-    Route::get('/career/create', [CareerController::class, 'create'])->name('admin.career.create');
-    Route::post('/career', [CareerController::class, 'store'])->name('admin.career.store');
-    Route::get('/career/{career}/edit', [CareerController::class, 'edit'])->name('admin.career.edit');
-    Route::put('/career/{career}', [CareerController::class, 'update'])->name('admin.career.update');
-    Route::delete('/career/{career}', [CareerController::class, 'destroy'])->name('admin.career.destroy');
+    // Career routes (Resource)
+    Route::resource('job_categories', JobCategoryController::class, ['as' => 'admin']);
+    Route::resource('job_vacancies', JobVacancyController::class, ['as' => 'admin']);
+    Route::resource('benefits', BenefitController::class, ['as' => 'admin']);
+    
+    // Job Applications routes
+    Route::get('/job_applications', [AdminJobApplicationController::class, 'index'])->name('admin.applications.index');
+    Route::get('/job_applications/{id}', [AdminJobApplicationController::class, 'show'])->name('admin.applications.show');
+    Route::delete('/job_applications/{id}', [AdminJobApplicationController::class, 'destroy'])->name('admin.applications.destroy');
 
     // Partner routes
     Route::get('/partner', [PartnerController::class, 'index'])->name('admin.partner');
