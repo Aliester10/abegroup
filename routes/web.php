@@ -16,6 +16,7 @@ use App\Http\Controllers\CompanyhighlightController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\BusinessunitController;
 use App\Http\Controllers\Admin\TimelineController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 
 
@@ -127,6 +128,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
     Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+
+    // Contact routes
+    Route::get('/contacts', [AdminContactController::class, 'index'])->name('admin.contacts.index');
+    Route::get('/contacts/{contact}', [AdminContactController::class, 'show'])->name('admin.contacts.show');
+    Route::delete('/contacts/{contact}', [AdminContactController::class, 'destroy'])->name('admin.contacts.destroy');
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/timelines', [TimelineController::class, 'index'])->name('timelines.index');
