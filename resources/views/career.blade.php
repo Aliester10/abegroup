@@ -181,12 +181,15 @@
             cursor: pointer;
         }
         @media (max-width: 768px) {
-            .job-card .row { display: flex !important; flex-wrap: nowrap !important; align-items: flex-start; }
-            .job-card .col-md-8 { flex: 1; padding-right: 10px; }
-            .job-card .col-md-4 { width: auto !important; flex: 0 0 auto !important; margin-top: 0 !important; }
-            .action-group { flex-direction: column !important; gap: 8px !important; align-items: flex-end; }
-            .btn-detail-outline, .btn-lamar-solid { width: 90px !important; padding: 6px 0 !important; font-size: 12px !important; text-align: center; display: block; }
-            .info-bar { flex-direction: column; align-items: flex-start; gap: 5px; display: flex !important; }
+            .job-card { padding: 20px !important; }
+            .job-card .row { flex-direction: column !important; align-items: stretch !important; }
+            .job-card .col-md-8 { padding-right: 0 !important; margin-bottom: 15px !important; }
+            .job-card .col-md-4 { width: 100% !important; margin-top: 15px !important; border-top: 1px solid #f1f5f9; padding-top: 15px !important; }
+            .action-group { flex-direction: row !important; gap: 10px !important; justify-content: center !important; }
+            .btn-detail-outline, .btn-lamar-solid { width: 100% !important; flex: 1 !important; padding: 10px 0 !important; font-size: 14px !important; }
+            .info-bar { flex-direction: row !important; flex-wrap: wrap !important; gap: 10px !important; }
+            .info-item { font-size: 13px !important; }
+            .job-name { font-size: 1.15rem !important; }
         }
         .job-divider { margin: 20px 0; border-top: 1px dashed #ddd; display: none; }
         .custom-pagination-wrapper {
