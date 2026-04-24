@@ -2,9 +2,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-10 items-center">
             <div>
-                <p class="text-sm font-semibold text-orange-600">Komitmen Keberlanjutan</p>
-                <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900">Bertumbuh dengan tanggung jawab</h2>
-                <p class="mt-4 text-slate-600">Kami memastikan pertumbuhan bisnis berjalan selaras dengan kepatuhan, efisiensi energi, dan kontribusi sosial.</p>
+                <p class="text-sm font-semibold text-orange-600">{{ $sustainabilityTitle }}</p>
+                <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900">{{ $sustainabilitySubtitle }}</h2>
+                <p class="mt-4 text-slate-600">{{ $sustainabilityDescription }}</p>
 
                 <ul class="mt-6 space-y-3 text-slate-700">
                     @foreach(($sustainabilityPoints ?? []) as $point)
@@ -18,7 +18,7 @@
                 </ul>
 
                 <div class="mt-8">
-                    <a href="{{ route('contact') }}" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-semibold transition">Kolaborasi Bersama Kami</a>
+                    <a href="{{ $sustainabilityButtonUrl }}" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-slate-950 font-semibold transition">{{ $sustainabilityButtonText }}</a>
                 </div>
             </div>
 

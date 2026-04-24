@@ -11,8 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('about_sections', function (Blueprint $table) {
+        Schema::create('home_stats', function (Blueprint $table) {
             $table->id();
+            $table->string('label');
+            $table->decimal('value', 15, 2);
+            $table->string('suffix')->nullable();
+            $table->text('icon')->nullable();
+            $table->integer('order')->default(0);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('about_sections');
+        Schema::dropIfExists('home_stats');
     }
 };

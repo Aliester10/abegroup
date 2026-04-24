@@ -13,6 +13,14 @@ class AboutSection extends Model
         'image',
         'is_active',
         'order',
+        'description',
+        'description_2',
+        'point_1',
+        'point_2',
+        'point_3',
+        'button_text',
+        'button_link',
+        'image_url',
     ];
 
     protected $casts = [
