@@ -17,19 +17,19 @@
 
                 @foreach($navItems as $item)
                     <a href="{{ route($item['route']) }}" 
-                       class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300">
+                       class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
                         {{ $item['label'] }}
                     </a>
                 @endforeach
 
                 {{-- DROPDOWN BISNIS --}}
                 <div class="relative group">
-                    <button class="flex items-center gap-1.5 text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300">
+                    <a href="{{ route('business') }}" class="flex items-center gap-1.5 text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
                         Bisnis
                         <svg class="w-4 h-4 mt-0.5 transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
                         </svg>
-                    </button>
+                    </a>
 
                     <div class="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
                         <div class="w-72 rounded-2xl bg-white shadow-2xl ring-1 ring-black/5 overflow-hidden p-2 border border-gray-100">
@@ -48,12 +48,12 @@
                 </div>
 
                 <a href="{{ route('career') }}" 
-                   class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300">
+                   class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
                     Karir
                 </a>
 
                 <a href="{{ route('news') }}" 
-                   class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300">
+                   class="text-[#1B3A6B] font-semibold font-poppins text-[15px] tracking-wide hover:text-[#f37021] transition-colors duration-300 no-underline">
                     Berita Terkini
                 </a>
 

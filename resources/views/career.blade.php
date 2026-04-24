@@ -8,15 +8,10 @@
 @endpush
 
 @section('content')
-    @include('partials.marketing.navbar')
+
 
     {{-- CSS UNTUK BANNER ORANYE & PENCARIAN OVERLAP --}}
     <style>
-        /* RESET NAVBAR UNDERLINE */
-        header a, header button {
-            text-decoration: none !important;
-        }
-
         /* Reset & Background Global */
         .hero-career {
             background: linear-gradient(rgba(243, 112, 33, 0.9), rgba(229, 93, 10, 0.8)),

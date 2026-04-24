@@ -3,7 +3,6 @@
 @section('title', 'Berita Terkini - ABE Group')
 
 @section('content')
-    @include('partials.marketing.navbar')
 
     <!-- Header Section -->
     <section class="py-10 sm:py-18">

@@ -3,7 +3,6 @@
 @section('title', 'Tentang Kami - ABE Group')
 
 @section('content')
-    @include('partials.marketing.navbar')
 
     <!-- Hero Section -->
     <section class="relative min-h-[80vh] flex items-center overflow-hidden">
