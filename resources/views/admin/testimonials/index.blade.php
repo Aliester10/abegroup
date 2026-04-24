@@ -1,111 +1,123 @@
 @extends('layouts.dashboard')
 
 @push('styles')
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
 @endpush
 
 @section('title', 'Testimonials Management')
-@section('page-title', 'Testimonials Management')
-@section('breadcrumb', 'Testimonial')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="container px-6 mx-auto grid">
+    <div class="flex justify-between items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Testimonials Management
+        </h2>
+        <a href="{{ route('admin.testimonials.create') }}" 
+           class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-orange-500 border border-transparent rounded-lg active:bg-orange-600 hover:bg-orange-700 focus:outline-none focus:shadow-outline-orange">
+            <i class="fas fa-plus mr-2"></i> Add New Testimonial
+        </a>
+    </div>
+
+    @if(session('success'))
+        <div class="px-4 py-3 mb-8 text-sm font-semibold text-green-700 bg-green-100 rounded-lg dark:text-green-100 dark:bg-green-700 shadow-md flex justify-between items-center">
+            <span>{{ session('success') }}</span>
+            <button type="button" class="text-green-500 dark:text-green-200" onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    @endif
+
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Client</th>
+                        <th class="px-4 py-3">Company & Position</th>
+                        <th class="px-4 py-3">Testimonial</th>
+                        <th class="px-4 py-3">Rating</th>
+                        <th class="px-4 py-3 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @forelse($testimonials as $testimonial)
+                        <tr class="text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <td class="px-4 py-3">
+                                <div class="flex items-center text-sm">
+                                    <div class="relative hidden w-10 h-10 mr-3 rounded-full md:block">
+                                        @if($testimonial->profile_image)
+                                            <img class="object-cover w-full h-full rounded-full shadow-inner" 
+                                                 src="{{ asset('storage/' . $testimonial->profile_image) }}" 
+                                                 alt="" loading="lazy" />
+                                        @else
+                                            <div class="w-full h-full rounded-full bg-orange-100 dark:bg-orange-500 flex items-center justify-center text-orange-500 dark:text-orange-100 font-bold">
+                                                {{ strtoupper(substr($testimonial->client_name, 0, 1)) }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold">{{ $testimonial->client_name }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <div class="font-medium text-gray-800 dark:text-gray-300">{{ $testimonial->company }}</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">{{ $testimonial->position }}</div>
+                            </td>
+                            <td class="px-4 py-3 text-sm max-w-xs truncate">
+                                {{ Str::limit($testimonial->testimonial_text, 50) }}
+                            </td>
+                            <td class="px-4 py-3 text-sm text-yellow-500">
+                                @for($i = 0; $i < $testimonial->rating; $i++)
+                                    <i class="fas fa-star"></i>
+                                @endfor
+                            </td>
+                            <td class="px-4 py-3 text-sm text-center">
+                                <div class="flex items-center justify-center space-x-2 text-sm">
+                                    <a href="{{ route('admin.testimonials.edit', $testimonial->id) }}" 
+                                       class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray hover:bg-orange-100 dark:hover:bg-gray-600 transition-colors" 
+                                       aria-label="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('admin.testimonials.destroy', $testimonial->id) }}" method="POST" class="inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" 
+                                                class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray hover:bg-red-100 dark:hover:bg-gray-600 transition-colors" 
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')" 
+                                                aria-label="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td colspan="5" class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                                <div class="flex flex-col items-center">
+                                    <i class="fas fa-folder-open text-4xl mb-3 text-gray-300"></i>
+                                    <p>Belum ada data testimoni.</p>
+                                    <a href="{{ route('admin.testimonials.create') }}" class="mt-2 text-orange-500 hover:underline">Tambah sekarang</a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        
+        @if($testimonials->hasPages())
+            <div class="px-4 py-3 bg-gray-50 text-gray-500 dark:text-gray-400 dark:bg-gray-800 border-t dark:border-gray-700">
+                <div class="flex justify-center">
+                    {{ $testimonials->links() }}
+                </div>
             </div>
         @endif
-
-        <div class="card shadow-sm border-0">
-            <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                <h3 class="card-title text-bold mb-0">Testimonials List</h3>
-                <div class="card-tools mb-0" style="margin-left: auto;">
-                    <a href="{{ route('admin.testimonials.create') }}" class="btn btn-primary btn-sm">
-                        <i class="fas fa-plus mr-1"></i> Add New Testimonial
-                    </a>
-                </div>
-            </div>
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead>
-                            <tr>
-                                <th>Client</th>
-                                <th>Company & Position</th>
-                                <th>Testimonial</th>
-                                <th>Rating</th>
-                                <th class="text-center" style="width: 150px">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($testimonials as $testimonial)
-                                <tr>
-                                    <td class="align-middle">
-                                        <div class="d-flex align-items-center">
-                                            @if($testimonial->profile_image)
-                                                <img src="{{ asset('storage/' . $testimonial->profile_image) }}" class="rounded-circle mr-3" style="width: 40px; height: 40px; object-fit: cover;" alt="">
-                                            @else
-                                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mr-3" style="width: 40px; height: 40px; font-weight: bold;">
-                                                    {{ strtoupper(substr($testimonial->client_name, 0, 1)) }}
-                                                </div>
-                                            @endif
-                                            <div class="text-bold ms-2">{{ $testimonial->client_name }}</div>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="text-bold">{{ $testimonial->company }}</div>
-                                        <div class="text-muted text-sm">{{ $testimonial->position }}</div>
-                                    </td>
-                                    <td class="align-middle">
-                                        {{ Str::limit($testimonial->testimonial_text, 50) }}
-                                    </td>
-                                    <td class="align-middle text-warning">
-                                        @for($i = 0; $i < $testimonial->rating; $i++)
-                                            <i class="fas fa-star"></i>
-                                        @endfor
-                                    </td>
-                                    <td class="text-center align-middle">
-                                        <div class="btn-group">
-                                            <a href="{{ route('admin.testimonials.edit', $testimonial->id) }}" class="btn btn-warning btn-sm" title="Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <form action="{{ route('admin.testimonials.destroy', $testimonial->id) }}" method="POST" style="display: inline-block; margin: 0;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Apakah Anda yakin ingin menghapus testimoni ini?')" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center py-4">
-                                        Belum ada data testimoni. <a href="{{ route('admin.testimonials.create') }}" class="text-primary">Tambah sekarang</a>
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            @if($testimonials->hasPages())
-                <div class="card-footer pb-0">
-                    <div class="d-flex justify-content-center">
-                        {{ $testimonials->links() }}
-                    </div>
-                </div>
-            @endif
-        </div>
     </div>
 </div>
 @endsection
 
 @push('scripts')
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+    {{-- No Bootstrap JS needed anymore --}}
 @endpush

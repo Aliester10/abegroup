@@ -1,140 +1,96 @@
 @extends('layouts.dashboard')
+
 @push('styles')
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
-    {{-- DataTables CSS --}}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
 @endpush
 
 @section('title', 'Job Categories')
-@section('page-title', 'Manage Job Categories')
-@section('breadcrumb', 'Job Category')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <div class="card shadow-sm border-0">
-            <div class="card-header bg-white py-3">
-                <h3 class="card-title text-bold text-dark">List of Categories</h3>
-                <div class="card-tools">
-                    <a href="{{ route('admin.job_categories.create') }}" class="btn btn-primary btn-sm px-3">
-                        <i class="fas fa-plus mr-1"></i> Add New Category
-                    </a>
-                </div>
-            </div>
-            <div class="card-body p-0">
-                {{-- Alert session --}}
-                @if(session('success'))
-                    <div class="alert alert-success m-3 alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+<div class="container px-6 mx-auto grid">
+    <div class="flex justify-between items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Job Categories
+        </h2>
+        <a href="{{ route('admin.job_categories.create') }}" 
+           class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-orange-500 border border-transparent rounded-lg active:bg-orange-600 hover:bg-orange-700 focus:outline-none focus:shadow-outline-orange">
+            <i class="fas fa-plus mr-2"></i> Add New Category
+        </a>
+    </div>
 
-                @if(session('error'))
-                    <div class="alert alert-danger m-3 alert-dismissible fade show" role="alert">
-                        {{ session('error') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+    @if(session('success'))
+        <div class="px-4 py-3 mb-8 text-sm font-semibold text-green-700 bg-green-100 rounded-lg dark:text-green-100 dark:bg-green-700 shadow-md flex justify-between items-center">
+            <span>{{ session('success') }}</span>
+            <button type="button" class="text-green-500 dark:text-green-200" onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    @endif
 
-                <div class="table-responsive"><table id="categoryTable" class="table table-hover mb-0">
-                    <thead class="bg-light">
-                        <tr>
-                            <th class="text-center" style="width: 70px">No</th>
-                            <th>Category Name</th>
-                            <th>Related Jobs</th>
-                            <th class="text-center" style="width: 180px">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($categories as $category)
-                        <tr>
-                            <td class="text-center align-middle">{{ $loop->iteration }}</td>
-                            <td class="align-middle text-bold">{{ $category->name }}</td>
-                            <td class="align-middle">
-                                <span class="badge bg-info px-2 py-1">
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3 text-center" style="width: 70px">No</th>
+                        <th class="px-4 py-3">Category Name</th>
+                        <th class="px-4 py-3">Related Jobs</th>
+                        <th class="px-4 py-3 text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    @forelse($categories as $category)
+                        <tr class="text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <td class="px-4 py-3 text-sm text-center">
+                                {{ $loop->iteration }}
+                            </td>
+                            <td class="px-4 py-3 text-sm font-semibold">
+                                {{ $category->name }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                <span class="px-2 py-1 font-semibold leading-tight text-blue-700 bg-blue-100 rounded-full dark:bg-blue-700 dark:text-blue-100">
                                     {{ $category->job_vacancies_count ?? $category->jobVacancies->count() }} Jobs
                                 </span>
                             </td>
-                            <td class="text-center align-middle">
-                                <div class="btn-group">
-                                    <a href="{{ route('admin.job_categories.show', $category->id) }}" class="btn btn-info btn-sm">
+                            <td class="px-4 py-3 text-sm text-center">
+                                <div class="flex items-center justify-center space-x-2">
+                                    <a href="{{ route('admin.job_categories.show', $category->id) }}" 
+                                       class="p-2 text-blue-600 rounded-lg hover:bg-blue-100 dark:text-gray-400 dark:hover:bg-gray-600 transition-colors" 
+                                       title="View">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.job_categories.edit', $category->id) }}" class="btn btn-warning btn-sm">
+                                    <a href="{{ route('admin.job_categories.edit', $category->id) }}" 
+                                       class="p-2 text-orange-600 rounded-lg hover:bg-orange-100 dark:text-gray-400 dark:hover:bg-gray-600 transition-colors" 
+                                       title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    {{-- Trigger Modal --}}
-                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ $category->id }}">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <form action="{{ route('admin.job_categories.destroy', $category->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" 
+                                                class="p-2 text-red-600 rounded-lg hover:bg-red-100 dark:text-gray-400 dark:hover:bg-gray-600 transition-colors" 
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')" 
+                                                title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
-
-                                <div class="modal fade" id="modal-delete-{{ $category->id }}" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 400px;">
-                                        <div class="modal-content border-0 shadow-lg" style="border-radius: 15px;">
-                                            <div class="modal-body text-center p-5">
-                                                <div class="mb-4">
-                                                    <i class="fas fa-exclamation-circle text-danger" style="font-size: 80px; opacity: 0.9;"></i>
-                                                </div>
-                                                
-                                                <h3 class="text-bold mb-3" style="color: #333;">Delete Category?</h3>
-                                                
-                                                <p class="text-muted mb-4">
-                                                    Are you sure you want to delete <strong>{{ $category->name }}</strong>? This action cannot be undone.
-                                                </p>
-                                                
-                                                <div class="d-flex justify-content-center" style="gap: 15px;">
-                                                    <button type="button" class="btn btn-light btn-lg px-4" data-bs-dismiss="modal" style="font-weight: 600; background-color: #f8f9fa; color: #444; border: none; min-width: 120px; border-radius: 8px;">
-                                                        Cancel
-                                                    </button>
-                                                    
-                                                    <form action="{{ route('admin.job_categories.destroy', $category->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-lg px-4" style="font-weight: 600; background-color: #e3342f; border: none; min-width: 140px; border-radius: 8px;">
-                                                            Yes, Delete It
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                </td>
+                            </td>
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table></div>
-            </div>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
+                                Belum ada data kategori. <a href="{{ route('admin.job_categories.create') }}" class="text-orange-500 hover:underline">Tambah sekarang</a>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 @endsection
 
-@section('scripts')
-<script>
-  $(function () {
-    $("#categoryTable").DataTable({
-      "responsive": true, 
-      "lengthChange": true, 
-      "autoWidth": false,
-      "language": {
-          "search": "Search Category:",
-          "emptyTable": "No categories found"
-      }
-    });
-  });
-</script>
-@endsection
 @push('scripts')
-    {{-- jQuery and DataTables JS --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+    {{-- No Bootstrap/DataTables JS needed --}}
 @endpush
