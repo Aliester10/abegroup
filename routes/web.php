@@ -25,6 +25,8 @@ use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\AboutController as AdminAboutController;
 use App\Http\Controllers\AboutguestController;
+use App\Http\Controllers\VisiMisiController;
+
 
 
 
@@ -159,6 +161,18 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/about/{id}/edit', [AboutController::class, 'edit'])->name('about.edit');
         Route::put('/about/{id}', [AboutController::class, 'update'])->name('about.update');
         Route::delete('/about/{id}', [AboutController::class, 'destroy'])->name('about.destroy');
+
+        // Visi Misi Routes
+        Route::get('/visi_misi', [\App\Http\Controllers\VisiMisiController::class, 'index'])->name('visi_misi.index');
+        Route::post('/visi_misi', [\App\Http\Controllers\VisiMisiController::class, 'store'])->name('visi_misi.store'); 
+
+        // Company Values Routes\
+        Route::get( '/company_values', [\App\Http\Controllers\CompanyValueController::class, 'index'])->name('company_values.index');
+        Route::get('/company_values/create', [\App\Http\Controllers\CompanyValueController::class, 'create'])->name('company_values.create');
+        Route::post('/company_values', [\App\Http\Controllers\CompanyValueController::class, 'store'])->name('company_values.store');
+        Route::get('/company_values/{company_value}/edit', [\App\Http\Controllers\CompanyValueController::class, 'edit'])->name('company_values.edit');
+        Route::put('/company_values/{company_value}', [\App\Http\Controllers\CompanyValueController::class, 'update'])->name('company_values.update');
+        Route::delete('/company_values/{company_value}', [\App\Http\Controllers\CompanyValueController::class, 'destroy'])->name('company_values.destroy');
 
     });
 });

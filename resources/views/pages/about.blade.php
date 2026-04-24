@@ -262,7 +262,11 @@
                     
                     <!-- Content -->
                     <p class="text-white/80 text-sm leading-relaxed">
-                        Menjadi konglomerasi terkemuka di Asia Tenggara yang memberikan nilai tambah berkelanjutan bagi semua pemangku kepentingan melalui inovasi, transformasi digital, dan komitmen terhadap pembangunan ekonomi yang inklusif dan berkelanjutan.
+                        @if(isset($visimisi) && $visimisi->visi)
+                            {!! nl2br(e($visimisi->visi)) !!}
+                        @else
+                            Menjadi konglomerasi terkemuka di Asia Tenggara yang memberikan nilai tambah berkelanjutan bagi semua pemangku kepentingan melalui inovasi, transformasi digital, dan komitmen terhadap pembangunan ekonomi yang inklusif dan berkelanjutan.
+                        @endif
                     </p>
                 </div>
                 
@@ -280,18 +284,29 @@
                     
                     <!-- Content -->
                     <ul class="text-white/80 text-sm space-y-3">
-                        <li class="flex items-start gap-2">
-                            <span class="text-white/60 mt-1">•</span>
-                            <span>Memberikan produk dan layanan berkualitas tinggi kepada pelanggan</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-white/60 mt-1">•</span>
-                            <span>Mengembangkan talenta dan menciptakan lingkungan kerja yang inspiring</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-white/60 mt-1">•</span>
-                            <span>Mendorong inovasi berkelanjutan di setiap lini bisnis</span>
-                        </li>
+                        @if(isset($visimisi) && $visimisi->misi)
+                            @foreach(explode("\n", str_replace("\r", "", $visimisi->misi)) as $misiItem)
+                                @if(trim($misiItem) !== '')
+                                <li class="flex items-start gap-2">
+                                    <span class="text-white/60 mt-1">•</span>
+                                    <span>{{ trim($misiItem) }}</span>
+                                </li>
+                                @endif
+                            @endforeach
+                        @else
+                            <li class="flex items-start gap-2">
+                                <span class="text-white/60 mt-1">•</span>
+                                <span>Memberikan produk dan layanan berkualitas tinggi kepada pelanggan</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-white/60 mt-1">•</span>
+                                <span>Mengembangkan talenta dan menciptakan lingkungan kerja yang inspiring</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-white/60 mt-1">•</span>
+                                <span>Mendorong inovasi berkelanjutan di setiap lini bisnis</span>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -311,49 +326,64 @@
             
             <!-- Values Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <!-- Integritas -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
-                    <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-lg font-bold text-white">1</span>
+                @if(isset($companyValues) && $companyValues->count() > 0)
+                    @foreach($companyValues as $index => $value)
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 {{ $index % 2 == 0 ? 'bg-[#3B5998]' : 'bg-orange-500' }} rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">{{ $index + 1 }}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">{{ $value->title }}</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            {{ $value->description }}
+                        </p>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Integritas</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Berkomitmen pada kejujuran dan transparansi dalam setiap tindakan
-                    </p>
-                </div>
-                
-                <!-- Inovasi -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
-                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-lg font-bold text-white">2</span>
+                    @endforeach
+                @else
+                    <!-- Fallback to static values if none in database -->
+                    <!-- Integritas -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">1</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Integritas</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Berkomitmen pada kejujuran dan transparansi dalam setiap tindakan
+                        </p>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Inovasi</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Mengembangkan solusi kreatif untuk menghadapi tantangan bisnis
-                    </p>
-                </div>
-                
-                <!-- Kolaborasi -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
-                    <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-lg font-bold text-white">3</span>
+                    
+                    <!-- Inovasi -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Inovasi</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Mengembangkan solusi kreatif untuk menghadapi tantangan bisnis
+                        </p>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Kolaborasi</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Membangun kemitraan yang kuat untuk pertumbuhan bersama
-                    </p>
-                </div>
-                
-                <!-- Keunggulan -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
-                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-lg font-bold text-white">4</span>
+                    
+                    <!-- Kolaborasi -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">3</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Kolaborasi</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Membangun kemitraan yang kuat untuk pertumbuhan bersama
+                        </p>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Keunggulan</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Berkomitmen memberikan kualitas terbaik dalam setiap layanan
-                    </p>
-                </div>
+                    
+                    <!-- Keunggulan -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">4</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Keunggulan</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Berkomitmen memberikan kualitas terbaik dalam setiap layanan
+                        </p>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
