@@ -23,7 +23,8 @@ use App\Http\Controllers\Admin\BenefitController;
 use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
-
+use App\Http\Controllers\Admin\AboutController as AdminAboutController;
+use App\Http\Controllers\AboutguestController;
 
 
 
@@ -31,7 +32,7 @@ use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Public pages
-Route::get('/tentang', [\App\Http\Controllers\AboutPageController::class, 'index'])->name('about');
+Route::get('/tentang', [\App\Http\Controllers\AboutguestController::class, 'index'])->name('about');
 // Rute untuk halaman daftar bisnis (yang kamu kasih tadi)
 Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index'])->name('business');
 
@@ -150,5 +151,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts.index');
         Route::get('/contacts/{contact}', [AdminContactController::class, 'show'])->name('contacts.show');
         Route::delete('/contacts/{contact}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
+
+           // About Company Routes
+        Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+        Route::get('/about/create', [AboutController::class, 'create'])->name('about.create');
+        Route::post('/about', [AboutController::class, 'store'])->name('about.store');
+        Route::get('/about/{id}/edit', [AboutController::class, 'edit'])->name('about.edit');
+        Route::put('/about/{id}', [AboutController::class, 'update'])->name('about.update');
+        Route::delete('/about/{id}', [AboutController::class, 'destroy'])->name('about.destroy');
+
     });
 });
