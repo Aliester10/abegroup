@@ -1,5 +1,5 @@
 @php
-    $displayAbout = $aboutSection ?? $about_company ?? null;
+    $displayAbout = $about_company ?? $aboutSection ?? null;
 @endphp
 
 @if($displayAbout)
