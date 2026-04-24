@@ -66,7 +66,7 @@
                     </div>
                 </div>
 
-                <div class="card-footer bg-white border-top">
+                <div class="card-footer border-top">
                     <a href="{{ route('admin.benefits.index') }}" class="btn btn-default">
                         <i class="fas fa-times mr-1"></i> Cancel
                     </a>

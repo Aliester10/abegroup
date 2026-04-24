@@ -2,6 +2,9 @@
 @push('styles')
     <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+    {{-- DataTables CSS --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css">
 @endpush
 
 @section('title', 'Job Categories')
@@ -21,10 +24,18 @@
                 </div>
             </div>
             <div class="card-body p-0">
-                {{-- Alert session tetap dipertahankan jika ada --}}
+                {{-- Alert session --}}
                 @if(session('success'))
-                    <div class="alert alert-success m-3">
+                    <div class="alert alert-success m-3 alert-dismissible fade show" role="alert">
                         {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger m-3 alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
 
@@ -43,7 +54,7 @@
                             <td class="text-center align-middle">{{ $loop->iteration }}</td>
                             <td class="align-middle text-bold">{{ $category->name }}</td>
                             <td class="align-middle">
-                                <span class="badge badge-info px-2 py-1">
+                                <span class="badge bg-info px-2 py-1">
                                     {{ $category->job_vacancies_count ?? $category->jobVacancies->count() }} Jobs
                                 </span>
                             </td>
@@ -56,7 +67,7 @@
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     {{-- Trigger Modal --}}
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal-delete-{{ $category->id }}">
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ $category->id }}">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
@@ -76,7 +87,7 @@
                                                 </p>
                                                 
                                                 <div class="d-flex justify-content-center" style="gap: 15px;">
-                                                    <button type="button" class="btn btn-light btn-lg px-4" data-dismiss="modal" style="font-weight: 600; background-color: #f8f9fa; color: #444; border: none; min-width: 120px; border-radius: 8px;">
+                                                    <button type="button" class="btn btn-light btn-lg px-4" data-bs-dismiss="modal" style="font-weight: 600; background-color: #f8f9fa; color: #444; border: none; min-width: 120px; border-radius: 8px;">
                                                         Cancel
                                                     </button>
                                                     
@@ -119,5 +130,11 @@
 </script>
 @endsection
 @push('scripts')
+    {{-- jQuery and DataTables JS --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
 @endpush

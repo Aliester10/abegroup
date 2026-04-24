@@ -1,119 +1,106 @@
 @extends('layouts.dashboard')
 
+@push('styles')
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+@endpush
+
 @section('title', 'Add New Business Unit')
+@section('page-title', 'Add New Business Unit')
+@section('breadcrumb', 'Add Business Unit')
 
 @section('content')
-<div class="container mx-auto px-6 py-10">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-
-        {{-- ================= FORM ================= --}}
-        <div class="lg:col-span-3">
-            <div class="flex items-center justify-between mb-6">
-                <h1 class="text-xl font-semibold text-gray-800">Add New Business Unit</h1>
-                <a href="{{ route('admin.business.index') }}" class="text-blue-600 hover:underline text-sm font-medium">
-                    ← Back to List
-                </a>
+<div class="row">
+    {{-- ================= FORM ================= --}}
+    <div class="col-lg-8">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Form Business Unit Baru</h3>
             </div>
-
-            <div class="bg-white rounded-xl shadow-sm border p-8">
-                <form action="{{ route('admin.business.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
-                    @csrf
-
-                    <!-- NAME & CATEGORY -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600">Business Name *</label>
-                            <input type="text" name="name"
-                                value="{{ old('name') }}"
-                                class="w-full px-3 py-2 border rounded-lg @error('name') border-red-500 @enderror"
-                                required>
+            <form action="{{ route('admin.business.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 form-group mb-3">
+                            <label>Business Name <span class="text-danger">*</span></label>
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" required>
+                            @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
-
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600">Category *</label>
-                            <input type="text" name="category"
-                                value="{{ old('category') }}"
-                                class="w-full px-3 py-2 border rounded-lg @error('category') border-red-500 @enderror"
-                                required>
+                        <div class="col-md-6 form-group mb-3">
+                            <label>Category <span class="text-danger">*</span></label>
+                            <input type="text" name="category" value="{{ old('category') }}" class="form-control @error('category') is-invalid @enderror" required>
+                            @error('category') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                     </div>
 
-                    <!-- WEBSITE & ECOMMERCE -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600">Website</label>
-                            <input type="url" name="website_link"
-                                value="{{ old('website_link') }}"
-                                class="w-full px-3 py-2 border rounded-lg">
+                    <div class="row">
+                        <div class="col-md-6 form-group mb-3">
+                            <label>Website Link</label>
+                            <input type="url" name="website_link" value="{{ old('website_link') }}" class="form-control" placeholder="https://example.com">
                         </div>
-
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600">E-Commerce</label>
-                            <input type="url" name="ecomerce_link"
-                                value="{{ old('ecomerce_link') }}"
-                                class="w-full px-3 py-2 border rounded-lg">
+                        <div class="col-md-6 form-group mb-3">
+                            <label>E-Commerce Link</label>
+                            <input type="url" name="ecomerce_link" value="{{ old('ecomerce_link') }}" class="form-control" placeholder="https://store.example.com">
                         </div>
                     </div>
 
-                    <!-- ORDER -->
-                    <div>
-                        <label class="text-xs font-semibold text-gray-600">Display Order</label>
-                        <input type="number" name="order" value="{{ old('order', 0) }}"
-                            class="w-full px-3 py-2 border rounded-lg">
+                    <div class="row">
+                        <div class="col-md-6 form-group mb-3">
+                            <label>Display Order</label>
+                            <input type="number" name="order" value="{{ old('order', 0) }}" class="form-control">
+                        </div>
+                        <div class="col-md-6 form-group mb-3">
+                            <label>Logo / Image <span class="text-danger">*</span></label>
+                            <input type="file" name="image" class="form-control" required>
+                        </div>
                     </div>
 
-                    <!-- DESCRIPTION -->
-                    <div>
-                        <label class="text-xs font-semibold text-gray-600">Description *</label>
-                        <textarea name="description" rows="4"
-                            class="w-full px-3 py-2 border rounded-lg"
-                            required>{{ old('description') }}</textarea>
+                    <div class="form-group mb-3">
+                        <label>Description <span class="text-danger">*</span></label>
+                        <textarea name="description" rows="4" class="form-control" required>{{ old('description') }}</textarea>
                     </div>
 
-                    <!-- IMAGE -->
-                    <div>
-                        <label class="text-xs font-semibold text-gray-600">Image *</label>
-                        <input type="file" name="image" required>
+                    <div class="form-group mb-0">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="is_active" value="1" id="is_active" checked>
+                            <label class="form-check-label" for="is_active">
+                                Active (Tampilkan di Website)
+                            </label>
+                        </div>
                     </div>
+                </div>
 
-                    <!-- STATUS -->
-                    <div class="flex items-center">
-                        <input type="checkbox" name="is_active" value="1" checked>
-                        <label class="ml-2 text-sm">Active</label>
-                    </div>
-
-                    <div class="text-right">
-                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">
-                            Save
-                        </button>
-                    </div>
-
-                </form>
-            </div>
+                <div class="card-footer d-flex justify-content-end gap-2">
+                    <a href="{{ route('admin.business.index') }}" class="btn btn-default">Batal</a>
+                    <button type="submit" class="btn btn-primary">Simpan Unit Bisnis</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        {{-- ================= PANDUAN ================= --}}
-        <div class="lg:col-span-1">
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 sticky top-6">
-
-                <h3 class="text-sm font-semibold text-blue-700 mb-3">
-                    📘 Panduan Pengisian
-                </h3>
-
-                <ul class="text-xs text-gray-600 space-y-3 leading-relaxed">
-                    <li><strong>Business Name:</strong> Isi nama perusahaan/unit bisnis.</li>
-                    <li><strong>Category:</strong> Contoh: Technology, Construction, dll.</li>
-                    <li><strong>Website:</strong> Link resmi perusahaan (opsional).</li>
-                    <li><strong>E-Commerce:</strong> Link marketplace (kosongkan jika tidak ada) .</li>
-                    <li><strong>Order:</strong> Urutan tampil di halaman (angka kecil tampil dulu).</li>
-                    <li><strong>Description:</strong> Deskripsi singkat perusahaan.</li>
-                    <li><strong>Image:</strong> Gunakan gambar berkualitas (rasio landscape).</li>
-                    <li><strong>Status:</strong> Aktifkan jika ingin ditampilkan di website.</li>
+    {{-- ================= PANDUAN ================= --}}
+    <div class="col-lg-4">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-info-circle mr-1"></i> Panduan Pengisian</h3>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li class="mb-2"><strong>Business Name:</strong> Isi nama perusahaan/unit bisnis.</li>
+                    <li class="mb-2"><strong>Category:</strong> Contoh: Technology, Construction, dll.</li>
+                    <li class="mb-2"><strong>Website:</strong> Link resmi perusahaan (opsional).</li>
+                    <li class="mb-2"><strong>E-Commerce:</strong> Link marketplace (kosongkan jika tidak ada).</li>
+                    <li class="mb-2"><strong>Order:</strong> Urutan tampil (angka kecil tampil di awal).</li>
+                    <li class="mb-2"><strong>Description:</strong> Deskripsi singkat perusahaan.</li>
+                    <li class="mb-2"><strong>Image:</strong> Gunakan gambar berkualitas (rasio landscape).</li>
+                    <li><strong>Status:</strong> Aktifkan jika ingin ditampilkan ke publik.</li>
                 </ul>
-
             </div>
         </div>
-
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+@endpush

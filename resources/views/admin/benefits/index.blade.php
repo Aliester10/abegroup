@@ -8,9 +8,9 @@
 <div class="row">
     <div class="col-12">
         <div class="card shadow-sm border-0">
-            <div class="card-header bg-white py-3">
+            <div class="card-header py-3">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 text-bold" style="color: #343a40;">Benefit List</h5>
+                    <h5 class="mb-0 text-bold">Benefit List</h5>
                     <a href="{{ route('admin.benefits.create') }}" class="btn btn-success btn-sm px-3">
                         <i class="fas fa-plus mr-1"></i> Add New
                     </a>
@@ -19,7 +19,7 @@
             
             <div class="card-body p-0">
                 <div class="table-responsive"><table id="benefitTable" class="table table-hover mb-0" style="width:100%; table-layout: fixed;">
-                    <thead class="bg-light">
+                    <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">Order</th>
                             <th class="text-center" style="width: 100px;">Icon</th>
@@ -58,8 +58,8 @@
                                     
                                     <button type="button" 
                                             class="btn btn-danger btn-sm border-0 rounded-0" 
-                                            data-toggle="modal" 
-                                            data-target="#deleteModal{{ $b->id }}"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#deleteModal{{ $b->id }}"
                                             style="background-color: #dc3545; font-weight: 600; width: 90px; height: 35px;">
                                         <i class="fas fa-trash-alt"></i> Delete
                                     </button>
@@ -74,7 +74,7 @@
                                                 <p class="text-muted">Are you sure you want to delete <strong>{{ $b->title }}</strong>? This action cannot be undone.</p>
                                                 
                                                 <div class="d-flex justify-content-center mt-4" style="gap: 10px;">
-                                                    <button type="button" class="btn btn-light px-4" data-dismiss="modal" style="font-weight: 600;">Cancel</button>
+                                                    <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal" style="font-weight: 600;">Cancel</button>
                                                     
                                                     <form action="{{ route('admin.benefits.destroy', $b->id) }}" method="POST">
                                                         @csrf
