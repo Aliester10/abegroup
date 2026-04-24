@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\JobCategoryController;
 use App\Http\Controllers\Admin\JobVacancyController;
 use App\Http\Controllers\Admin\BenefitController;
 use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
+use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 
 
 
@@ -129,12 +130,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('/business/{id}', [BusinessunitController::class, 'destroy'])->name('admin.business.destroy');    
 
     //News routes
-    Route::get('/news', [NewsController::class, 'index'])->name('admin.news');
-    Route::get('/news/create', [NewsController::class, 'create'])->name('admin.news.create');
-    Route::post('/news', [NewsController::class, 'store'])->name('admin.news.store');
-    Route::get('/news/{news}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
-    Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
-    Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+    Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.news');
+    Route::get('/news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
+    Route::post('/news', [AdminNewsController::class, 'store'])->name('admin.news.store');
+    Route::get('/news/{news}/edit', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
+    Route::put('/news/{news}', [AdminNewsController::class, 'update'])->name('admin.news.update');
+    Route::delete('/news/{news}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
 
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/timelines', [TimelineController::class, 'index'])->name('timelines.index');
