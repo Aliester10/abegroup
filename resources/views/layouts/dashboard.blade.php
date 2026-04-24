@@ -48,12 +48,34 @@
                         Banner
                     </a>
 
-                    <a href="{{ route('admin.timelines.index') }}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 {{ request()->routeIs('admin.timelines*') ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }} rounded-lg">
-                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        Timeline
-                    </a>
+                    <!-- About Us Module -->
+                    <div x-data="{ open: {{ request()->routeIs('admin.about*') || request()->routeIs('admin.timelines*') || request()->routeIs('admin.visi_misi*') || request()->routeIs('admin.company_values*') ? 'true' : 'false' }} }" class="space-y-1">
+                        <button @click="open = !open" class="w-full flex items-center justify-between px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                            <div class="flex items-center">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                About Us
+                            </div>
+                            <svg class="w-4 h-4 transition-transform" :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" class="pl-8 space-y-1">
+                            <a href="{{ route('admin.about.index') }}" class="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white {{ request()->routeIs('admin.about*') ? 'font-bold text-orange-500' : '' }}">
+                                Tentang Kami
+                            </a>
+                            <a href="{{ route('admin.visi_misi.index') }}" class="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white {{ request()->routeIs('admin.visi_misi*') ? 'font-bold text-orange-500' : '' }}">
+                                Visi & Misi
+                            </a>
+                            <a href="{{ route('admin.company_values.index') }}" class="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white {{ request()->routeIs('admin.company_values*') ? 'font-bold text-orange-500' : '' }}">
+                                Nilai Perusahaan
+                            </a>
+                            <a href="{{ route('admin.timelines.index') }}" class="block px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white {{ request()->routeIs('admin.timelines*') ? 'font-bold text-orange-500' : '' }}">
+                                Timeline
+                            </a>
+                        </div>
+                    </div>
 
                     <a href="{{ route('admin.home-stats.index') }}" class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 {{ request()->routeIs('admin.home-stats*') ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }} rounded-lg">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +92,7 @@
                                 d="M11 17a4 4 0 100-8 4 4 0 000 8zm0 0v2m0-10V7m6.364 10.364l1.414 1.414M4.222 4.222l1.414 1.414m12.728 0l-1.414 1.414M5.636 18.364l-1.414 1.414"></path>
                         </svg>
 
-                        Value
+                        Home Values
                     </a>
 
                     <a href="{{ route('admin.sustainability.index') }}" 
