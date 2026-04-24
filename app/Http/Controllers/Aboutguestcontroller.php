@@ -1,20 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\About;
 use App\Models\Timeline;
-use App\Models\Partner; 
+use App\Models\Partner;
 use Illuminate\Http\Request;
 
 class AboutguestController extends Controller
 {
     public function index()
     {
-        // 1. Mengambil satu data About terbaru
         $about = About::latest()->first();
         
-        // 2. Mengambil data Partner yang aktif
         $partners = Partner::query()
             ->where('is_active', true)
             ->orderBy('order')
@@ -26,12 +23,16 @@ class AboutguestController extends Controller
             ->where('is_active', true)
             ->orderBy('order')
             ->get();
+            
+        $visimisi = \App\Models\VisiMisi::first();
+        $companyValues = \App\Models\CompanyValue::all();
 
-        // 4. Kirim SEMUA variabel ke view
         return view('pages.about', [
             'about'     => $about,
-            'partners'  => $partners,  // Ini yang tadi kurang
-            'timelines' => $timelines
+            'partners'  => $partners,
+            'timelines' => $timelines,
+            'visimisi'  => $visimisi,
+            'companyValues' => $companyValues
         ]);
     }
-}
+}       
