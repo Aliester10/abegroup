@@ -13,6 +13,8 @@ class CoreValueSeeder extends Seeder
      */
     public function run(): void
     {
+        CoreValue::truncate();
+
         $coreValues = [
             [
                 'title' => 'Visi Strategis',

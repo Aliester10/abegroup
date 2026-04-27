@@ -1,6 +1,13 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Detail Pesan - Admin')
+@push('styles')
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+@endpush
+
+@section('title', 'Detail Pesan Masuk')
+@section('page-title', 'Detail Pesan Masuk')
+@section('breadcrumb', 'Detail Pesan')
 
 @section('content')
 <div class="mb-6">
@@ -100,3 +107,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+@endpush

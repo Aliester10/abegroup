@@ -1,119 +1,125 @@
 @extends('layouts.dashboard')
 
+@push('styles')
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+@endpush
+
 @section('title', 'Add New Business Unit')
 
 @section('content')
-<div class="container mx-auto px-6 py-10">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+<div class="container px-6 mx-auto grid">
+    <div class="flex items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Add New Business Unit
+        </h2>
+    </div>
 
+    <div class="grid gap-6 mb-8 md:grid-cols-3">
         {{-- ================= FORM ================= --}}
-        <div class="lg:col-span-3">
-            <div class="flex items-center justify-between mb-6">
-                <h1 class="text-xl font-semibold text-gray-800">Add New Business Unit</h1>
-                <a href="{{ route('admin.business.index') }}" class="text-blue-600 hover:underline text-sm font-medium">
-                    ← Back to List
-                </a>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-sm border p-8">
-                <form action="{{ route('admin.business.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <div class="md:col-span-2">
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <form action="{{ route('admin.business.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-4">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Business Name <span class="text-red-500">*</span></span>
+                            <input type="text" name="name" value="{{ old('name') }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm @error('name') border-red-500 @enderror" 
+                                   required>
+                            @error('name') <span class="text-xs text-red-600">{{ $message }}</span> @enderror
+                        </label>
 
-                    <!-- NAME & CATEGORY -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600">Business Name *</label>
-                            <input type="text" name="name"
-                                value="{{ old('name') }}"
-                                class="w-full px-3 py-2 border rounded-lg @error('name') border-red-500 @enderror"
-                                required>
-                        </div>
-
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600">Category *</label>
-                            <input type="text" name="category"
-                                value="{{ old('category') }}"
-                                class="w-full px-3 py-2 border rounded-lg @error('category') border-red-500 @enderror"
-                                required>
-                        </div>
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Category <span class="text-red-500">*</span></span>
+                            <input type="text" name="category" value="{{ old('category') }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm @error('category') border-red-500 @enderror" 
+                                   required>
+                            @error('category') <span class="text-xs text-red-600">{{ $message }}</span> @enderror
+                        </label>
                     </div>
 
-                    <!-- WEBSITE & ECOMMERCE -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600">Website</label>
-                            <input type="url" name="website_link"
-                                value="{{ old('website_link') }}"
-                                class="w-full px-3 py-2 border rounded-lg">
-                        </div>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-4">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Website Link</span>
+                            <input type="url" name="website_link" value="{{ old('website_link') }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                   placeholder="https://example.com">
+                        </label>
 
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600">E-Commerce</label>
-                            <input type="url" name="ecomerce_link"
-                                value="{{ old('ecomerce_link') }}"
-                                class="w-full px-3 py-2 border rounded-lg">
-                        </div>
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">E-Commerce Link</span>
+                            <input type="url" name="ecomerce_link" value="{{ old('ecomerce_link') }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                   placeholder="https://store.example.com">
+                        </label>
                     </div>
 
-                    <!-- ORDER -->
-                    <div>
-                        <label class="text-xs font-semibold text-gray-600">Display Order</label>
-                        <input type="number" name="order" value="{{ old('order', 0) }}"
-                            class="w-full px-3 py-2 border rounded-lg">
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-4">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Display Order</span>
+                            <input type="number" name="order" value="{{ old('order', 0) }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm">
+                        </label>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Logo / Image <span class="text-red-500">*</span></span>
+                            <input type="file" name="image" 
+                                   class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border border-gray-300 shadow-sm p-2" 
+                                   required>
+                        </label>
                     </div>
 
-                    <!-- DESCRIPTION -->
-                    <div>
-                        <label class="text-xs font-semibold text-gray-600">Description *</label>
-                        <textarea name="description" rows="4"
-                            class="w-full px-3 py-2 border rounded-lg"
-                            required>{{ old('description') }}</textarea>
+                    <label class="block text-sm mb-4">
+                        <span class="text-gray-700 dark:text-gray-400">Description <span class="text-red-500">*</span></span>
+                        <textarea name="description" rows="4" 
+                                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                  required>{{ old('description') }}</textarea>
+                    </label>
+
+                    <div class="flex items-center mb-6">
+                        <label class="flex items-center text-sm text-gray-700 dark:text-gray-400 cursor-pointer">
+                            <input type="checkbox" name="is_active" value="1" id="is_active" checked
+                                   class="form-checkbox text-orange-500 rounded focus:ring-orange-400 h-4 w-4">
+                            <span class="ml-2">Active (Tampilkan di Website)</span>
+                        </label>
                     </div>
 
-                    <!-- IMAGE -->
-                    <div>
-                        <label class="text-xs font-semibold text-gray-600">Image *</label>
-                        <input type="file" name="image" required>
-                    </div>
-
-                    <!-- STATUS -->
-                    <div class="flex items-center">
-                        <input type="checkbox" name="is_active" value="1" checked>
-                        <label class="ml-2 text-sm">Active</label>
-                    </div>
-
-                    <div class="text-right">
-                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">
-                            Save
+                    <div class="flex justify-end space-x-4">
+                        <a href="{{ route('admin.business.index') }}" 
+                           class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 bg-white border border-gray-300 rounded-lg dark:text-gray-400 dark:bg-gray-700 dark:border-gray-600 active:bg-transparent hover:bg-gray-50 focus:outline-none focus:shadow-outline-gray">
+                            Batal
+                        </a>
+                        <button type="submit" 
+                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-orange-500 border border-transparent rounded-lg active:bg-orange-600 hover:bg-orange-700 focus:outline-none focus:shadow-outline-orange">
+                            Simpan Unit Bisnis
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
 
         {{-- ================= PANDUAN ================= --}}
-        <div class="lg:col-span-1">
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 sticky top-6">
-
-                <h3 class="text-sm font-semibold text-blue-700 mb-3">
-                    📘 Panduan Pengisian
-                </h3>
-
-                <ul class="text-xs text-gray-600 space-y-3 leading-relaxed">
-                    <li><strong>Business Name:</strong> Isi nama perusahaan/unit bisnis.</li>
-                    <li><strong>Category:</strong> Contoh: Technology, Construction, dll.</li>
-                    <li><strong>Website:</strong> Link resmi perusahaan (opsional).</li>
-                    <li><strong>E-Commerce:</strong> Link marketplace (kosongkan jika tidak ada) .</li>
-                    <li><strong>Order:</strong> Urutan tampil di halaman (angka kecil tampil dulu).</li>
-                    <li><strong>Description:</strong> Deskripsi singkat perusahaan.</li>
-                    <li><strong>Image:</strong> Gunakan gambar berkualitas (rasio landscape).</li>
-                    <li><strong>Status:</strong> Aktifkan jika ingin ditampilkan di website.</li>
+        <div>
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    <i class="fas fa-info-circle mr-2 text-orange-500"></i> Panduan Pengisian
+                </h4>
+                <ul class="space-y-3">
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Business Name:</strong> Isi nama perusahaan/unit bisnis.</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Category:</strong> Contoh: Technology, Construction, dll.</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Website:</strong> Link resmi perusahaan (opsional).</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">E-Commerce:</strong> Link marketplace (opsional).</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Order:</strong> Urutan tampil (angka kecil tampil di awal).</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Description:</strong> Deskripsi singkat perusahaan.</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Image:</strong> Gunakan gambar berkualitas (rasio landscape).</li>
                 </ul>
-
             </div>
         </div>
-
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    {{-- No Bootstrap JS needed --}}
+@endpush

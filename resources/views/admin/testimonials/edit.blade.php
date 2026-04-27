@@ -1,110 +1,120 @@
 @extends('layouts.dashboard')
 
+@push('styles')
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+@endpush
+
 @section('title', 'Edit Testimonial')
 
 @section('content')
-<div class="container mx-auto px-6 py-10">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+<div class="container px-6 mx-auto grid">
+    <div class="flex items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Edit Testimonial
+        </h2>
+    </div>
 
+    <div class="grid gap-6 mb-8 md:grid-cols-3">
         {{-- ================= FORM ================= --}}
-        <div class="lg:col-span-3">
-            <div class="flex items-center justify-between mb-6">
-                <h1 class="text-xl font-semibold text-gray-800">Edit Testimonial</h1>
-                <a href="{{ route('admin.testimonials.index') }}" class="text-blue-600 hover:underline text-sm font-medium flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    Back to List
-                </a>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                <form action="{{ route('admin.testimonials.update', $testimonial->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <div class="md:col-span-2">
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <form action="{{ route('admin.testimonials.update', $testimonial->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-4">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Client Name <span class="text-red-500">*</span></span>
+                            <input type="text" name="client_name" value="{{ $testimonial->client_name }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                   required>
+                        </label>
 
-                    <!-- NAME & RATING -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-2">Client Name *</label>
-                            <input type="text" name="client_name" value="{{ $testimonial->client_name }}" class="w-full px-3 py-2 border rounded-lg" required>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-2">Rating (1-5) *</label>
-                            <select name="rating" class="w-full px-3 py-2 border rounded-lg" required>
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Rating (1-5) <span class="text-red-500">*</span></span>
+                            <select name="rating" 
+                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                    required>
                                 @for($i = 5; $i >= 1; $i--)
-                                <option value="{{ $i }}" {{ $testimonial->rating == $i ? 'selected' : '' }}>
-                                    {{ $i }} Stars
-                                </option>
+                                    <option value="{{ $i }}" {{ $testimonial->rating == $i ? 'selected' : '' }}>
+                                        {{ $i }} Stars
+                                    </option>
                                 @endfor
                             </select>
-                        </div>
+                        </label>
                     </div>
 
-                    <!-- POSITION & COMPANY -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-2">Position *</label>
-                            <input type="text" name="position" value="{{ $testimonial->position }}" class="w-full px-3 py-2 border rounded-lg" required>
-                        </div>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-4">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Position <span class="text-red-500">*</span></span>
+                            <input type="text" name="position" value="{{ $testimonial->position }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                   required>
+                        </label>
 
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-2">Company *</label>
-                            <input type="text" name="company" value="{{ $testimonial->company }}" class="w-full px-3 py-2 border rounded-lg" required>
-                        </div>
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Company <span class="text-red-500">*</span></span>
+                            <input type="text" name="company" value="{{ $testimonial->company }}"
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                   required>
+                        </label>
                     </div>
 
-                    <!-- MESSAGE -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 mb-2">Testimonial Message *</label>
-                        <textarea name="testimonial_text" rows="4" class="w-full px-3 py-2 border rounded-lg" required>{{ $testimonial->testimonial_text }}</textarea>
-                    </div>
+                    <label class="block text-sm mb-4">
+                        <span class="text-gray-700 dark:text-gray-400">Testimonial Message <span class="text-red-500">*</span></span>
+                        <textarea name="testimonial_text" rows="4" 
+                                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                  required>{{ $testimonial->testimonial_text }}</textarea>
+                    </label>
 
-                    <!-- IMAGE -->
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 mb-2">Profile Image</label>
-
+                    <div class="block text-sm mb-6">
+                        <span class="text-gray-700 dark:text-gray-400">Profile Image</span>
                         @if($testimonial->profile_image)
-                        <div class="mb-2">
-                            <img src="{{ asset('storage/' . $testimonial->profile_image) }}" class="h-16 w-16 rounded-lg object-cover border">
-                        </div>
+                            <div class="mt-2 mb-2">
+                                <img src="{{ asset('storage/' . $testimonial->profile_image) }}" 
+                                     class="rounded-lg shadow-sm border border-gray-200 dark:border-gray-600" 
+                                     style="height: 80px; width: 80px; object-fit: cover;">
+                            </div>
                         @endif
-
-                        <input name="profile_image" type="file" class="w-full text-sm">
+                        <input name="profile_image" type="file" 
+                               class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border border-gray-300 shadow-sm p-2">
+                        <span class="text-xs text-gray-500 mt-1 block">Format JPG/PNG, Max 2MB.</span>
                     </div>
 
-                    <!-- BUTTON -->
-                    <div class="flex justify-end pt-4 border-t">
-                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-black border border-indigo-700 text-sm font-semibold py-2 px-6 rounded-lg shadow-md">
+                    <div class="flex justify-end space-x-4">
+                        <a href="{{ route('admin.testimonials.index') }}" 
+                           class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 bg-white border border-gray-300 rounded-lg dark:text-gray-400 dark:bg-gray-700 dark:border-gray-600 active:bg-transparent hover:bg-gray-50 focus:outline-none focus:shadow-outline-gray">
+                            Batal
+                        </a>
+                        <button type="submit" 
+                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-orange-500 border border-transparent rounded-lg active:bg-orange-600 hover:bg-orange-700 focus:outline-none focus:shadow-outline-orange">
                             Update Testimonial
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
 
         {{-- ================= PANDUAN ================= --}}
-        <div class="lg:col-span-1">
-            <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 sticky top-6">
-
-                <h3 class="text-sm font-semibold text-blue-700 mb-3">
-                    📝 Panduan Pengisian
-                </h3>
-
-                <ul class="text-xs text-gray-600 space-y-3 leading-relaxed">
-                    <li><strong>Client Name:</strong> Nama orang yang memberi testimoni.</li>
-                    <li><strong>Rating:</strong> Pilih 1–5 sesuai kepuasan klien.</li>
-                    <li><strong>Position:</strong> Jabatan klien (contoh: Manager).</li>
-                    <li><strong>Company:</strong> Nama perusahaan klien.</li>
-                    <li><strong>Message:</strong> Isi testimoni singkat & jelas.</li>
-                    <li><strong>Image:</strong> Foto klien (opsional, biar lebih real).</li>
+        <div>
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    <i class="fas fa-info-circle mr-2 text-orange-500"></i> Panduan Pengisian
+                </h4>
+                <ul class="space-y-3">
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Client Name:</strong> Nama orang yang memberi testimoni.</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Rating:</strong> Pilih 1–5 sesuai kepuasan klien.</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Position:</strong> Jabatan klien (contoh: Manager).</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Company:</strong> Nama perusahaan klien.</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Message:</strong> Isi testimoni singkat & jelas.</li>
+                    <li class="text-xs text-gray-600 dark:text-gray-400"><strong class="text-orange-500">Image:</strong> Foto klien (opsional).</li>
                 </ul>
-
             </div>
         </div>
-
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    {{-- No Bootstrap JS needed anymore --}}
+@endpush

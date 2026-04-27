@@ -48,53 +48,46 @@
     </section>
 
     <!-- Company Overview Section -->
+    @if($about)
     <section id="overview" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <!-- Left Column - Text Content -->
                 <div class="space-y-6">
-                    <h2 class="text-4xl font-bold text-gray-900 mb-4">ABE Group</h2>
-                    <p class="text-lg text-gray-600 leading-relaxed">
-                        ABE Group adalah perusahaan teknologi terkemuka yang telah berdiri sejak tahun 2015, 
-                        berdedikasi untuk menyediakan solusi digital inovatif yang mengubah cara bisnis beroperasi 
-                        di era modern. Dengan tim profesional berpengalaman dan komitmen terhadap keunggulan, 
-                        kami telah membantu ribuan perusahaan untuk bertransformasi digital dan mencapai kesuksesan 
-                        yang berkelanjutan.
-                    </p>
-                    <p class="text-lg text-gray-600 leading-relaxed">
-                        Kami percaya bahwa teknologi harus memberdayakan bisnis untuk mencapai potensi penuh mereka. 
-                        Melalui pendekatan yang berpusat pada pelanggan dan pemahaman mendalam tentang tantangan 
-                        industri, kami mengembangkan solusi yang tidak hanya inovatif tetapi juga praktis dan 
-                        dapat diandalkan untuk kebutuhan bisnis Anda.
-                    </p>
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-gray-700">1000+ Klien Puas</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-gray-700">50+ Industri Terlayani</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg class="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="text-gray-700">9 Tahun Pengalaman</span>
-                        </div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">{{ $about->nama ?? 'ABE Group' }}</h2>
+                    <div class="text-lg text-gray-600 leading-relaxed space-y-4">
+                        {!! nl2br(e($about->deskripsi)) !!}
                     </div>
+                    
+                    @if($about->value)
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        @php
+                            $listValues = explode(',', $about->value);
+                        @endphp
+                        @foreach($listValues as $item)
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-orange-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="text-gray-700">{{ trim($item) }}</span>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
                 </div>
                 
                 <!-- Right Column - Image -->
                 <div class="relative">
                     <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
-                             alt="ABE Group Office" 
-                             class="w-full h-full object-cover">
+                        @if($about->gambar)
+                            <img src="{{ asset('storage/' . $about->gambar) }}" 
+                                 alt="{{ $about->nama }}" 
+                                 class="w-full h-full object-cover">
+                        @else
+                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                                 alt="ABE Group Office" 
+                                 class="w-full h-full object-cover">
+                        @endif
                     </div>
                     <!-- Decorative Elements -->
                     <div class="absolute -top-4 -right-4 w-24 h-24 bg-orange-500 rounded-full opacity-20 blur-xl"></div>
@@ -103,12 +96,13 @@
             </div>
         </div>
     </section>
+    @endif
 
     <!-- Amazing Timeline Section -->
     <section class="py-12 relative overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-orange-50">
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239CA3AF" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Cs   vg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239CA3AF" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
         </div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -143,7 +137,7 @@
                         
                         @if($timeline->position === 'left')
                             <div class="w-1/2 pr-8 text-right">
-                                <div class="relative inline-block">
+                                <div class="relative inline-block max-w-full">
                                     <div class="absolute inset-0 bg-gradient-to-r from-[#1E3A8A]/20 to-blue-600/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-500 transform group-hover:scale-105"></div>
                                     <div class="relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-5 border border-[#1E3A8A]/20 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 hover:rotate-1">
                                         <!-- Year Badge -->
@@ -155,10 +149,10 @@
                                                 {{ $timeline->year }}
                                             </div>
                                         @endif
-                                        <h3 class="text-lg font-bold text-gray-900 {{ $timeline->label ? 'mt-2 mb-2' : 'mb-2' }}">{{ $timeline->title }}</h3>
-                                        <p class="text-sm text-gray-600 leading-relaxed {{ $timeline->label ? 'mb-3' : 'mb-3' }}">{{ $timeline->description }}</p>
+                                        <h3 class="text-lg font-bold text-gray-900 {{ $timeline->label ? 'mt-2 mb-2' : 'mb-2' }} break-all whitespace-normal">{{ $timeline->title }}</h3>
+                                        <p class="text-sm text-gray-600 leading-relaxed {{ $timeline->label ? 'mb-3' : 'mb-3' }} break-all whitespace-normal">{{ $timeline->description }}</p>
                                         @if($timeline->tags && count($timeline->tags) > 0)
-                                            <div class="mt-3 flex items-center justify-end space-x-2">
+                                            <div class="mt-3 flex flex-wrap items-center justify-end gap-2">
                                                 @foreach($timeline->tags as $tag)
                                                     <span class="px-2 py-1 bg-{{ $timeline->theme === 'blue' ? 'blue' : 'orange' }}-100 text-{{ $timeline->theme === 'blue' ? 'blue' : 'orange' }}-800 text-xs font-semibold rounded-full">{{ $tag }}</span>
                                                 @endforeach
@@ -207,13 +201,13 @@
                         </div>
                         
                         <div class="w-1/2 pl-8">
-                            <div class="relative inline-block">
+                            <div class="relative inline-block max-w-full">
                                 <div class="absolute inset-0 bg-gradient-to-l from-[#F97316]/20 to-orange-600/20 rounded-2xl blur-lg group-hover:blur-xl transition-all duration-500 transform group-hover:scale-105"></div>
                                 <div class="relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-5 border border-[#F97316]/20 hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 hover:-rotate-1">
-                                    <h3 class="text-lg font-bold text-gray-900 mb-2">{{ $timeline->title }}</h3>
-                                    <p class="text-sm text-gray-600 leading-relaxed mb-3">{{ $timeline->description }}</p>
+                                    <h3 class="text-lg font-bold text-gray-900 mb-2 break-all whitespace-normal">{{ $timeline->title }}</h3>
+                                    <p class="text-sm text-gray-600 leading-relaxed mb-3 break-all whitespace-normal">{{ $timeline->description }}</p>
                                     @if($timeline->tags && count($timeline->tags) > 0)
-                                        <div class="flex items-center space-x-2">
+                                        <div class="flex flex-wrap items-center gap-2">
                                             @foreach($timeline->tags as $tag)
                                                 <span class="px-2 py-1 bg-{{ $timeline->theme === 'blue' ? 'blue' : 'orange' }}-100 text-{{ $timeline->theme === 'blue' ? 'blue' : 'orange' }}-800 text-xs font-semibold rounded-full">{{ $tag }}</span>
                                             @endforeach
@@ -268,7 +262,11 @@
                     
                     <!-- Content -->
                     <p class="text-white/80 text-sm leading-relaxed">
-                        Menjadi konglomerasi terkemuka di Asia Tenggara yang memberikan nilai tambah berkelanjutan bagi semua pemangku kepentingan melalui inovasi, transformasi digital, dan komitmen terhadap pembangunan ekonomi yang inklusif dan berkelanjutan.
+                        @if(isset($visimisi) && $visimisi->visi)
+                            {!! nl2br(e($visimisi->visi)) !!}
+                        @else
+                            Menjadi konglomerasi terkemuka di Asia Tenggara yang memberikan nilai tambah berkelanjutan bagi semua pemangku kepentingan melalui inovasi, transformasi digital, dan komitmen terhadap pembangunan ekonomi yang inklusif dan berkelanjutan.
+                        @endif
                     </p>
                 </div>
                 
@@ -286,18 +284,29 @@
                     
                     <!-- Content -->
                     <ul class="text-white/80 text-sm space-y-3">
-                        <li class="flex items-start gap-2">
-                            <span class="text-white/60 mt-1">•</span>
-                            <span>Memberikan produk dan layanan berkualitas tinggi kepada pelanggan</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-white/60 mt-1">•</span>
-                            <span>Mengembangkan talenta dan menciptakan lingkungan kerja yang inspiring</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-white/60 mt-1">•</span>
-                            <span>Mendorong inovasi berkelanjutan di setiap lini bisnis</span>
-                        </li>
+                        @if(isset($visimisi) && $visimisi->misi)
+                            @foreach(explode("\n", str_replace("\r", "", $visimisi->misi)) as $misiItem)
+                                @if(trim($misiItem) !== '')
+                                <li class="flex items-start gap-2">
+                                    <span class="text-white/60 mt-1">•</span>
+                                    <span>{{ trim($misiItem) }}</span>
+                                </li>
+                                @endif
+                            @endforeach
+                        @else
+                            <li class="flex items-start gap-2">
+                                <span class="text-white/60 mt-1">•</span>
+                                <span>Memberikan produk dan layanan berkualitas tinggi kepada pelanggan</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-white/60 mt-1">•</span>
+                                <span>Mengembangkan talenta dan menciptakan lingkungan kerja yang inspiring</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-white/60 mt-1">•</span>
+                                <span>Mendorong inovasi berkelanjutan di setiap lini bisnis</span>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -317,49 +326,64 @@
             
             <!-- Values Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <!-- Integritas -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
-                    <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-lg font-bold text-white">1</span>
+                @if(isset($companyValues) && $companyValues->count() > 0)
+                    @foreach($companyValues as $index => $value)
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 {{ $index % 2 == 0 ? 'bg-[#3B5998]' : 'bg-orange-500' }} rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">{{ $index + 1 }}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">{{ $value->title }}</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            {{ $value->description }}
+                        </p>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Integritas</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Berkomitmen pada kejujuran dan transparansi dalam setiap tindakan
-                    </p>
-                </div>
-                
-                <!-- Inovasi -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
-                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-lg font-bold text-white">2</span>
+                    @endforeach
+                @else
+                    <!-- Fallback to static values if none in database -->
+                    <!-- Integritas -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">1</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Integritas</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Berkomitmen pada kejujuran dan transparansi dalam setiap tindakan
+                        </p>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Inovasi</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Mengembangkan solusi kreatif untuk menghadapi tantangan bisnis
-                    </p>
-                </div>
-                
-                <!-- Kolaborasi -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
-                    <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-lg font-bold text-white">3</span>
+                    
+                    <!-- Inovasi -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Inovasi</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Mengembangkan solusi kreatif untuk menghadapi tantangan bisnis
+                        </p>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Kolaborasi</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Membangun kemitraan yang kuat untuk pertumbuhan bersama
-                    </p>
-                </div>
-                
-                <!-- Keunggulan -->
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
-                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
-                        <span class="text-lg font-bold text-white">4</span>
+                    
+                    <!-- Kolaborasi -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 bg-[#3B5998] rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">3</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Kolaborasi</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Membangun kemitraan yang kuat untuk pertumbuhan bersama
+                        </p>
                     </div>
-                    <h3 class="text-lg font-bold text-gray-900 mb-3">Keunggulan</h3>
-                    <p class="text-sm text-gray-600 leading-relaxed">
-                        Berkomitmen memberikan kualitas terbaik dalam setiap layanan
-                    </p>
-                </div>
+                    
+                    <!-- Keunggulan -->
+                    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+                        <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-lg font-bold text-white">4</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-3">Keunggulan</h3>
+                        <p class="text-sm text-gray-600 leading-relaxed">
+                            Berkomitmen memberikan kualitas terbaik dalam setiap layanan
+                        </p>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

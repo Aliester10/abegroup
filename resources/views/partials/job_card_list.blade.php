@@ -1,7 +1,6 @@
 @forelse($vacancies as $job)
 <div class="job-card shadow-sm">
     <div class="row align-items-center">
-        {{-- Bagian Nama & Info --}}
         <div class="col-md-8 col-12">
             <a href="javascript:void(0)" class="job-name" onclick="toggleJobDetail({{ $job->id }})">{{ $job->name }}</a>
             <div class="info-bar">
@@ -10,7 +9,6 @@
                 <div class="info-item"><i class="fas fa-map-marker-alt"></i> {{ $job->location }}</div>
             </div>
         </div>
-        {{-- Bagian Tombol --}}
         <div class="col-md-4 col-12 mt-3 mt-md-0">
             <div class="action-group">
                 <a href="javascript:void(0)" class="btn-detail-outline" onclick="toggleJobDetail({{ $job->id }})" id="btn-text-{{ $job->id }}">Detail</a>
@@ -18,34 +16,38 @@
             </div>
         </div>
     </div>
-
-    {{-- Garis Pemisah (Hanya muncul saat detail dibuka) --}}
     <hr class="job-divider" id="divider-{{ $job->id }}">
-
-    {{-- Bagian Detail (Hidden by default) --}}
     <div class="detail-expand-box d-none" id="detail-{{ $job->id }}">
         <div class="mb-4">
             <div class="detail-title">Deskripsi Pekerjaan</div>
             <div class="detail-text">{{ $job->description }}</div>
         </div>
-
         @if($job->responsibility)
         <div class="mb-4">
             <div class="detail-title">Tanggung Jawab</div>
-            <ul class="detail-list ps-4">
+            <ul class="detail-list list-unstyled ps-0">
                 @foreach(explode("\n", str_replace("\r", "", $job->responsibility)) as $line)
-                    @if(trim($line)) <li class="mb-1">{{ trim($line) }}</li> @endif
+                    @if(trim($line)) 
+                        <li class="mb-2 d-flex align-items-start">
+                            <i class="fas fa-check-circle mt-1 me-2" style="font-size: 12px; color: #f37021;"></i>
+                            <span class="detail-text">{{ trim($line) }}</span>
+                        </li> 
+                    @endif
                 @endforeach
             </ul>
         </div>
         @endif
-
         @if($job->qualification)
         <div class="mb-2">
             <div class="detail-title">Kualifikasi</div>
-            <ul class="detail-list ps-4">
+            <ul class="detail-list list-unstyled ps-0">
                 @foreach(explode("\n", str_replace("\r", "", $job->qualification)) as $line)
-                    @if(trim($line)) <li class="mb-1">{{ trim($line) }}</li> @endif
+                    @if(trim($line)) 
+                        <li class="mb-2 d-flex align-items-start">
+                            <i class="fas fa-check-circle mt-1 me-2" style="font-size: 12px; color: #f37021;"></i>
+                            <span class="detail-text">{{ trim($line) }}</span>
+                        </li> 
+                    @endif
                 @endforeach
             </ul>
         </div>

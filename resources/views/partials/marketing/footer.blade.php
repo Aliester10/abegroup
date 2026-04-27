@@ -1,4 +1,4 @@
-<footer class="bg-slate-950 text-white">
+<footer class="text-white" style="background: linear-gradient(135deg, #101828 0%, #1C398E 50%, #101828 100%);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div class="grid md:grid-cols-4 gap-10">
             <div class="md:col-span-2">

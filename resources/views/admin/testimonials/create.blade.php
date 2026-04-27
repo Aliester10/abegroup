@@ -1,93 +1,118 @@
 @extends('layouts.dashboard')
 
+@push('styles')
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+@endpush
+
 @section('title', 'Add New Testimonial')
 
 @section('content')
-<div class="container mx-auto px-6 py-10">
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+<div class="container px-6 mx-auto grid">
+    <div class="flex items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Add New Testimonial
+        </h2>
+    </div>
 
-        <div class="lg:col-span-3">
-            <div class="flex items-center justify-between mb-6">
-                <h1 class="text-xl font-semibold text-gray-800">Add New Testimonial</h1>
-                <a href="{{ route('admin.testimonials.index') }}" class="text-blue-600 hover:underline text-sm font-medium flex items-center">
-                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    Back to List
-                </a>
-            </div>
-
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-                <form action="{{ route('admin.testimonials.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <div class="grid gap-6 mb-8 md:grid-cols-3">
+        {{-- ================= FORM ================= --}}
+        <div class="md:col-span-2">
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <form action="{{ route('admin.testimonials.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-4">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Client Name <span class="text-red-500">*</span></span>
+                            <input type="text" name="client_name" 
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                   placeholder="e.g. Budi Hartono" required>
+                        </label>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-2">Client Name *</label>
-                            <input type="text" name="client_name" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. Budi Hartono" required>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-2">Rating (1-5) *</label>
-                            <select name="rating" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" required>
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Rating (1-5) <span class="text-red-500">*</span></span>
+                            <select name="rating" 
+                                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                    required>
                                 <option value="5">5 Stars</option>
                                 <option value="4">4 Stars</option>
                                 <option value="3">3 Stars</option>
                                 <option value="2">2 Stars</option>
                                 <option value="1">1 Star</option>
                             </select>
-                        </div>
+                        </label>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-2">Position *</label>
-                            <input type="text" name="position" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. CEO" required>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-600 mb-2">Company *</label>
-                            <input type="text" name="company" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="e.g. PT Maju Sejahtera" required>
-                        </div>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 mb-4">
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Position <span class="text-red-500">*</span></span>
+                            <input type="text" name="position" 
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                   placeholder="e.g. CEO" required>
+                        </label>
+
+                        <label class="block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">Company <span class="text-red-500">*</span></span>
+                            <input type="text" name="company" 
+                                   class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:text-gray-300 dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                   placeholder="e.g. PT Maju Sejahtera" required>
+                        </label>
                     </div>
 
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 mb-2">Testimonial Message *</label>
-                        <textarea name="testimonial_text" rows="4" class="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Write the feedback here..." required></textarea>
-                    </div>
+                    <label class="block text-sm mb-4">
+                        <span class="text-gray-700 dark:text-gray-400">Testimonial Message <span class="text-red-500">*</span></span>
+                        <textarea name="testimonial_text" rows="4" 
+                                  class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm" 
+                                  placeholder="Write the feedback here..." required></textarea>
+                    </label>
 
-                    <div>
-                        <label class="block text-xs font-semibold text-gray-600 mb-2">Profile Image / Logo (Optional)</label>
-                        <div class="mt-2 flex justify-center px-6 py-8 border border-gray-300 border-dashed rounded-lg bg-gray-50 hover:bg-gray-100 transition">
-                            <div class="text-center">
-                                <svg class="mx-auto h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                <label for="profile_image" class="mt-3 block text-sm font-medium text-blue-600 cursor-pointer">Upload Photo</label>
-                                <input id="profile_image" name="profile_image" type="file" class="sr-only">
-                                <p class="text-xs text-gray-400 mt-1">JPG, PNG up to 2MB</p>
-                            </div>
-                        </div>
-                    </div>
+                    <label class="block text-sm mb-6">
+                        <span class="text-gray-700 dark:text-gray-400">Profile Image / Logo (Optional)</span>
+                        <input name="profile_image" type="file" 
+                               class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border border-gray-300 shadow-sm p-2">
+                        <span class="text-xs text-gray-500 mt-1 block">Format JPG/PNG, Max 2MB.</span>
+                    </label>
 
-                    <div class="flex justify-end">
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 px-6 rounded-lg shadow-sm transition">
-                            Save Testimonial
+                    <div class="flex justify-end space-x-4">
+                        <a href="{{ route('admin.testimonials.index') }}" 
+                           class="px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 bg-white border border-gray-300 rounded-lg dark:text-gray-400 dark:bg-gray-700 dark:border-gray-600 active:bg-transparent hover:bg-gray-50 focus:outline-none focus:shadow-outline-gray">
+                            Batal
+                        </a>
+                        <button type="submit" 
+                                class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-orange-500 border border-transparent rounded-lg active:bg-orange-600 hover:bg-orange-700 focus:outline-none focus:shadow-outline-orange">
+                            Simpan Testimonial
                         </button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <div class="lg:col-span-1">
-            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sticky top-8">
-                <h2 class="text-xs font-bold text-gray-500 uppercase tracking-wide mb-4">Tips</h2>
-                <ul class="space-y-3 text-sm text-gray-600">
-                    <li><span class="text-blue-500 font-bold mr-2">01</span><b>Photo:</b> If empty, we will use initials.</li>
-                    <li><span class="text-blue-500 font-bold mr-2">02</span><b>Rating:</b> Give 5 stars for best feedback.</li>
-                    <li><span class="text-blue-500 font-bold mr-2">03</span><b>Text:</b> Keep it professional and concise.</li>
+        {{-- ================= TIPS ================= --}}
+        <div>
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    <i class="fas fa-lightbulb mr-2 text-orange-500"></i> Tips
+                </h4>
+                <ul class="space-y-4">
+                    <li>
+                        <p class="text-sm font-bold text-orange-500 mb-1">01. Photo</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Jika foto dikosongkan, sistem akan otomatis menggunakan inisial nama klien.</p>
+                    </li>
+                    <li>
+                        <p class="text-sm font-bold text-orange-500 mb-1">02. Rating</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Berikan rating 5 bintang untuk testimoni terbaik yang ingin diunggulkan.</p>
+                    </li>
+                    <li>
+                        <p class="text-sm font-bold text-orange-500 mb-1">03. Text</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Gunakan bahasa yang profesional dan ringkas agar mudah dibaca oleh pengunjung.</p>
+                    </li>
                 </ul>
             </div>
         </div>
-
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    {{-- No Bootstrap JS needed anymore --}}
+@endpush

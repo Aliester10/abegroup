@@ -27,12 +27,18 @@ use App\Http\Controllers\Admin\CompanyInfoController;
 use App\Http\Controllers\HomeStatController;
 use App\Http\Controllers\CoreValueController;
 use App\Http\Controllers\SustainabilityController;
+use App\Http\Controllers\Admin\AboutController as AdminAboutController;
+use App\Http\Controllers\AboutguestController;
+use App\Http\Controllers\VisiMisiController;
+
+
+
 
 // Home page (public)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Public pages
-Route::get('/tentang', [\App\Http\Controllers\AboutPageController::class, 'index'])->name('about');
+Route::get('/tentang', [\App\Http\Controllers\AboutguestController::class, 'index'])->name('about');
 // Rute untuk halaman daftar bisnis (yang kamu kasih tadi)
 Route::get('/bisnis', [\App\Http\Controllers\BusinessController::class, 'index'])->name('business');
 
@@ -98,6 +104,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Job Applications routes
     Route::get('/job_applications', [AdminJobApplicationController::class, 'index'])->name('admin.applications.index');
     Route::get('/job_applications/{id}', [AdminJobApplicationController::class, 'show'])->name('admin.applications.show');
+    Route::put('/job_applications/{id}', [AdminJobApplicationController::class, 'update'])->name('admin.applications.update');
     Route::delete('/job_applications/{id}', [AdminJobApplicationController::class, 'destroy'])->name('admin.applications.destroy');
 
     // Partner routes
@@ -181,9 +188,34 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/timelines', [TimelineController::class, 'index'])->name('timelines.index');
         Route::get('/timelines/create', [TimelineController::class, 'create'])->name('timelines.create');
         Route::post('/timelines', [TimelineController::class, 'store'])->name('timelines.store');
-        Route::get('/timelines/{id}/edit', [TimelineController::class, 'edit'])->name('timelines.edit');
-        Route::put('/timelines/{id}', [TimelineController::class, 'update'])->name('timelines.update');
-        Route::delete('/timelines/{id}', [TimelineController::class, 'destroy'])->name('timelines.destroy');
+        Route::get('/timelines/{timeline}/edit', [TimelineController::class, 'edit'])->name('timelines.edit');
+        Route::put('/timelines/{timeline}', [TimelineController::class, 'update'])->name('timelines.update');
+        Route::delete('/timelines/{timeline}', [TimelineController::class, 'destroy'])->name('timelines.destroy');
+
+        // Contact Messages
+        Route::get('/contacts', [AdminContactController::class, 'index'])->name('contacts.index');
+        Route::get('/contacts/{contact}', [AdminContactController::class, 'show'])->name('contacts.show');
+        Route::delete('/contacts/{contact}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
+
+           // About Company Routes
+        Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+        Route::get('/about/create', [AboutController::class, 'create'])->name('about.create');
+        Route::post('/about', [AboutController::class, 'store'])->name('about.store');
+        Route::get('/about/{id}/edit', [AboutController::class, 'edit'])->name('about.edit');
+        Route::put('/about/{id}', [AboutController::class, 'update'])->name('about.update');
+        Route::delete('/about/{id}', [AboutController::class, 'destroy'])->name('about.destroy');
+
+        // Visi Misi Routes
+        Route::get('/visi_misi', [\App\Http\Controllers\VisiMisiController::class, 'index'])->name('visi_misi.index');
+        Route::post('/visi_misi', [\App\Http\Controllers\VisiMisiController::class, 'store'])->name('visi_misi.store'); 
+
+        // Company Values Routes\
+        Route::get( '/company_values', [\App\Http\Controllers\CompanyValueController::class, 'index'])->name('company_values.index');
+        Route::get('/company_values/create', [\App\Http\Controllers\CompanyValueController::class, 'create'])->name('company_values.create');
+        Route::post('/company_values', [\App\Http\Controllers\CompanyValueController::class, 'store'])->name('company_values.store');
+        Route::get('/company_values/{company_value}/edit', [\App\Http\Controllers\CompanyValueController::class, 'edit'])->name('company_values.edit');
+        Route::put('/company_values/{company_value}', [\App\Http\Controllers\CompanyValueController::class, 'update'])->name('company_values.update');
+        Route::delete('/company_values/{company_value}', [\App\Http\Controllers\CompanyValueController::class, 'destroy'])->name('company_values.destroy');
 
     });
 });

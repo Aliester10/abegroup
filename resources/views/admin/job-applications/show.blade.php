@@ -1,145 +1,153 @@
 @extends('layouts.dashboard')
+
 @push('styles')
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css' rel='stylesheet'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
 @endpush
 
 @section('title', 'Detail Pelamar - ' . $application->full_name)
 
 @section('content')
-<div class="container-fluid px-4">
-    <h1 class="mt-4">Detail Pelamar</h1>
-    <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('admin.applications.index') }}">Applications</a></li>
-        <li class="breadcrumb-item active">{{ $application->full_name }}</li>
-    </ol>
+<div class="container px-6 mx-auto grid">
+    <div class="flex items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Detail Pelamar
+        </h2>
+    </div>
 
     @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
-            <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="px-4 py-3 mb-4 text-sm font-semibold text-green-700 bg-green-100 rounded-lg dark:text-green-100 dark:bg-green-700 shadow-md">
+            {{ session('success') }}
         </div>
     @endif
 
     @if(session('error'))
-        <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" role="alert">
-            <i class="fas fa-exclamation-triangle me-2"></i> {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="px-4 py-3 mb-4 text-sm font-semibold text-red-700 bg-red-100 rounded-lg dark:text-red-100 dark:bg-red-700 shadow-md">
+            {{ session('error') }}
         </div>
     @endif
 
-    <div class="row">
-        <div class="col-xl-4">
-            <div class="card mb-4 shadow-sm border-0">
-                <div class="card-header bg-white font-weight-bold">
-                    <i class="fas fa-user me-1"></i> Profil Pelamar
-                </div>
-                <div class="card-body text-center">
-                    <img src="https://ui-avatars.com/api/?name={{ urlencode($application->full_name) }}&background=random&size=128" class="rounded-circle mb-3" alt="Avatar">
-                    <h4>{{ $application->full_name }}</h4>
-                    <p class="text-muted">{{ $application->job_vacancy->name ?? 'N/A' }}</p>
+    <div class="grid gap-6 mb-8 md:grid-cols-3">
+        {{-- LEFT COLUMN --}}
+        <div class="space-y-6">
+            {{-- Profil Card --}}
+            <div class="px-4 py-3 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex flex-col items-center py-4">
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode($application->full_name) }}&background=random&size=128" 
+                         class="w-24 h-24 rounded-full mb-3 shadow-sm" alt="Avatar">
+                    <h4 class="text-lg font-semibold text-gray-700 dark:text-gray-200">{{ $application->full_name }}</h4>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">{{ $application->job_vacancy->name ?? 'N/A' }}</p>
                     
                     @if($application->status == 'pending')
-                        <span class="badge bg-warning text-dark px-3 py-2">Pending</span>
+                        <span class="px-3 py-1 text-xs font-semibold text-orange-700 bg-orange-100 rounded-full dark:bg-orange-700 dark:text-orange-100">Pending</span>
                     @elseif($application->status == 'reviewed')
-                        <span class="badge bg-info px-3 py-2">Reviewed</span>
+                        <span class="px-3 py-1 text-xs font-semibold text-blue-700 bg-blue-100 rounded-full dark:bg-blue-700 dark:text-blue-100">Reviewed</span>
                     @elseif($application->status == 'accepted')
-                        <span class="badge bg-success px-3 py-2">Accepted</span>
+                        <span class="px-3 py-1 text-xs font-semibold text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">Accepted</span>
                     @else
-                        <span class="badge bg-danger px-3 py-2">Rejected</span>
+                        <span class="px-3 py-1 text-xs font-semibold text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">Rejected</span>
                     @endif
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <strong class="text-muted">Email</strong>
-                        <span>{{ $application->email }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <strong class="text-muted">No. HP</strong>
-                        <span>{{ $application->phone ?? $application->phone_number }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <strong class="text-muted">Pendidikan</strong>
-                        <span>{{ $application->last_education }}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center py-3">
-                        <strong class="text-muted">Pengalaman</strong>
-                        <span>{{ $application->years_of_experience ?? '0' }} Tahun</span>
-                    </li>
-                </ul>
-                <div class="card-footer bg-white border-0 py-3">
-                    <a href="{{ $application->linkedin_url }}" target="_blank" class="btn btn-primary w-100 {{ !$application->linkedin_url ? 'disabled' : '' }}">
-                        <i class="fab fa-linkedin me-1"></i> Profil LinkedIn
+                
+                <div class="border-t dark:border-gray-700 pt-4 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Email</span>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">{{ $application->email }}</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">No. HP</span>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">{{ $application->phone ?? $application->phone_number }}</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Pendidikan</span>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">{{ $application->last_education }}</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Pengalaman</span>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">{{ $application->years_of_experience ?? '0' }} Tahun</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <a href="{{ $application->linkedin_url }}" target="_blank" 
+                       class="flex items-center justify-center w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-700 hover:bg-blue-800 focus:outline-none focus:shadow-outline-blue {{ !$application->linkedin_url ? 'opacity-50 cursor-not-allowed' : '' }}">
+                        <i class="fab fa-linkedin mr-2"></i> Profil LinkedIn
                     </a>
                 </div>
             </div>
 
-            <div class="card mb-4 shadow-sm border-0">
-                <div class="card-header bg-white font-weight-bold">
-                    <i class="fas fa-edit me-1"></i> Update Status & Email
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('admin.applications.update', $application->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="mb-3">
-                            <label class="form-label small text-muted font-weight-bold text-uppercase">Ganti Status Ke:</label>
-                            <select name="status" class="form-select border-primary shadow-sm">
-                                <option value="pending" {{ $application->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                <option value="reviewed" {{ $application->status == 'reviewed' ? 'selected' : '' }}>Reviewed</option>
-                                <option value="accepted" {{ $application->status == 'accepted' ? 'selected' : '' }}>Accepted (Kirim Email)</option>
-                                <option value="rejected" {{ $application->status == 'rejected' ? 'selected' : '' }}>Rejected (Kirim Email)</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-dark w-100 py-2 shadow-sm" onclick="return confirm('Update status dan kirim email notifikasi?')">
-                            <i class="fas fa-paper-plane me-1"></i> Update & Notify Applicant
-                        </button>
-                    </form>
-                </div>
-                <div class="card-footer bg-light py-2">
-                    <small class="text-muted italic">
-                        <i class="fas fa-info-circle me-1"></i> Sistem otomatis mengirim email jika status <strong>Accepted</strong> atau <strong>Rejected</strong>.
-                    </small>
-                </div>
+            {{-- Update Status Card --}}
+            <div class="px-4 py-3 bg-white rounded-lg shadow-md dark:bg-gray-800 border-t-4 border-orange-500">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                    <i class="fas fa-edit mr-2 text-orange-500"></i> Update Status & Email
+                </h4>
+                <form action="{{ route('admin.applications.update', $application->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-4">
+                        <label class="block text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-2">Ganti Status Ke:</label>
+                        <select name="status" 
+                                class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-orange-400 focus:outline-none focus:shadow-outline-orange dark:focus:shadow-outline-gray rounded-md border-gray-300 shadow-sm">
+                            <option value="pending" {{ $application->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="reviewed" {{ $application->status == 'reviewed' ? 'selected' : '' }}>Reviewed</option>
+                            <option value="accepted" {{ $application->status == 'accepted' ? 'selected' : '' }}>Accepted (Kirim Email)</option>
+                            <option value="rejected" {{ $application->status == 'rejected' ? 'selected' : '' }}>Rejected (Kirim Email)</option>
+                        </select>
+                    </div>
+                    <button type="submit" 
+                            class="w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-gray-800 border border-transparent rounded-lg active:bg-gray-900 hover:bg-gray-700 focus:outline-none focus:shadow-outline-gray"
+                            onclick="return confirm('Update status dan kirim email notifikasi?')">
+                        <i class="fas fa-paper-plane mr-2"></i> Update & Notify
+                    </button>
+                </form>
+                <p class="mt-3 text-xs italic text-gray-500 dark:text-gray-400 text-center">
+                    <i class="fas fa-info-circle mr-1"></i> Email terkirim otomatis untuk status Accepted/Rejected.
+                </p>
             </div>
         </div>
 
-        <div class="col-xl-8">
-            <div class="card mb-4 shadow-sm border-0">
-                <div class="card-header bg-white font-weight-bold">
-                    <i class="fas fa-envelope-open-text me-1"></i> Cover Letter / Pesan Pelamar
-                </div>
-                <div class="card-body bg-light">
-                    <div style="white-space: pre-wrap; line-height: 1.6;">{{ $application->cover_letter ?? 'Pelamar tidak menyertakan cover letter.' }}</div>
+        {{-- RIGHT COLUMN --}}
+        <div class="md:col-span-2 space-y-6">
+            {{-- Cover Letter Card --}}
+            <div class="px-4 py-3 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300 border-b dark:border-gray-700 pb-2">
+                    <i class="fas fa-envelope-open-text mr-2 text-orange-500"></i> Cover Letter / Pesan Pelamar
+                </h4>
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed">
+                    {{ $application->cover_letter ?? 'Pelamar tidak menyertakan cover letter.' }}
                 </div>
             </div>
 
-            <div class="card mb-4 shadow-sm border-0">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center">
-                    <span class="font-weight-bold"><i class="fas fa-file-pdf me-1"></i> Curriculum Vitae (CV)</span>
-                    <a href="{{ asset('storage/' . $application->resume_path) }}" target="_blank" class="btn btn-sm btn-outline-primary">
-                        <i class="fas fa-external-link-alt me-1"></i> Buka Fullscreen
+            {{-- CV Preview Card --}}
+            <div class="px-4 py-3 bg-white rounded-lg shadow-md dark:bg-gray-800">
+                <div class="flex justify-between items-center mb-4 border-b dark:border-gray-700 pb-2">
+                    <h4 class="font-semibold text-gray-800 dark:text-gray-300">
+                        <i class="fas fa-file-pdf mr-2 text-orange-500"></i> Curriculum Vitae (CV)
+                    </h4>
+                    <a href="{{ asset('storage/' . $application->resume_path) }}" target="_blank" 
+                       class="text-xs font-semibold text-orange-500 hover:underline">
+                        <i class="fas fa-external-link-alt mr-1"></i> Buka Fullscreen
                     </a>
                 </div>
-                <div class="card-body p-0">
-                    {{-- Preview PDF --}}
-                    <iframe src="{{ asset('storage/' . $application->resume_path) }}" width="100%" height="600px" style="border: none;"></iframe>
+                <div class="w-full h-[600px] bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden">
+                    <iframe src="{{ asset('storage/' . $application->resume_path) }}" 
+                            class="w-full h-full border-none shadow-inner"></iframe>
                 </div>
-                <div class="card-footer bg-white text-center py-2">
-                    <small class="text-muted font-italic">Jika PDF tidak muncul, klik tombol "Buka Fullscreen" di atas.</small>
-                </div>
+                <p class="mt-3 text-xs italic text-gray-500 dark:text-gray-400 text-center">
+                    Jika PDF tidak muncul, klik tombol "Buka Fullscreen" di atas.
+                </p>
             </div>
 
-            <div class="mb-4">
-                <a href="{{ route('admin.applications.index') }}" class="btn btn-secondary shadow-sm">
-                    <i class="fas fa-arrow-left me-1"></i> Kembali ke Daftar
+            <div>
+                <a href="{{ route('admin.applications.index') }}" 
+                   class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition-colors duration-150 bg-white border border-gray-300 rounded-lg dark:text-gray-400 dark:bg-gray-700 dark:border-gray-600 active:bg-transparent hover:bg-gray-50 focus:outline-none focus:shadow-outline-gray shadow-sm">
+                    <i class="fas fa-arrow-left mr-2"></i> Kembali ke Daftar
                 </a>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
 @push('scripts')
-    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js'></script>
+    {{-- No Bootstrap JS needed --}}
 @endpush

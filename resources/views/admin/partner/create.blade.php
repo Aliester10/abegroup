@@ -22,16 +22,17 @@
                     <div class="space-y-3">
                         <div>
                             <label class="block text-xs text-gray-600 mb-1">Upload Logo File:</label>
-                            <input type="file" name="logo" accept="image/*" class="w-full rounded-lg border-gray-300">
+                            <input type="file" name="logo_file" accept="image/jpeg,image/png,image/jpg,image/webp,image/svg+xml" class="w-full rounded-lg border-gray-300">
+                            @error('logo_file')<div class="text-sm text-red-600 mt-1">{{ $message }}</div>@enderror
                         </div>
                         <div class="text-center text-gray-500 text-sm">atau</div>
                         <div>
                             <label class="block text-xs text-gray-600 mb-1">Logo URL:</label>
-                            <input type="url" name="logo" placeholder="https://example.com/logo.svg" class="w-full rounded-lg border-gray-300">
+                            <input type="text" name="logo_url" placeholder="https://example.com/logo.svg" value="{{ old('logo_url') }}" class="w-full rounded-lg border-gray-300">
+                            @error('logo_url')<div class="text-sm text-red-600 mt-1">{{ $message }}</div>@enderror
                         </div>
                     </div>
-                    <p class="text-xs text-gray-500 mt-1">Upload file (max 2MB) atau masukkan URL logo eksternal</p>
-                    @error('logo')<div class="text-sm text-red-600 mt-1">{{ $message }}</div>@enderror
+                    <p class="text-xs text-gray-500 mt-1">Upload file (max 2MB: jpg, png, webp, svg) atau masukkan URL logo eksternal</p>
                 </div>
 
                 <div>
