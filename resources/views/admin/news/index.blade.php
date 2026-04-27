@@ -1,76 +1,107 @@
 @extends('layouts.dashboard')
 
-@section('title', 'News Data')
+@push('styles')
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
+@endpush
+
+@section('title', 'News Management')
 
 @section('content')
-<div class="space-y-6">
-    <!-- Header -->
-    <div class="flex items-center justify-between">
-        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">News Data</h1>
-        <a href="{{ route('admin.news.create') }}" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
-            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-            </svg>
-            Add News
+<div class="container px-6 mx-auto grid">
+    <div class="flex justify-between items-center my-6">
+        <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            News Management
+        </h2>
+        <a href="{{ route('admin.news.create') }}" 
+           class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-lg active:bg-blue-700 hover:bg-blue-800 focus:outline-none focus:shadow-outline-blue">
+            <i class="fas fa-plus mr-2"></i> Add New News
         </a>
     </div>
 
-    <!-- Success Message -->
     @if(session('success'))
-        <div class="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
-            {{ session('success') }}
+        <div class="px-4 py-3 mb-8 text-sm font-semibold text-green-700 bg-green-100 rounded-lg dark:text-green-100 dark:bg-green-700 shadow-md flex justify-between items-center">
+            <span>{{ session('success') }}</span>
+            <button type="button" class="text-green-500 dark:text-green-200" onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
     @endif
 
-    <!-- News Table -->
-    <div class="bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-        <div class="overflow-x-auto">
-            <table class="w-full">
-                <thead class="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">No</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Image</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Title</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Slug</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <table class="w-full whitespace-no-wrap">
+                <thead>
+                    <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">No</th>
+                        <th class="px-4 py-3">Image</th>
+                        <th class="px-4 py-3">Title</th>
+                        <th class="px-4 py-3 hidden lg:table-cell">Slug</th>
+                        <th class="px-4 py-3 text-center">Status</th>
+                        <th class="px-4 py-3 text-center">Actions</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                     @forelse($news as $key => $item)
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{{ $key + 1 }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                        <tr class="text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                            <td class="px-4 py-3 text-sm font-bold">
+                                {{ $key + 1 }}
+                            </td>
+                            <td class="px-4 py-3">
                                 @if($item->image)
-                                    <img src="{{ asset('storage/'.$item->image) }}" alt="News Image" class="w-12 h-12 object-cover rounded-full">
+                                    <img src="{{ asset('storage/'.$item->image) }}" alt="{{ $item->title }}" 
+                                         class="rounded-lg shadow-sm border border-gray-200 dark:border-gray-600 object-cover w-20 h-12">
                                 @else
-                                    <svg class="w-12 h-12 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-                                    </svg>
+                                    <div class="w-20 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-xs text-gray-400">
+                                        <i class="fas fa-newspaper"></i>
+                                    </div>
                                 @endif
                             </td>
-                            <td class="px-6 py-4 text-sm text-gray-900 dark:text-white">{{ $item->title }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{{ $item->slug }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                                <a href="{{ route('admin.news.edit', $item->id) }}" class="inline-flex items-center px-3 py-1.5 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded-md transition-colors">
-                                    Edit
-                                </a>
-                                <form action="{{ route('admin.news.destroy', $item->id) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button onclick="return confirm('Are you sure you want to delete this news?')" class="inline-flex items-center px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-800 rounded-md transition-colors">
-                                        Delete
-                                    </button>
-                                </form>
+                            <td class="px-4 py-3">
+                                <div class="text-sm font-semibold text-gray-800 dark:text-gray-300">{{ $item->title }}</div>
+                            </td>
+                            <td class="px-4 py-3 text-sm hidden lg:table-cell">
+                                <div class="max-w-xs truncate font-mono text-xs" title="{{ $item->slug }}">
+                                    {{ $item->slug }}
+                                </div>
+                            </td>
+                            <td class="px-4 py-3 text-xs text-center">
+                                @if($item->is_active ?? true)
+                                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                                        Published
+                                    </span>
+                                @else
+                                    <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full dark:bg-yellow-700 dark:text-yellow-100">
+                                        Draft
+                                    </span>
+                                @endif
+                            </td>
+                            <td class="px-4 py-3 text-sm text-center">
+                                <div class="flex items-center justify-center space-x-2">
+                                    <a href="{{ route('admin.news.edit', $item->id) }}" 
+                                       class="p-2 text-blue-600 rounded-lg hover:bg-blue-100 dark:text-gray-400 dark:hover:bg-gray-600 transition-colors" 
+                                       title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('admin.news.destroy', $item->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" 
+                                                class="p-2 text-red-600 rounded-lg hover:bg-red-100 dark:text-gray-400 dark:hover:bg-gray-600 transition-colors" 
+                                                onclick="return confirm('Are you sure you want to delete this news?')" 
+                                                title="Delete">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
+                            <td colspan="6" class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
                                 <div class="flex flex-col items-center">
-                                    <svg class="w-12 h-12 text-gray-300 dark:text-gray-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-                                    </svg>
-                                    <p>No data available</p>
+                                    <i class="fas fa-newspaper text-4xl mb-3 text-gray-300"></i>
+                                    <p>No news articles yet.</p>
+                                    <a href="{{ route('admin.news.create') }}" class="mt-2 text-blue-600 hover:underline">Add one now</a>
                                 </div>
                             </td>
                         </tr>
@@ -81,3 +112,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    {{-- No additional scripts needed --}}
+@endpush
