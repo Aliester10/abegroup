@@ -23,7 +23,8 @@ class PartnerController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'logo' => 'nullable|string',
+            'logo_file' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+            'logo_url' => 'nullable|string|max:2048',
             'slug' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'website_url' => 'nullable|url|max:255',
@@ -38,12 +39,11 @@ class PartnerController extends Controller
         $validated['order'] = $validated['order'] ?? 0;
 
         // Handle logo upload or URL
-        if ($request->hasFile('logo')) {
-            $logo = $request->file('logo');
-            $logoPath = $logo->store('partners', 'public');
+        if ($request->hasFile('logo_file')) {
+            $logoPath = $request->file('logo_file')->store('partners', 'public');
             $validated['logo'] = $logoPath;
-        } elseif (!empty($validated['logo']) && !str_starts_with($validated['logo'], 'http')) {
-            unset($validated['logo']);
+        } elseif (!empty($request->logo_url)) {
+            $validated['logo'] = $request->logo_url;
         }
 
         Partner::create($validated);
@@ -60,7 +60,8 @@ class PartnerController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'logo' => 'nullable|string',
+            'logo_file' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:2048',
+            'logo_url' => 'nullable|string|max:2048',
             'slug' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'website_url' => 'nullable|url|max:255',
@@ -75,20 +76,20 @@ class PartnerController extends Controller
         $validated['order'] = $validated['order'] ?? 0;
 
         // Handle logo upload or URL
-        if ($request->hasFile('logo')) {
+        if ($request->hasFile('logo_file')) {
             // Delete old logo if exists and it's a file
             if ($partner->logo && !str_starts_with($partner->logo, 'http')) {
-                $oldLogoPath = storage_path('app/public/' . $partner->logo);
-                if (file_exists($oldLogoPath)) {
-                    unlink($oldLogoPath);
-                }
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($partner->logo);
             }
             
-            $logo = $request->file('logo');
-            $logoPath = $logo->store('partners', 'public');
+            $logoPath = $request->file('logo_file')->store('partners', 'public');
             $validated['logo'] = $logoPath;
-        } elseif (!empty($validated['logo']) && !str_starts_with($validated['logo'], 'http')) {
-            unset($validated['logo']);
+        } elseif (!empty($request->logo_url)) {
+            // Delete old logo if exists and it's a file
+            if ($partner->logo && !str_starts_with($partner->logo, 'http')) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($partner->logo);
+            }
+            $validated['logo'] = $request->logo_url;
         }
 
         $partner->update($validated);
@@ -98,12 +99,9 @@ class PartnerController extends Controller
 
     public function destroy(Partner $partner)
     {
-        // Delete logo if exists
-        if ($partner->logo) {
-            $oldLogoPath = storage_path('app/public/' . $partner->logo);
-            if (file_exists($oldLogoPath)) {
-                unlink($oldLogoPath);
-            }
+        // Delete logo if exists and it's a file
+        if ($partner->logo && !str_starts_with($partner->logo, 'http')) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($partner->logo);
         }
 
         $partner->delete();

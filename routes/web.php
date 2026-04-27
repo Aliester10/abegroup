@@ -103,6 +103,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Job Applications routes
     Route::get('/job_applications', [AdminJobApplicationController::class, 'index'])->name('admin.applications.index');
     Route::get('/job_applications/{id}', [AdminJobApplicationController::class, 'show'])->name('admin.applications.show');
+    Route::put('/job_applications/{id}', [AdminJobApplicationController::class, 'update'])->name('admin.applications.update');
     Route::delete('/job_applications/{id}', [AdminJobApplicationController::class, 'destroy'])->name('admin.applications.destroy');
 
     // Partner routes
