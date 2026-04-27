@@ -152,10 +152,12 @@
 
                 <!-- Contact Information -->
                 <div class="space-y-8">
+                    @if($companyInfo)
                     <div class="bg-white rounded-2xl shadow-lg p-8">
                         <h2 class="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500 mb-4">Informasi Kontak</h2>
                         
                         <div class="space-y-6">
+                            @if($companyInfo->office_address)
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,14 +167,12 @@
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-gray-900 mb-1">Alamat Kantor</h3>
-                                    <p class="text-gray-600">
-                                        Gedung ABE Tower<br>
-                                        Jl. Sudirman No. 123<br>
-                                        Jakarta Pusat 10220
-                                    </p>
+                                    <p class="text-gray-600 whitespace-pre-line">{{ $companyInfo->office_address }}</p>
                                 </div>
                             </div>
+                            @endif
 
+                            @if($companyInfo->phone || $companyInfo->phone_alt)
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,12 +182,14 @@
                                 <div>
                                     <h3 class="font-semibold text-gray-900 mb-1">Telepon</h3>
                                     <p class="text-gray-600">
-                                        +62 21 1234 5678<br>
-                                        +62 21 1234 5679 (Fax)
+                                        @if($companyInfo->phone){{ $companyInfo->phone }}<br>@endif
+                                        @if($companyInfo->phone_alt){{ $companyInfo->phone_alt }}@endif
                                     </p>
                                 </div>
                             </div>
+                            @endif
 
+                            @if($companyInfo->email || $companyInfo->email_alt)
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -197,13 +199,14 @@
                                 <div>
                                     <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
                                     <p class="text-gray-600">
-                                        info@abegroup.co.id<br>
-                                        support@abegroup.co.id<br>
-                                        career@abegroup.co.id
+                                        @if($companyInfo->email){{ $companyInfo->email }}<br>@endif
+                                        @if($companyInfo->email_alt){{ $companyInfo->email_alt }}@endif
                                     </p>
                                 </div>
                             </div>
+                            @endif
 
+                            @if($companyInfo->operational_hours)
                             <div class="flex items-start gap-4">
                                 <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -212,14 +215,23 @@
                                 </div>
                                 <div>
                                     <h3 class="font-semibold text-gray-900 mb-1">Jam Operasional</h3>
-                                    <p class="text-gray-600">
-                                        Senin - Jumat 08.00 - 17.00 WIB<br>
-                                        Sabtu: 08.00 - 12.00
-                                    </p>
+                                    <p class="text-gray-600 whitespace-pre-line">{{ $companyInfo->operational_hours }}</p>
                                 </div>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    @else
+                    <!-- Fallback if no company info is set -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <div class="text-center py-8">
+                            <div class="bg-yellow-50 border border-yellow-200 text-yellow-800 px-6 py-4 rounded-lg">
+                                <h3 class="text-lg font-medium mb-2">Informasi Kontak Belum Tersedia</h3>
+                                <p class="text-sm">Informasi kontak perusahaan sedang dalam persiapan. Silakan hubungi kami melalui formulir di samping.</p>
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

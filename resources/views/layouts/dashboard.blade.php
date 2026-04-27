@@ -80,7 +80,6 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M4 19c4-8 12-8 16-4-4 8-12 8-16 4zM12 12l4-4M12 12l-4 4"/>
                         </svg>
-
                         Sustainability
                     </a>
 
@@ -149,8 +148,18 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
               d="M7 8h10M7 12h6m-9 8h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
     </svg>
-
     Testimonial
+</a>
+
+<a href="{{ route('admin.company-info.index') }}" 
+   class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-200 {{ request()->routeIs('admin.company-info*') ? 'bg-gray-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-700' }} rounded-lg">
+    
+    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+    </svg>
+
+    Informasi Kontak
 </a>
 
 <a href="{{ route('admin.contacts.index') }}" 
@@ -160,7 +169,6 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
     </svg>
-
     Pesan Masuk
 </a>
                 </nav>

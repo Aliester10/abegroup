@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\CompanyInfo;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,7 +13,8 @@ class ContactController extends Controller
     // Display contact page
     public function index()
     {
-        return view('contact');
+        $companyInfo = CompanyInfo::where('is_active', true)->first();
+        return view('contact', compact('companyInfo'));
     }
 
     public function send(Request $request)

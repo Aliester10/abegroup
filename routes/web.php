@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\JobVacancyController;
 use App\Http\Controllers\Admin\BenefitController;
 use App\Http\Controllers\Admin\JobApplicationController as AdminJobApplicationController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\CompanyInfoController;
 use App\Http\Controllers\HomeStatController;
 use App\Http\Controllers\CoreValueController;
 use App\Http\Controllers\SustainabilityController;
@@ -143,6 +144,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/contacts', [AdminContactController::class, 'index'])->name('admin.contacts.index');
     Route::get('/contacts/{contact}', [AdminContactController::class, 'show'])->name('admin.contacts.show');
     Route::delete('/contacts/{contact}', [AdminContactController::class, 'destroy'])->name('admin.contacts.destroy');
+
+    // Company Info routes
+    Route::get('/company-info', [CompanyInfoController::class, 'index'])->name('admin.company-info.index');
+    Route::get('/company-info/create', [CompanyInfoController::class, 'create'])->name('admin.company-info.create');
+    Route::post('/company-info', [CompanyInfoController::class, 'store'])->name('admin.company-info.store');
+    Route::get('/company-info/{companyInfo}/edit', [CompanyInfoController::class, 'edit'])->name('admin.company-info.edit');
+    Route::put('/company-info/{companyInfo}', [CompanyInfoController::class, 'update'])->name('admin.company-info.update');
+    Route::delete('/company-info/{companyInfo}', [CompanyInfoController::class, 'destroy'])->name('admin.company-info.destroy');
 
     // Home Statistics routes
     Route::get('/home-stats', [HomeStatController::class, 'index'])->name('admin.home-stats.index');
