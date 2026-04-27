@@ -17,7 +17,7 @@ class BusinessController extends Controller
             ->orderByDesc('id')
             ->get();
 
-        $highlight = CompanyHighlight::latest()->first();
+$highlight = CompanyHighlight::orderByDesc('updated_at')->first();
         $testimonials = Testimonial::latest()->get();
 
         return view('pages.business', compact('businesses', 'highlight', 'testimonials'));

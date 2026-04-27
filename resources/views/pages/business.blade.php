@@ -544,6 +544,8 @@
         font-size: 12px;
         font-weight: 600;
         margin-bottom: 20px;
+        overflow-wrap: break-word; /* Mematahkan kata hanya jika meluap */
+        word-break: break-word; 
     }
 
     .highlight-title {
@@ -551,6 +553,8 @@
         font-weight: 800;
         color: #0f172a;
         line-height: 1.3;
+        overflow-wrap: break-word; /* Mematahkan kata hanya jika meluap */
+        word-break: break-word; 
     }
 
     .highlight-title span {
@@ -562,6 +566,8 @@
         font-size: 16px;
         color: #475569;
         line-height: 1.7;
+        overflow-wrap: break-word; /* Mematahkan kata hanya jika meluap */
+
     }
 
     /* ================= IMAGE ================= */
@@ -603,7 +609,6 @@
         text-align: center;
         color: #94a3b8;
     }
-
 
 
     /* ================= SECTION ================= */

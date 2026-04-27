@@ -69,14 +69,12 @@
 
 @endsection
 <style>
-    /* back */
-    /* BACK BUTTON */
+    /* ================= GLOBAL & LAYOUT ================= */
     .back-btn {
         position: absolute;
         top: 30px;
         left: 30px;
         z-index: 10;
-
         background: rgba(255, 255, 255, 0.9);
         color: #1e3a8a;
         padding: 10px 18px;
@@ -84,9 +82,9 @@
         font-size: 14px;
         font-weight: 600;
         text-decoration: none;
-
         backdrop-filter: blur(6px);
         transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .back-btn:hover {
@@ -94,14 +92,13 @@
         transform: translateX(-4px);
     }
 
-    /* ================= HERO ================= */
+    /* ================= HERO (BANNER) ================= */
     .business-hero {
         position: relative;
-        height: 520px;
+        height: 500px;
         display: flex;
         align-items: center;
-        justify-content: center;
-        text-align: center;
+        justify-content: center; /* Menjaga konten tetap di tengah banner secara horizontal */
         overflow: hidden;
     }
 
@@ -126,183 +123,183 @@
         z-index: 2;
         color: white;
         padding: 0 20px;
+        width: 100%;
+        max-width: 800px; /* Batasi lebar agar teks tidak meluber ke pinggir */
+        text-align: left; /* 🔥 PERBAIKAN: Tulisan banner rata kiri, bukan center */
     }
 
     .hero-content h1 {
-        font-size: 48px;
+        /* 🔥 PERBAIKAN: Ukuran font dikurangi (Min 22px, Ideal 4vw, Max 32px) */
+        font-size: clamp(22px, 4vw, 32px); 
         font-weight: 800;
         letter-spacing: 0.5px;
+        line-height: 1.2;
+        word-wrap: break-word; /* Cegah teks panjang nembus layar */
+        overflow-wrap: break-word;
     }
 
     .hero-content p {
         margin-top: 12px;
-        font-size: 18px;
+        /* 🔥 PERBAIKAN: Ukuran font p juga disesuaikan */
+        font-size: clamp(14px, 1.8vw, 16px);
         color: rgba(255, 255, 255, 0.85);
     }
 
-
-    /* ================= CONTENT ================= */
+    /* ================= CONTENT SECTION ================= */
     .business-content {
         background: #f1f5f9;
         padding-bottom: 100px;
+        display: flex;
+        justify-content: center; /* 🔥 Pastikan container di tengah horizontal */
     }
 
-    /* 🔥 CONTAINER DIPERKECIL BIAR ELEGAN */
     .container {
-        max-width: 620px;
-        /* 🔥 lebih kecil */
+        width: 100%;
+        max-width: 700px; /* Ukuran ideal untuk card di tengah */
+        padding: 0 20px;
+        margin: 0 auto; /* 🔥 Pastikan margin otomatis kiri kanan */
     }
-
 
     /* ================= CARD ================= */
     .business-card {
         background: white;
         border-radius: 20px;
-        padding: 36px;
-
-        max-width: 1000px;
-        /* 🔥 batasi lebar biar ga kepanjangan */
-        margin: -150px auto 0;
-        /* 🔥 center + floating */
-
+        padding: clamp(20px, 5vw, 40px); /* Padding responsif */
+        margin-top: -100px; /* Floating effect */
         box-shadow: 0 30px 70px rgba(0, 0, 0, 0.08);
-        /* 🔥 depth premium */
         position: relative;
         z-index: 5;
-
-        transition: 0.3s;
+        transition: 0.3s ease;
+        text-align: left; /* Konten di dalam card tetap rata kiri */
     }
 
-
     .business-card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-5px);
     }
 
     .business-card h2 {
-        font-size: 24px;
+        font-size: clamp(20px, 4vw, 28px);
         font-weight: 800;
         color: #0f172a;
-        letter-spacing: 0.5px;
+        line-height: 1.3;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .category {
         color: #64748b;
         font-size: 14px;
         margin-top: 6px;
+        display: block;
     }
 
-    /* LINK */
     .link {
         display: inline-block;
-        margin-top: 12px;
+        margin-top: 15px;
         color: #2563eb;
         font-size: 14px;
         text-decoration: none;
+        word-break: break-all; /* Agar link panjang tidak rusak di mobile */
     }
 
     .link:hover {
         text-decoration: underline;
     }
 
-
     /* ================= DESCRIPTION ================= */
     .description {
-        width: 100%;
-        /* 🔥 ikut parent (card) */
         margin-top: 28px;
-
-        padding: 0 4px;
-        /* 🔥 kasih nafas dikit tanpa nabrak */
-
         font-size: 15px;
-        line-height: 1.9;
+        line-height: 1.8;
         color: #475569;
+        border-top: 1px solid #f1f5f9;
+        padding-top: 20px;
     }
 
     .description p {
         margin-bottom: 18px;
-
-        word-break: break-word;
-        /* 🔥 WAJIB */
         overflow-wrap: break-word;
-        /* 🔥 WAJIB */
     }
 
-    /* ================= BOX ================= */
+    /* ================= MARKETPLACE BOX ================= */
     .business-box {
         margin-top: 36px;
-        background: linear-gradient(135deg, #5b6f8f, #475a78);
+        background: linear-gradient(135deg, #1e3a8a, #3b82f6);
         color: white;
-        padding: 22px;
+        padding: 24px;
         border-radius: 16px;
         display: flex;
         gap: 16px;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .business-box .icon {
-        font-size: 20px;
+        font-size: 24px;
         background: rgba(255, 255, 255, 0.2);
         padding: 12px;
-        border-radius: 10px;
+        border-radius: 12px;
+        flex-shrink: 0;
     }
 
     .business-box h4 {
         margin: 0;
-        font-size: 16px;
+        font-size: 17px;
         font-weight: 700;
     }
 
     .business-box p {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.85);
-        margin: 6px 0;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 4px 0 12px;
     }
 
-
-    /* ================= BUTTON ================= */
     .btn {
         display: inline-block;
-        margin-top: 12px;
         background: white;
-        color: #475a78;
-        padding: 8px 16px;
-        border-radius: 999px;
-        /* 🔥 pill style */
-        font-size: 13px;
-        font-weight: 600;
+        color: #1e3a8a;
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 700;
         text-decoration: none;
         transition: 0.2s;
     }
 
     .btn:hover {
-        background: #e2e8f0;
+        background: #f1f5f9;
+        transform: scale(1.05);
     }
-
 
     /* ================= RESPONSIVE ================= */
     @media (max-width: 768px) {
+        .back-btn {
+            top: 20px;
+            left: 20px;
+            padding: 8px 14px;
+            font-size: 12px;
+        }
 
         .business-hero {
-            height: 420px;
+            height: 400px;
         }
 
-        .hero-content h1 {
-            font-size: 30px;
-        }
-
-        .hero-content p {
-            font-size: 15px;
+        /* 🔥 Di mobile, kita kembalikan ke center agar lebih rapi secara visual */
+        .hero-content {
+            text-align: center;
         }
 
         .business-card {
-            margin-top: -120px;
+            margin-top: -80px;
             padding: 24px;
         }
 
         .business-box {
             flex-direction: column;
+            text-align: center;
         }
 
+        .business-box .icon {
+            margin: 0 auto;
+        }
     }
 </style>
