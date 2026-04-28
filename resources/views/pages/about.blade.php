@@ -247,7 +247,7 @@
             <!-- Cards Grid -->
             <div class="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
                 <!-- Vision Card -->
-                <div class="bg-[#3d5278]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                <div class="bg-[#3d5278]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-8 overflow-hidden">
                     <!-- Icon & Title -->
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -261,17 +261,19 @@
                     </div>
                     
                     <!-- Content -->
-                    <p class="text-white/80 text-sm leading-relaxed">
-                        @if(isset($visimisi) && $visimisi->visi)
-                            {!! nl2br(e($visimisi->visi)) !!}
-                        @else
-                            Menjadi konglomerasi terkemuka di Asia Tenggara yang memberikan nilai tambah berkelanjutan bagi semua pemangku kepentingan melalui inovasi, transformasi digital, dan komitmen terhadap pembangunan ekonomi yang inklusif dan berkelanjutan.
-                        @endif
-                    </p>
+                    <div class="w-full overflow-hidden">
+                        <p class="text-white/80 text-sm leading-relaxed break-all break-words overflow-wrap-anywhere max-w-full">
+                            @if(isset($visimisi) && $visimisi->visi)
+                                {!! nl2br(e($visimisi->visi)) !!}
+                            @else
+                                Menjadi konglomerasi terkemuka di Asia Tenggara yang memberikan nilai tambah berkelanjutan bagi semua pemangku kepentingan melalui inovasi, transformasi digital, dan komitmen terhadap pembangunan ekonomi yang inklusif dan berkelanjutan.
+                            @endif
+                        </p>
+                    </div>
                 </div>
                 
                 <!-- Mission Card -->
-                <div class="bg-[#3d5278]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+                <div class="bg-[#3d5278]/60 backdrop-blur-sm border border-white/10 rounded-2xl p-8 overflow-hidden">
                     <!-- Icon & Title -->
                     <div class="flex items-center gap-3 mb-6">
                         <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -283,31 +285,33 @@
                     </div>
                     
                     <!-- Content -->
-                    <ul class="text-white/80 text-sm space-y-3">
-                        @if(isset($visimisi) && $visimisi->misi)
-                            @foreach(explode("\n", str_replace("\r", "", $visimisi->misi)) as $misiItem)
-                                @if(trim($misiItem) !== '')
+                    <div class="w-full overflow-hidden">
+                        <ul class="text-white/80 text-sm space-y-3 max-w-full">
+                            @if(isset($visimisi) && $visimisi->misi)
+                                @foreach(explode("\n", str_replace("\r", "", $visimisi->misi)) as $misiItem)
+                                    @if(trim($misiItem) !== '')
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-white/60 mt-1 flex-shrink-0">•</span>
+                                        <span class="break-all break-words overflow-wrap-anywhere flex-1">{{ trim($misiItem) }}</span>
+                                    </li>
+                                    @endif
+                                @endforeach
+                            @else
                                 <li class="flex items-start gap-2">
-                                    <span class="text-white/60 mt-1">•</span>
-                                    <span>{{ trim($misiItem) }}</span>
+                                    <span class="text-white/60 mt-1 flex-shrink-0">•</span>
+                                    <span class="break-all break-words overflow-wrap-anywhere flex-1">Memberikan produk dan layanan berkualitas tinggi kepada pelanggan</span>
                                 </li>
-                                @endif
-                            @endforeach
-                        @else
-                            <li class="flex items-start gap-2">
-                                <span class="text-white/60 mt-1">•</span>
-                                <span>Memberikan produk dan layanan berkualitas tinggi kepada pelanggan</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-white/60 mt-1">•</span>
-                                <span>Mengembangkan talenta dan menciptakan lingkungan kerja yang inspiring</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <span class="text-white/60 mt-1">•</span>
-                                <span>Mendorong inovasi berkelanjutan di setiap lini bisnis</span>
-                            </li>
-                        @endif
-                    </ul>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-white/60 mt-1 flex-shrink-0">•</span>
+                                    <span class="break-all break-words overflow-wrap-anywhere flex-1">Mengembangkan talenta dan menciptakan lingkungan kerja yang inspiring</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-white/60 mt-1 flex-shrink-0">•</span>
+                                    <span class="break-all break-words overflow-wrap-anywhere flex-1">Mendorong inovasi berkelanjutan di setiap lini bisnis</span>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

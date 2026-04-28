@@ -343,23 +343,7 @@
         </div>
     </div>
 
-    {{-- CTA --}}
-    <section class="pb-5">
-        <div class="container">
-            <div class="cta-career">
-                <div class="row text-center justify-content-center">
-                    <div class="col-lg-10">
-                        <h2 class="fw-bold mb-3">Mulai Karier Anda Bersama Kami</h2>
-                        <p class="mb-0" style="font-size: 1.2rem; font-style: italic; opacity: 0.95;">
-                            "Bergabunglah dengan PT Aro Baskara Esa dan jadilah bagian dari tim yang inovatif, dinamis, dan
-                            suportif dalam membangun masa depan teknologi."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     {{-- BENEFITS --}}
     <section class="py-5" style="background-color: #fcfcfc;">
         <div class="container py-4">

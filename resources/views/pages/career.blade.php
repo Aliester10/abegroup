@@ -83,7 +83,7 @@
     </section>
 
     <!-- Benefits Section -->
-    <section class="py-24 bg-slate-50">
+    <section class="pt-0 pb-16 bg-slate-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-orange-500 font-bold tracking-wider uppercase text-sm">Mengapa Bergabung?</span>
