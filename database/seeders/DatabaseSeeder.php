@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             HomeStatSeeder::class,
             CoreValueSeeder::class,
             SustainabilitySeeder::class,
+            CompanyInfoSeeder::class,
         ]);
     }
 }
