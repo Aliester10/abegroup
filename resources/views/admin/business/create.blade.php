@@ -34,11 +34,20 @@
                     @error('description')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Business Image</label>
-                    <input type="file" name="image" class="w-full rounded-lg border-gray-300" accept="image/*">
-                    <p class="text-xs text-gray-500 mt-1">Recommended aspect ratio 16:10 or 21:9</p>
-                    @error('image')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Business Background Image</label>
+                        <input type="file" name="image" class="w-full rounded-lg border-gray-300" accept="image/*">
+                        <p class="text-xs text-gray-500 mt-1">Recommended aspect ratio 16:10 or 21:9</p>
+                        @error('image')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Business Logo (Top Left Corner)</label>
+                        <input type="file" name="logo" class="w-full rounded-lg border-gray-300" accept="image/*">
+                        <p class="text-xs text-gray-500 mt-1">Logo for the card badge (automatically white)</p>
+                        @error('logo')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

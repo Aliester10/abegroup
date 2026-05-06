@@ -35,19 +35,37 @@
                     @error('description')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
 
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Business Image</label>
-                    <input type="file" name="image" class="w-full rounded-lg border-gray-300" accept="image/*">
-                    
-                    @if($business->image)
-                        <div class="mt-4 p-2 border rounded-lg bg-gray-50">
-                            <p class="text-xs text-gray-500 mb-2">Current Image:</p>
-                            @php
-                                $imageUrl = \Illuminate\Support\Str::startsWith($business->image, 'assets/') ? asset($business->image) : asset('storage/' . $business->image);
-                            @endphp
-                            <img src="{{ $imageUrl }}" class="h-32 rounded object-cover shadow-sm">
-                        </div>
-                    @endif
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Business Background Image</label>
+                        <input type="file" name="image" class="w-full rounded-lg border-gray-300" accept="image/*">
+                        
+                        @if($business->image)
+                            <div class="mt-4 p-2 border rounded-lg bg-gray-50">
+                                <p class="text-xs text-gray-500 mb-2">Current BG Image:</p>
+                                @php
+                                    $imageUrl = \Illuminate\Support\Str::startsWith($business->image, 'assets/') ? asset($business->image) : asset('storage/' . $business->image);
+                                @endphp
+                                <img src="{{ $imageUrl }}" class="h-32 w-full rounded object-cover shadow-sm">
+                            </div>
+                        @endif
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Business Logo (Top Left)</label>
+                        <input type="file" name="logo" class="w-full rounded-lg border-gray-300" accept="image/*">
+                        
+                        @if($business->logo)
+                            <div class="mt-4 p-4 border rounded-lg bg-gray-900">
+                                <p class="text-xs text-gray-400 mb-2">Current Logo (White Preview):</p>
+                                <img src="{{ asset('storage/' . $business->logo) }}" class="h-10 w-auto object-contain brightness-0 invert">
+                            </div>
+                        @else
+                            <div class="mt-4 p-4 border border-dashed rounded-lg text-center text-gray-400 text-xs">
+                                No specific logo uploaded.
+                            </div>
+                        @endif
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

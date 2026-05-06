@@ -19,6 +19,7 @@ class Business extends Model
         'category',
         'slug',
         'image',
+        'logo',
         'website_link',
         'ecomerce_link',
         'description',

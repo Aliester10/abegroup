@@ -28,6 +28,7 @@ class BusinessController extends Controller
             'category' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
             'website_link' => 'nullable|url',
             'ecomerce_link' => 'nullable|url',
             'order' => 'nullable|integer',
@@ -37,6 +38,10 @@ class BusinessController extends Controller
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('businesses', 'public');
             $validated['image'] = $path;
+        }
+
+        if ($request->hasFile('logo')) {
+            $validated['logo'] = $request->file('logo')->store('businesses/logos', 'public');
         }
 
         $validated['slug'] = Str::slug($request->name);
@@ -59,6 +64,7 @@ class BusinessController extends Controller
             'category' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
             'website_link' => 'nullable|url',
             'ecomerce_link' => 'nullable|url',
             'order' => 'nullable|integer',
@@ -72,6 +78,14 @@ class BusinessController extends Controller
             }
             $path = $request->file('image')->store('businesses', 'public');
             $validated['image'] = $path;
+        }
+
+        if ($request->hasFile('logo')) {
+            // Delete old logo
+            if ($business->logo && Storage::disk('public')->exists($business->logo)) {
+                Storage::disk('public')->delete($business->logo);
+            }
+            $validated['logo'] = $request->file('logo')->store('businesses/logos', 'public');
         }
 
         $validated['slug'] = Str::slug($request->name);
