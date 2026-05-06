@@ -23,13 +23,16 @@ class BannerController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'media' => 'nullable|file|mimetypes:image/jpeg,image/png,image/jpg,image/gif,video/mp4,video/webm,video/quicktime,video/x-matroska|max:102400',
             'is_active' => 'boolean'
+        ], [
+            'media.mimetypes' => 'Format file harus berupa gambar (jpeg, png, jpg, gif) atau video (mp4, webm, mov, mkv).',
+            'media.max' => 'Ukuran file tidak boleh lebih dari 100MB.',
         ]);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('banners', 'public');
-            $validated['image'] = $imagePath;
+        if ($request->hasFile('media')) {
+            $path = $request->file('media')->store('banners', 'public');
+            $validated['image'] = $path;
         }
 
         Banner::create($validated);
@@ -47,13 +50,16 @@ class BannerController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'media' => 'nullable|file|mimetypes:image/jpeg,image/png,image/jpg,image/gif,video/mp4,video/webm,video/quicktime,video/x-matroska|max:102400',
             'is_active' => 'boolean'
+        ], [
+            'media.mimetypes' => 'Format file harus berupa gambar (jpeg, png, jpg, gif) atau video (mp4, webm, mov, mkv).',
+            'media.max' => 'Ukuran file tidak boleh lebih dari 100MB.',
         ]);
 
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('banners', 'public');
-            $validated['image'] = $imagePath;
+        if ($request->hasFile('media')) {
+            $path = $request->file('media')->store('banners', 'public');
+            $validated['image'] = $path;
         }
 
         $banner->update($validated);

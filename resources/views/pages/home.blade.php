@@ -9,8 +9,6 @@
         'heroSubtitle' => $heroSubtitle,
     ])
 
-    @include('partials.marketing.stats', ['stats' => $stats])
-
     @include('partials.marketing.about', [
         'aboutTitle' => $aboutTitle,
         'aboutContent' => $aboutContent,
@@ -23,12 +21,14 @@
 
     @include('partials.marketing.values', ['coreValues' => $coreValues])
 
-    @include('partials.marketing.sustainability', [
-        'sustainabilityPoints' => $sustainabilityPoints,
-        'sustainabilityImageUrl' => $sustainabilityImageUrl,
-    ])
+    @include('partials.marketing.partners', ['companies' => $companies])
 
-    @include('partials.marketing.cta')
+    {{-- Bottom Decorative Image --}}
+    <section class="w-full">
+        <div class="aspect-[21/7] w-full">
+            <img src="{{ asset('assets/img/create-account-office.jpeg') }}" class="w-full h-full object-cover">
+        </div>
+    </section>
 
     @include('partials.marketing.footer')
 @endsection

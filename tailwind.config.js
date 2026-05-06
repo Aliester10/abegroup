@@ -10,6 +10,9 @@ module.exports = {
     extend: {
       colors: {
         'theme-dark': '#1a202c',
+        'abe-blue': '#0A265D',
+        'abe-navy': '#101828',
+        'abe-light': '#38B0FF',
       }
     },
   },

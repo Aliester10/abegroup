@@ -25,13 +25,24 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Image (optional)</label>
-                    <input type="file" name="image" class="w-full rounded-lg border-gray-300">
-                    @error('image')<div class="text-sm text-red-600 mt-1">{{ $message }}</div>@enderror
-
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Media (Image/Video)</label>
+                    <input type="file" name="media" class="w-full rounded-lg border-gray-300" accept="image/*,video/*">
+                    <p class="text-xs text-gray-500 mt-1">Format didukung: JPG, PNG, GIF, MP4, WEBM, MOV (Max 100MB)</p>
+                    @error('media')<div class="text-sm text-red-600 mt-1 font-bold">{{ $message }}</div>@enderror
+                    
                     @if($banner->image)
-                        <div class="mt-3">
-                            <img src="{{ asset('storage/' . $banner->image) }}" class="h-20 w-20 object-cover rounded" alt="{{ $banner->title }}">
+                        <div class="mt-4 p-2 border rounded-lg bg-gray-50">
+                            <label class="block text-xs font-medium text-gray-500 mb-2">Pratinjau Saat Ini:</label>
+                            @php
+                                $ext = pathinfo($banner->image, PATHINFO_EXTENSION);
+                                $isVideo = in_array(strtolower($ext), ['mp4', 'webm', 'mov', 'ogv']);
+                            @endphp
+                            
+                            @if($isVideo)
+                                <video src="{{ asset('storage/' . $banner->image) }}" class="h-40 w-auto rounded border" controls></video>
+                            @else
+                                <img src="{{ asset('storage/' . $banner->image) }}" class="h-40 w-auto object-cover rounded border" alt="{{ $banner->title }}">
+                            @endif
                         </div>
                     @endif
                 </div>

@@ -97,11 +97,11 @@ class HomeController extends Controller
         ];
 
         return view('pages.home', [
-            'heroImageUrl' => $hero?->image ? asset('storage/' . $hero->image) : null,
+            'heroImageUrl' => $hero?->image ? (\Illuminate\Support\Str::startsWith($hero->image, 'assets/') ? asset($hero->image) : asset('storage/' . $hero->image)) : null,
             'heroSubtitle' => $hero?->description,
             'aboutTitle' => $about_section?->title,
             'aboutContent' => $about_section?->content,
-            'aboutImageUrl' => $about_section?->image ? asset('storage/' . $about_section->image) : null,
+            'aboutImageUrl' => $about_section?->image ? (\Illuminate\Support\Str::startsWith($about_section->image, 'assets/') ? asset($about_section->image) : asset('storage/' . $about_section->image)) : null,
             'aboutSection' => $about_section,
             'about_company' => $about_company,
             'stats' => $stats,

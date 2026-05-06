@@ -24,9 +24,10 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Image (optional)</label>
-                    <input type="file" name="image" class="w-full rounded-lg border-gray-300">
-                    @error('image')<div class="text-sm text-red-600 mt-1">{{ $message }}</div>@enderror
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Media (Image/Video)</label>
+                    <input type="file" name="media" class="w-full rounded-lg border-gray-300" accept="image/*,video/*">
+                    <p class="text-xs text-gray-500 mt-1">Format didukung: JPG, PNG, GIF, MP4, WEBM, MOV (Max 100MB)</p>
+                    @error('media')<div class="text-sm text-red-600 mt-1 font-bold">{{ $message }}</div>@enderror
                 </div>
 
                 <div class="flex items-center gap-3">
