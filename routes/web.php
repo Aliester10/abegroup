@@ -132,12 +132,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('admin.testimonials.destroy');
 
     // Business routes
-    Route::get('/business', [BusinessunitController::class, 'index'])->name('admin.business.index');
-    Route::get('/business/create', [BusinessunitController::class, 'create'])->name('admin.business.create');
-    Route::post('/business', [BusinessunitController::class, 'store'])->name('admin.business.store');
-    Route::get('/business/{id}/edit', [BusinessunitController::class, 'edit'])->name('admin.business.edit');
-    Route::put('/business/{id}', [BusinessunitController::class, 'update'])->name('admin.business.update');
-    Route::delete('/business/{id}', [BusinessunitController::class, 'destroy'])->name('admin.business.destroy');    
+    Route::get('/business', [\App\Http\Controllers\Admin\BusinessController::class, 'index'])->name('admin.business.index');
+    Route::get('/business/create', [\App\Http\Controllers\Admin\BusinessController::class, 'create'])->name('admin.business.create');
+    Route::post('/business', [\App\Http\Controllers\Admin\BusinessController::class, 'store'])->name('admin.business.store');
+    Route::get('/business/{business}/edit', [\App\Http\Controllers\Admin\BusinessController::class, 'edit'])->name('admin.business.edit');
+    Route::put('/business/{business}', [\App\Http\Controllers\Admin\BusinessController::class, 'update'])->name('admin.business.update');
+    Route::delete('/business/{business}', [\App\Http\Controllers\Admin\BusinessController::class, 'destroy'])->name('admin.business.destroy');
 
     //News routes
     Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.news');
