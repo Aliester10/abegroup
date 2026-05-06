@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CompanyInfo extends Model
 {
     protected $fillable = [
+        'logo',
         'office_address',
         'phone',
         'phone_alt',

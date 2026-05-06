@@ -30,7 +30,8 @@ class CompanyInfoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
             'office_address' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'phone_alt' => 'nullable|string|max:20',
@@ -41,7 +42,11 @@ class CompanyInfoController extends Controller
             'is_active' => 'boolean'
         ]);
 
-        CompanyInfo::create($request->all());
+        if ($request->hasFile('logo')) {
+            $validated['logo'] = $request->file('logo')->store('assets/logo', 'public');
+        }
+
+        CompanyInfo::create($validated);
 
         return redirect()->route('admin.company-info.index')
             ->with('success', 'Informasi perusahaan berhasil ditambahkan!');
@@ -60,7 +65,8 @@ class CompanyInfoController extends Controller
      */
     public function update(Request $request, CompanyInfo $companyInfo)
     {
-        $request->validate([
+        $validated = $request->validate([
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
             'office_address' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'phone_alt' => 'nullable|string|max:20',
@@ -71,7 +77,15 @@ class CompanyInfoController extends Controller
             'is_active' => 'boolean'
         ]);
 
-        $companyInfo->update($request->all());
+        if ($request->hasFile('logo')) {
+            // Delete old logo
+            if ($companyInfo->logo && \Illuminate\Support\Facades\Storage::disk('public')->exists($companyInfo->logo)) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($companyInfo->logo);
+            }
+            $validated['logo'] = $request->file('logo')->store('assets/logo', 'public');
+        }
+
+        $companyInfo->update($validated);
 
         return redirect()->route('admin.company-info.index')
             ->with('success', 'Informasi perusahaan berhasil diperbarui!');

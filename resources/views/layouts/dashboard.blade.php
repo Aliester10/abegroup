@@ -29,7 +29,11 @@
             <div class="h-full px-3 py-4 flex flex-col">
                 <!-- Logo -->
                 <div class="mb-8">
-                    <img src="{{ asset('assets/img/LOGO ABE GROUP-02.png') }}" alt="ABE Group Logo" class="h-8 w-auto">
+                    @php
+                        $companyInfo = \App\Models\CompanyInfo::where('is_active', true)->first();
+                        $logoPath = ($companyInfo && $companyInfo->logo) ? asset('storage/' . $companyInfo->logo) : asset('assets/img/LOGO ABE GROUP-02.png');
+                    @endphp
+                    <img src="{{ $logoPath }}" alt="ABE Group Logo" class="h-8 w-auto">
                 </div>
 
                 <!-- Navigation -->
@@ -226,7 +230,10 @@
                                 </svg>
                             </button>
                             <!-- Logo (Mobile only) -->
-                            <img src="{{ asset('assets/img/LOGO ABE GROUP-02.png') }}" alt="ABE Group Logo" class="h-6 w-auto lg:hidden mr-4">
+                            @php
+                                $logoPath = ($companyInfo && $companyInfo->logo) ? asset('storage/' . $companyInfo->logo) : asset('assets/img/LOGO ABE GROUP-02.png');
+                            @endphp
+                            <img src="{{ $logoPath }}" alt="ABE Group Logo" class="h-6 w-auto lg:hidden mr-4">
                             <h1 class="text-lg font-semibold text-gray-900 dark:text-white">@yield('title', 'Dashboard')</h1>
                         </div>
                         <div class="flex items-center space-x-4">

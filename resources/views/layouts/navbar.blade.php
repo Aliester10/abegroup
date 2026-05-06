@@ -3,7 +3,11 @@
         <div class="flex items-center justify-between h-32">
             {{-- LOGO AREA --}}
             <a href="{{ route('home') }}" class="flex items-center">
-                <img src="{{ asset('assets/img/LOGO ABE GROUP-02.png') }}" alt="ABE Group Logo" class="h-20 w-auto object-contain brightness-0 invert">
+                @php
+                    $companyInfo = \App\Models\CompanyInfo::where('is_active', true)->first();
+                    $logoPath = ($companyInfo && $companyInfo->logo) ? asset('storage/' . $companyInfo->logo) : asset('assets/img/LOGO ABE GROUP-02.png');
+                @endphp
+                <img src="{{ $logoPath }}" alt="ABE Group Logo" class="h-20 w-auto object-contain brightness-0 invert">
             </a>
 
             {{-- DESKTOP NAV - Business Units Only --}}

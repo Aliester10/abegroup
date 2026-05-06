@@ -9,7 +9,7 @@
 </div>
 
 <div class="bg-white dark:bg-gray-800 shadow-sm rounded-lg">
-    <form action="{{ route('admin.company-info.store') }}" method="POST">
+    <form action="{{ route('admin.company-info.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         
         <div class="p-6 space-y-6">
@@ -34,6 +34,17 @@
             @endif
 
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div class="col-span-2">
+                    <label for="logo" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Logo Perusahaan (Navbar)
+                    </label>
+                    <input type="file" id="logo" name="logo" accept="image/*"
+                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                        Gunakan logo dengan background transparan (PNG/SVG). Logo akan otomatis diubah menjadi putih di Navbar.
+                    </p>
+                </div>
+
                 <div class="col-span-2">
                     <label for="office_address" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                         Alamat Kantor <span class="text-red-500">*</span>
