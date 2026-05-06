@@ -22,7 +22,7 @@ class HomeController extends Controller
         $about_company = About::latest()->first();
         $about_section = AboutSection::query()->where('is_active', true)->first();
 
-        $companies = Company::query()
+        $companies = \App\Models\Partner::query()
             ->where('is_active', true)
             ->orderBy('order')
             ->orderByDesc('id')

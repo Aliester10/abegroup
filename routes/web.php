@@ -217,5 +217,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::put('/company_values/{company_value}', [\App\Http\Controllers\CompanyValueController::class, 'update'])->name('company_values.update');
         Route::delete('/company_values/{company_value}', [\App\Http\Controllers\CompanyValueController::class, 'destroy'])->name('company_values.destroy');
 
+        // Partner Routes
+        Route::get('/partner', [\App\Http\Controllers\Admin\PartnerController::class, 'index'])->name('partner.index');
+        Route::get('/partner/create', [\App\Http\Controllers\Admin\PartnerController::class, 'create'])->name('partner.create');
+        Route::post('/partner', [\App\Http\Controllers\Admin\PartnerController::class, 'store'])->name('partner.store');
+        Route::get('/partner/{partner}/edit', [\App\Http\Controllers\Admin\PartnerController::class, 'edit'])->name('partner.edit');
+        Route::put('/partner/{partner}', [\App\Http\Controllers\Admin\PartnerController::class, 'update'])->name('partner.update');
+        Route::delete('/partner/{partner}', [\App\Http\Controllers\Admin\PartnerController::class, 'destroy'])->name('partner.destroy');
+
     });
 });
