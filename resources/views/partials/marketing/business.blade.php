@@ -20,8 +20,12 @@
                     {{-- Content --}}
                     <div class="absolute inset-0 p-8 flex flex-col justify-between">
                         <div>
-                            {{-- Logo Placeholder or Business Specific Logo --}}
-                            <img src="{{ asset('assets/img/LOGO ABE GROUP-02.png') }}" alt="Logo" class="h-10 w-auto brightness-0 invert opacity-80">
+                            {{-- Dynamic Logo from Company Info --}}
+                            @php
+                                $companyInfo = \App\Models\CompanyInfo::where('is_active', true)->first();
+                                $cardLogo = ($companyInfo && $companyInfo->logo) ? asset('storage/' . $companyInfo->logo) : asset('assets/img/LOGO ABE GROUP-02.png');
+                            @endphp
+                            <img src="{{ $cardLogo }}" alt="Logo" class="h-10 w-auto brightness-0 invert opacity-80">
                         </div>
                         
                         <div class="max-w-xl">
