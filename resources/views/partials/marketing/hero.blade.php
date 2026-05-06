@@ -54,16 +54,6 @@
                 Mendorong pertumbuhan bisnis yang berkelanjutan melalui solusi digital terintegrasi dan ekosistem inovasi masa depan.
             @endif
         </p>
-
-        {{-- Glassmorphism Buttons --}}
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-6" data-aos="fade-up" data-aos-delay="800">
-            <a href="#about" class="group relative px-8 py-4 bg-white text-abe-navy font-bold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                <span class="relative z-10">Pelajari Selengkapnya</span>
-            </a>
-            <a href="#business" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold rounded-full hover:bg-white/20 transition-all duration-300">
-                Unit Bisnis Kami
-            </a>
-        </div>
     </div>
 
     {{-- Bottom Scroll Indicator --}}
