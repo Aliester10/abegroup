@@ -37,9 +37,7 @@
             @endphp
             <img src="{{ $imageUrl }}" 
                  alt="Tentang ABE Group" 
-                 class="w-full h-full object-cover" 
-                 data-aos="zoom-in" 
-                 data-aos-duration="1500" />
+                 class="w-full h-full object-cover" />
         </div>
     </div>
 </section>
