@@ -27,7 +27,7 @@
                                 
                                 $cardLogo = $business->logo ? asset('storage/' . $business->logo) : $groupLogo;
                             @endphp
-                            <img src="{{ $cardLogo }}" alt="Logo" class="h-10 w-auto object-contain brightness-0 invert opacity-80">
+                            <img src="{{ $cardLogo }}" alt="Logo" class="h-16 w-auto object-contain brightness-0 invert opacity-90">
                         </div>
                         
                         <div class="max-w-xl">
