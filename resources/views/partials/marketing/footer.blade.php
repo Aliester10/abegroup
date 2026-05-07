@@ -33,8 +33,8 @@
                 <div class="mb-12 flex flex-col items-start">
                     <h4 class="font-bold text-xs uppercase tracking-widest text-white/40 mb-6">GROUP</h4>
                     <div class="text-white/70 text-sm space-y-3 font-light text-left">
-                        <p class="whitespace-nowrap">PT. ARO BASKARA ESA</p>
-                        <p class="whitespace-nowrap">PT. ABE INTEKNO INDONESIA</p>
+                        <a href="https://arobaskaraesa.com/" target="_blank" class="block hover:text-white transition duration-300">PT. ARO BASKARA ESA</a>
+                        <a href="https://abe-group.id/bisnis/abe-intekno-indonesia" target="_blank" class="block hover:text-white transition duration-300">PT. ABE INTEKNO INDONESIA</a>
                     </div>
                 </div>
 
