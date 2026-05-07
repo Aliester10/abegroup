@@ -25,8 +25,9 @@
 
     {{-- Bottom Decorative Image --}}
     <section class="w-full">
-        <div class="aspect-[21/7] w-full">
-            <img src="{{ asset('assets/img/create-account-office.jpeg') }}" class="w-full h-full object-cover">
+        <div class="aspect-[21/7] w-full relative">
+            <img src="{{ asset('bgimage.png') }}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-white/49"></div>
         </div>
     </section>
 

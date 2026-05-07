@@ -1,61 +1,62 @@
-<footer class="bg-black text-white pt-20 pb-10">
+<footer class="bg-black text-white py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-            {{-- Logo and Info --}}
-            <div class="md:col-span-4">
-                <img src="{{ asset('assets/img/LOGO ABE GROUP-02.png') }}" alt="ABE Group Logo" class="h-16 w-auto brightness-0 invert mb-6">
-                <h3 class="font-bold text-lg mb-2">ABE GROUP</h3>
-                <div class="text-white/60 text-sm leading-relaxed space-y-1">
-                    <p>PT. ARO BASKARA ESA</p>
-                    <p>PT. ABE INTEKNO INDONESIA</p>
-                    <p>PT. AYO BELANJA INDONESIA</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-8 items-start">
+            {{-- Left: Logo & Address --}}
+            <div class="flex flex-col items-center md:items-start">
+                <img src="{{ asset('assets/img/LOGO ABE GROUP-02.png') }}" alt="ABE Group Logo" class="h-28 w-auto brightness-0 invert mb-12">
+                
+                <div class="space-y-4">
+                    <h4 class="font-bold text-xs uppercase tracking-widest text-white/40 text-center md:text-left">ALAMAT</h4>
+                    <div class="text-white/70 text-sm leading-relaxed font-light text-center md:text-left">
+                        <p>Jl. TM. Slamet Riyadi Raya No. 9 RT.1</p>
+                        <p>RW. 4 Kb. Manggis, Kec. Matraman,</p>
+                        <p>Daerah Khusus Ibukota Jakarta 13150</p>
+                    </div>
                 </div>
             </div>
 
-            {{-- Links Column 1 --}}
-            <div class="md:col-span-2 md:col-start-6">
-                <h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Navigation</h4>
-                <ul class="space-y-4 text-sm text-white/50">
-                    <li><a href="{{ route('home') }}" class="hover:text-white transition">Beranda</a></li>
-                    <li><a href="{{ route('about') }}" class="hover:text-white transition">Tentang</a></li>
-                    <li><a href="{{ route('business') }}" class="hover:text-white transition">Bisnis</a></li>
-                    <li><a href="{{ route('news') }}" class="hover:text-white transition">Berita</a></li>
+            {{-- Center: Links --}}
+            <div class="flex flex-col items-center pt-2">
+                <ul class="space-y-4 text-sm font-light text-center md:text-left">
+                    <li><a href="{{ route('home') }}" class="hover:text-abe-blue transition duration-300">Beranda</a></li>
+                    <li><a href="{{ route('about') }}" class="hover:text-abe-blue transition duration-300">Tentang</a></li>
+                    <li><a href="{{ route('business') }}" class="hover:text-abe-blue transition duration-300">Bisnis</a></li>
+                    <li><a href="{{ route('career') }}" class="hover:text-abe-blue transition duration-300">Karir</a></li>
+                    <li><a href="{{ route('news') }}" class="hover:text-abe-blue transition duration-300">Berita</a></li>
+                    <li><a href="#" class="hover:text-abe-blue transition duration-300">Katalog</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-abe-blue transition duration-300">Hubungi kami</a></li>
                 </ul>
             </div>
 
-            {{-- Links Column 2 --}}
-            <div class="md:col-span-2">
-                <h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Connect</h4>
-                <ul class="space-y-4 text-sm text-white/50">
-                    <li><a href="{{ route('career') }}" class="hover:text-white transition">Karir</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-white transition">Hubungi Kami</a></li>
-                </ul>
-            </div>
+            {{-- Right: Group & Socials --}}
+            <div class="flex flex-col items-center md:items-start pt-2">
+                <div class="mb-12 flex flex-col items-center md:items-start">
+                    <h4 class="font-bold text-xs uppercase tracking-widest text-white/40 mb-6">GROUP</h4>
+                    <div class="text-white/70 text-sm space-y-3 font-light text-center md:text-left">
+                        <p class="whitespace-nowrap">PT. ARO BASKARA ESA</p>
+                        <p class="whitespace-nowrap">PT. ABE INTEKNO INDONESIA</p>
+                    </div>
+                </div>
 
-            {{-- Social and Extras --}}
-            <div class="md:col-span-3">
-                <h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Location</h4>
-                <p class="text-white/50 text-sm mb-6">
-                    Mangkuluhur City Tower One,<br>
-                    Jl. Jend. Gatot Subroto No.1,<br>
-                    Karet Semanggi, Jakarta Selatan
-                </p>
-                <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-black transition">
+                <div class="flex gap-6 items-center">
+                    <a href="#" class="text-xl text-white/50 hover:text-white transition duration-300">
+                        <i class="fab fa-facebook-square"></i>
+                    </a>
+                    <a href="#" class="text-xl text-white/50 hover:text-white transition duration-300">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-black transition">
-                        <i class="fab fa-facebook-f"></i>
+                    <a href="#" class="text-xl text-white/50 hover:text-white transition duration-300">
+                        <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white hover:text-black transition">
-                        <i class="fab fa-linkedin-in"></i>
+                    <a href="#" class="text-xl text-white/50 hover:text-white transition duration-300">
+                        <i class="fas fa-envelope"></i>
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="mt-20 pt-8 border-t border-white/10 text-center text-white/30 text-xs">
-            <p>&copy; {{ date('Y') }} ABE GROUP. All Rights Reserved.</p>
+        <div class="mt-24 pt-8 border-t border-white/5 text-center text-white/20 text-[10px] tracking-[0.2em] uppercase">
+            <p>&copy; {{ date('Y') }} ABE GROUP. ALL RIGHTS RESERVED.</p>
         </div>
     </div>
 </footer>

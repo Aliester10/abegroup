@@ -1,9 +1,8 @@
 <section class="py-24 relative overflow-hidden">
     {{-- Background Image with Dark Overlay --}}
     <div class="absolute inset-0">
-        <img src="{{ asset('assets/img/create-account-office.jpeg') }}" alt="Background" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-abe-blue/90 mix-blend-multiply"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-abe-blue/50 to-abe-blue/90"></div>
+        <img src="{{ asset('keunggulanbg.png') }}" alt="Background" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-[#38B0FF]/26"></div>
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
