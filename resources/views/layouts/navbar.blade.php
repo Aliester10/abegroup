@@ -56,16 +56,12 @@
                 navbar.classList.add('bg-abe-navy/95', 'backdrop-blur-md', 'shadow-2xl', 'border-b', 'border-white/10');
                 navbar.classList.remove('bg-transparent');
                 container.classList.remove('h-32');
-                container.classList.add('h-20');
-                logo.classList.remove('h-20');
-                logo.classList.add('h-12');
+                container.classList.add('h-28');
             } else {
                 navbar.classList.remove('bg-abe-navy/95', 'backdrop-blur-md', 'shadow-2xl', 'border-b', 'border-white/10');
                 navbar.classList.add('bg-transparent');
                 container.classList.add('h-32');
-                container.classList.remove('h-20');
-                logo.classList.remove('h-12');
-                logo.classList.add('h-20');
+                container.classList.remove('h-28');
             }
         }
 

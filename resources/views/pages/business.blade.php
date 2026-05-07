@@ -135,7 +135,7 @@
                         <h3>{{ $business->name }}</h3>
                         <p>{{ $business->description }}</p>
 
-                        <a href="{{ route('business.show', $business->slug) }}" class="unit-btn">
+                        <a href="{{ $business->website_link ?: route('business.show', $business->slug) }}" class="unit-btn">
                             Pelajari Selengkapnya
                         </a>
                     </div>
@@ -310,6 +310,7 @@
         font-size: 26px;
         font-weight: 800;
         line-height: 1.3;
+        color: #101828;
     }
 
     .unit-title span {
