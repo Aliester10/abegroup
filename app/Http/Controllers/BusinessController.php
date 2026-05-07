@@ -27,6 +27,7 @@ $highlight = CompanyHighlight::orderByDesc('updated_at')->first();
     public function show($slug)
     {
         $business = Business::where('slug', $slug)->where('is_active', true)->firstOrFail();
-        return view('pages.detail-business', compact('business'));
+        $companies = \App\Models\Partner::where('is_active', true)->orderBy('order')->get();
+        return view('pages.detail-business', compact('business', 'companies'));
     }
 }

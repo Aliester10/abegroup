@@ -1,280 +1,106 @@
 @extends('layouts.marketing')
 
+@section('title', $business->name . ' - ABE Group')
+
 @section('content')
 
-{{-- HERO --}}
-<section class="business-hero">
+{{-- 1. HERO SECTION --}}
+<section class="relative min-h-screen flex items-center overflow-hidden">
+    {{-- Background Image from Admin --}}
+    @php
+        $heroImage = $business->image ? asset('storage/' . $business->image) : asset('assets/img/login-office.jpeg');
+    @endphp
+    <img src="{{ $heroImage }}" alt="{{ $business->name }}" class="absolute inset-0 w-full h-full object-cover">
+    
+    {{-- Overlay --}}
+    <div class="absolute inset-0 bg-black/50"></div>
 
-
-    <img src="{{ asset('storage/' . $business->image) }}" class="hero-bg">
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-        <h1>{{ $business->name }}</h1>
-        <p>{{ $business->category }}</p>
-    </div>
-</section>
-
-
-{{-- CONTENT --}}
-<section class="business-content">
-    <div class="container">
-
-        <div class="business-card">
-
-            <h2>{{ strtoupper($business->name) }}</h2>
-            <p class="category">{{ $business->category }}</p>
-
-            {{-- ✅ LINK ATAS (CUMA 1 - WEBSITE) --}}
-            @if($business->website_link)
-            <p class="link">
-                <strong>Kunjungi Perusahaan:</strong><br>
-                <a href="{{ $business->website_link }}" target="_blank">
-                    {{ $business->website_link }}
-                </a>
-            </p>
-            @endif
-
-            <div class="description">
-                <p>{{ $business->description }}</p>
+    {{-- Content: Logo positioned on the left side like in reference --}}
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="max-w-md">
+            @php
+                $companyInfo = \App\Models\CompanyInfo::where('is_active', true)->first();
+                $groupLogo = ($companyInfo && $companyInfo->logo) ? asset('storage/' . $companyInfo->logo) : asset('assets/img/LOGO ABE GROUP-02.png');
+                $businessLogo = $business->logo ? asset('storage/' . $business->logo) : $groupLogo;
+            @endphp
+            <div class="flex flex-col items-start">
+                <img src="{{ $businessLogo }}" alt="{{ $business->name }}" class="h-32 md:h-64 w-auto object-contain brightness-0 invert drop-shadow-2xl">
             </div>
-
-            {{-- ✅ BOX CUMA 1 (ECOMMERCE SAJA) --}}
-            @if($business->ecomerce_link)
-            <div class="business-box">
-
-                <div class="icon">🛒</div>
-
-                <div>
-                    <h4>Official Store</h4>
-                    <p>Beli produk kami langsung melalui marketplace resmi.</p>
-
-                    <a href="{{ $business->ecomerce_link }}" target="_blank" class="btn">
-                        Kunjungi Toko
-                    </a>
-                </div>
-
-            </div>
-            @endif
-
         </div>
-
     </div>
 </section>
+
+{{-- 2. ABOUT SECTION --}}
+<section class="text-white py-24 md:py-40" style="background-color: #2C596B !important;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row gap-12 md:gap-20 items-start">
+            {{-- Left: Name --}}
+            <div class="w-full md:w-[30%] shrink-0">
+                <h2 class="text-3xl md:text-4xl font-bold uppercase tracking-wide leading-tight">
+                    {{ $business->name }}
+                </h2>
+            </div>
+            {{-- Right: Description --}}
+            <div class="w-full md:w-[70%]">
+                <div class="text-white/90 text-base md:text-lg leading-relaxed space-y-6 font-light">
+                    {!! nl2br(e($business->description)) !!}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- 3. VISUAL BREAK 1 --}}
+<section class="w-full">
+    <img src="{{ asset('assets/img/gambar1bisnis.png') }}" alt="Visual Break" class="w-full h-auto object-cover">
+</section>
+
+{{-- 4. PARTNER & PRINCIPALS SECTION --}}
+<section class="py-24 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-center font-bold text-2xl md:text-3xl uppercase tracking-[0.4em]" style="color: #2C596B !important; margin-bottom: 80px !important;">
+            PARTNER & PRINCIPALS
+        </h2>
+
+        <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+            @forelse(($companies ?? []) as $partner)
+                <div class="flex items-center justify-center shrink-0">
+                    @if($partner->logo)
+                        @php
+                            $logoUrl = (Str::startsWith($partner->logo, 'http')) 
+                                ? $partner->logo 
+                                : (Str::startsWith($partner->logo, 'assets/') ? asset($partner->logo) : asset('storage/' . $partner->logo));
+                        @endphp
+                        <img src="{{ $logoUrl }}" 
+                             alt="{{ $partner->name }}" 
+                             class="h-8 md:h-12 w-auto object-contain transition-all duration-500 hover:scale-110">
+                    @else
+                        <span class="text-slate-400 font-bold text-[10px] uppercase tracking-widest">{{ $partner->name }}</span>
+                    @endif
+                </div>
+            @empty
+                <div class="col-span-full text-slate-400 font-medium">
+                    Belum ada data partner.
+                </div>
+            @endforelse
+        </div>
+    </div>
+</section>
+
+{{-- 5. VISUAL BREAK 2 --}}
+<section class="w-full">
+    <img src="{{ asset('assets/img/gambar2bisnis.png') }}" alt="Visual Break" class="w-full h-auto object-cover">
+</section>
+
+@include('partials.marketing.footer')
 
 @endsection
+
+@push('styles')
 <style>
-    /* ================= GLOBAL & LAYOUT ================= */
-
-    /* ================= HERO (BANNER) ================= */
-    .business-hero {
-        position: relative;
-        height: 500px;
-        display: flex;
-        align-items: center;
-        justify-content: center; /* Menjaga konten tetap di tengah banner secara horizontal */
-        overflow: hidden;
-    }
-
-    .hero-bg {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom,
-                rgba(30, 58, 138, 0.7),
-                rgba(30, 58, 138, 0.9));
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-        color: white;
-        padding: 0 20px;
-        width: 100%;
-        max-width: 800px; /* Batasi lebar agar teks tidak meluber ke pinggir */
-        text-align: left; /* 🔥 PERBAIKAN: Tulisan banner rata kiri, bukan center */
-    }
-
-    .hero-content h1 {
-        /* 🔥 PERBAIKAN: Ukuran font dikurangi (Min 22px, Ideal 4vw, Max 32px) */
-        font-size: clamp(22px, 4vw, 32px); 
-        font-weight: 800;
-        letter-spacing: 0.5px;
-        line-height: 1.2;
-        word-wrap: break-word; /* Cegah teks panjang nembus layar */
-        overflow-wrap: break-word;
-    }
-
-    .hero-content p {
-        margin-top: 12px;
-        /* 🔥 PERBAIKAN: Ukuran font p juga disesuaikan */
-        font-size: clamp(14px, 1.8vw, 16px);
-        color: rgba(255, 255, 255, 0.85);
-    }
-
-    /* ================= CONTENT SECTION ================= */
-    .business-content {
-        background: #f1f5f9;
-        padding-bottom: 100px;
-        display: flex;
-        justify-content: center; /* 🔥 Pastikan container di tengah horizontal */
-    }
-
-    .container {
-        width: 100%;
-        max-width: 700px; /* Ukuran ideal untuk card di tengah */
-        padding: 0 20px;
-        margin: 0 auto; /* 🔥 Pastikan margin otomatis kiri kanan */
-    }
-
-    /* ================= CARD ================= */
-    .business-card {
-        background: white;
-        border-radius: 20px;
-        padding: clamp(20px, 5vw, 40px); /* Padding responsif */
-        margin-top: -100px; /* Floating effect */
-        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.08);
-        position: relative;
-        z-index: 5;
-        transition: 0.3s ease;
-        text-align: left; /* Konten di dalam card tetap rata kiri */
-    }
-
-    .business-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .business-card h2 {
-        font-size: clamp(20px, 4vw, 28px);
-        font-weight: 800;
-        color: #0f172a;
-        line-height: 1.3;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-
-    .category {
-        color: #64748b;
-        font-size: 14px;
-        margin-top: 6px;
-        display: block;
-    }
-
-    .link {
-        display: inline-block;
-        margin-top: 15px;
-        color: #2563eb;
-        font-size: 14px;
-        text-decoration: none;
-        word-break: break-all; /* Agar link panjang tidak rusak di mobile */
-    }
-
-    .link:hover {
-        text-decoration: underline;
-    }
-
-    /* ================= DESCRIPTION ================= */
-    .description {
-        margin-top: 28px;
-        font-size: 15px;
-        line-height: 1.8;
-        color: #475569;
-        border-top: 1px solid #f1f5f9;
-        padding-top: 20px;
-    }
-
-    .description p {
-        margin-bottom: 18px;
-        overflow-wrap: break-word;
-    }
-
-    /* ================= MARKETPLACE BOX ================= */
-    .business-box {
-        margin-top: 36px;
-        background: linear-gradient(135deg, #1e3a8a, #3b82f6);
-        color: white;
-        padding: 24px;
-        border-radius: 16px;
-        display: flex;
-        gap: 16px;
-        align-items: center;
-    }
-
-    .business-box .icon {
-        font-size: 24px;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 12px;
-        border-radius: 12px;
-        flex-shrink: 0;
-    }
-
-    .business-box h4 {
-        margin: 0;
-        font-size: 17px;
-        font-weight: 700;
-    }
-
-    .business-box p {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.9);
-        margin: 4px 0 12px;
-    }
-
-    .btn {
-        display: inline-block;
-        background: white;
-        color: #1e3a8a;
-        padding: 10px 20px;
-        border-radius: 12px;
-        font-size: 14px;
-        font-weight: 700;
-        text-decoration: none;
-        transition: 0.2s;
-    }
-
-    .btn:hover {
-        background: #f1f5f9;
-        transform: scale(1.05);
-    }
-
-    /* ================= RESPONSIVE ================= */
-    @media (max-width: 768px) {
-        .back-btn {
-            top: 20px;
-            left: 20px;
-            padding: 8px 14px;
-            font-size: 12px;
-        }
-
-        .business-hero {
-            height: 400px;
-        }
-
-        /* 🔥 Di mobile, kita kembalikan ke center agar lebih rapi secara visual */
-        .hero-content {
-            text-align: center;
-        }
-
-        .business-card {
-            margin-top: -80px;
-            padding: 24px;
-        }
-
-        .business-box {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .business-box .icon {
-            margin: 0 auto;
-        }
+    /* Prevent any overlap issues */
+    .business-hero img {
+        pointer-events: none;
     }
 </style>
+@endpush
