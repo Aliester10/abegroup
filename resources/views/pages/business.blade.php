@@ -499,6 +499,7 @@
     /* highlight*/
     /* ================= SECTION ================= */
     .highlight-section {
+        background: white;
         padding: 80px 20px;
         margin-top: -100px;
         /* 🔥 naik ke atas */

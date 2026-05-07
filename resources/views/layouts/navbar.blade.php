@@ -49,7 +49,10 @@
         const logo = document.getElementById('navbar-logo');
 
         function handleScroll() {
-            if (window.scrollY > 50) {
+            const hasHero = {{ in_array(Route::currentRouteName(), ['home', 'about', 'business', 'business.show', 'career', 'contact']) ? 'true' : 'false' }};
+            const shouldBeSolid = window.scrollY > 50 || !hasHero;
+
+            if (shouldBeSolid) {
                 navbar.classList.add('bg-abe-navy/95', 'backdrop-blur-md', 'shadow-2xl', 'border-b', 'border-white/10');
                 navbar.classList.remove('bg-transparent');
                 container.classList.remove('h-32');

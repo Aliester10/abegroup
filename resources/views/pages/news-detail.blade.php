@@ -12,6 +12,7 @@
         word-wrap: break-word;
         overflow-wrap: break-word;
         word-break: break-word;
+        color: #0f172a !important;
     }
     
     @media (max-width: 640px) {
@@ -28,7 +29,7 @@
 
 @section('content')
 
-    <section class="py-8 sm:py-12 md:py-16 lg:py-20">
+    <section class="py-8 sm:py-12 md:py-16 lg:py-20 bg-white text-slate-900">
         <div class="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
             
             <!-- Tombol kembali -->
@@ -61,7 +62,7 @@
                 @endif
 
                 <!-- Isi berita -->
-                <div class="mt-4 sm:mt-6 prose prose-slate max-w-none prose-sm sm:prose-base lg:prose-lg news-content">
+                <div class="mt-4 sm:mt-6 prose prose-slate max-w-none prose-sm sm:prose-base lg:prose-lg news-content text-slate-900">
                     {!! nl2br(e($news->content)) !!}
                 </div>
 

@@ -9,7 +9,7 @@
 
 @section('content')
 
-<div id="career-page-wrapper">
+<div id="career-page-wrapper" style="background: white; color: #334155;">
     <style>
         #career-page-wrapper .hero-career {
             background: linear-gradient(rgba(243, 112, 33, 0.9), rgba(229, 93, 10, 0.8)),

@@ -18,7 +18,9 @@
 </head>
 <body class="bg-abe-navy text-white antialiased">
     @include('layouts.navbar')
-    @yield('content')
+    <main class="{{ in_array(Route::currentRouteName(), ['home', 'about', 'business', 'business.show', 'career', 'contact']) ? '' : 'pt-20' }}">
+        @yield('content')
+    </main>
     
     {{-- AOS Scripts --}}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

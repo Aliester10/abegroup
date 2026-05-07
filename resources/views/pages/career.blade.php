@@ -33,7 +33,7 @@
     </section>
 
     <!-- Search & Filters -->
-    <section class="relative z-20 -mt-10 pb-20">
+    <section class="relative z-20 -mt-10 pb-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-2xl shadow-2xl p-4 md:p-6 border border-gray-100">
                 <form id="search-form" class="grid grid-cols-1 md:grid-cols-12 gap-3">
@@ -83,7 +83,7 @@
     </section>
 
     <!-- Benefits Section -->
-    <section class="pt-0 pb-16 bg-slate-40">
+    <section class="pt-0 pb-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-orange-500 font-bold tracking-wider uppercase text-sm">Mengapa Bergabung?</span>

@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- Header Section -->
-    <section class="py-8 sm:py-12 lg:py-16">
+    <section class="py-8 sm:py-12 lg:py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto">
                 <span class="inline-block px-3 sm:px-4 py-1.5 bg-orange-50 text-orange-600 text-xs sm:text-sm font-bold rounded-full tracking-wider uppercase mb-4">
@@ -23,7 +23,7 @@
 
     <!-- Featured News Section -->
     @if($latestNews)
-    <section class="pb-6 sm:pb-10">
+    <section class="pb-6 sm:pb-10 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-2xl lg:rounded-[2rem] shadow-2xl shadow-slate-200/60 overflow-hidden border border-slate-100">
                 <div class="flex flex-col lg:flex-row min-h-[400px] lg:min-h-[450px]">
@@ -95,7 +95,7 @@
     @endif
 
     <!-- Search Section -->
-    <section class="pb-6 sm:pb-10">
+    <section class="pb-6 sm:pb-10 bg-white">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="relative group">
                 <form action="{{ route('news') }}" method="GET">
@@ -118,7 +118,7 @@
     </section>
 
     <!-- Semua Aktivitas Section -->
-    <section class="pb-16 sm:pb-20 lg:pb-24">
+    <section class="pb-16 sm:pb-20 lg:pb-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- Title -->
