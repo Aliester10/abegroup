@@ -5,10 +5,6 @@
 {{-- HERO --}}
 <section class="business-hero">
 
-    {{-- 🔥 BACK BUTTON --}}
-    <a href="{{ route('business') }}" class="back-btn">
-        ← Kembali
-    </a>
 
     <img src="{{ asset('storage/' . $business->image) }}" class="hero-bg">
 
@@ -70,27 +66,6 @@
 @endsection
 <style>
     /* ================= GLOBAL & LAYOUT ================= */
-    .back-btn {
-        position: absolute;
-        top: 30px;
-        left: 30px;
-        z-index: 10;
-        background: rgba(255, 255, 255, 0.9);
-        color: #1e3a8a;
-        padding: 10px 18px;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        backdrop-filter: blur(6px);
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .back-btn:hover {
-        background: white;
-        transform: translateX(-4px);
-    }
 
     /* ================= HERO (BANNER) ================= */
     .business-hero {
