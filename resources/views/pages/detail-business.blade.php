@@ -12,8 +12,8 @@
     @endphp
     <img src="{{ $heroImage }}" alt="{{ $business->name }}" class="absolute inset-0 w-full h-full object-cover">
     
-    {{-- Overlay --}}
-    <div class="absolute inset-0 bg-black/50"></div>
+    {{-- Overlay with 59% transparency --}}
+    <div class="absolute inset-0" style="background-color: rgba(0, 0, 0, 0.59);"></div>
 
     {{-- Content: Logo positioned on the left side like in reference --}}
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
