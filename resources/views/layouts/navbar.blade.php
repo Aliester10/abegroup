@@ -1,13 +1,13 @@
-<header class="absolute top-0 left-0 w-full z-50 bg-transparent">
+<header id="main-navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-32">
+        <div id="navbar-container" class="flex items-center justify-between h-32 transition-all duration-500">
             {{-- LOGO AREA --}}
             <a href="{{ route('home') }}" class="flex items-center">
                 @php
                     $companyInfo = \App\Models\CompanyInfo::where('is_active', true)->first();
                     $logoPath = ($companyInfo && $companyInfo->logo) ? asset('storage/' . $companyInfo->logo) : asset('assets/img/LOGO ABE GROUP-02.png');
                 @endphp
-                <img src="{{ $logoPath }}" alt="ABE Group Logo" class="h-20 w-auto object-contain brightness-0 invert">
+                <img id="navbar-logo" src="{{ $logoPath }}" alt="ABE Group Logo" class="h-20 w-auto object-contain brightness-0 invert transition-all duration-500">
             </a>
 
             {{-- DESKTOP NAV - Business Units Only --}}
@@ -41,3 +41,33 @@
         </div>
     </div>
 </header>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.getElementById('main-navbar');
+        const container = document.getElementById('navbar-container');
+        const logo = document.getElementById('navbar-logo');
+
+        function handleScroll() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-abe-navy/95', 'backdrop-blur-md', 'shadow-2xl', 'border-b', 'border-white/10');
+                navbar.classList.remove('bg-transparent');
+                container.classList.remove('h-32');
+                container.classList.add('h-20');
+                logo.classList.remove('h-20');
+                logo.classList.add('h-12');
+            } else {
+                navbar.classList.remove('bg-abe-navy/95', 'backdrop-blur-md', 'shadow-2xl', 'border-b', 'border-white/10');
+                navbar.classList.add('bg-transparent');
+                container.classList.add('h-32');
+                container.classList.remove('h-20');
+                logo.classList.remove('h-12');
+                logo.classList.add('h-20');
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        // Run once on load to handle refresh at scrolled position
+        handleScroll();
+    });
+</script>

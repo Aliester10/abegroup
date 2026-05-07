@@ -27,7 +27,7 @@
     <section class="w-full">
         <div class="aspect-[21/7] w-full relative">
             <img src="{{ asset('bgimage.png') }}" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-white/49"></div>
+            <div class="absolute inset-0" style="background-color: rgba(255, 255, 255, 0.49);"></div>
         </div>
     </section>
 
