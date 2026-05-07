@@ -16,8 +16,8 @@
             </div>
 
             {{-- Center: Links --}}
-            <div class="flex flex-col items-center pt-2">
-                <ul class="space-y-4 text-sm font-light text-center md:text-left">
+            <div class="flex flex-col items-start pt-2">
+                <ul class="space-y-4 text-sm font-light text-left">
                     <li><a href="{{ route('home') }}" class="hover:text-abe-blue transition duration-300">Beranda</a></li>
                     <li><a href="{{ route('about') }}" class="hover:text-abe-blue transition duration-300">Tentang</a></li>
                     <li><a href="{{ route('business') }}" class="hover:text-abe-blue transition duration-300">Bisnis</a></li>
@@ -29,10 +29,10 @@
             </div>
 
             {{-- Right: Group & Socials --}}
-            <div class="flex flex-col items-center md:items-start pt-2">
-                <div class="mb-12 flex flex-col items-center md:items-start">
+            <div class="flex flex-col items-start pt-2">
+                <div class="mb-12 flex flex-col items-start">
                     <h4 class="font-bold text-xs uppercase tracking-widest text-white/40 mb-6">GROUP</h4>
-                    <div class="text-white/70 text-sm space-y-3 font-light text-center md:text-left">
+                    <div class="text-white/70 text-sm space-y-3 font-light text-left">
                         <p class="whitespace-nowrap">PT. ARO BASKARA ESA</p>
                         <p class="whitespace-nowrap">PT. ABE INTEKNO INDONESIA</p>
                     </div>
