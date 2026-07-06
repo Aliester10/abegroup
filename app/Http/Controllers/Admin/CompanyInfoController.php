@@ -39,7 +39,12 @@ class CompanyInfoController extends Controller
             'email_alt' => 'nullable|email|max:255',
             'operational_hours' => 'required|string|max:255',
             'map_embed' => 'nullable|string',
-            'is_active' => 'boolean'
+            'is_active' => 'boolean',
+            'facebook' => 'nullable|string|url|max:255',
+            'instagram' => 'nullable|string|url|max:255',
+            'linkedin' => 'nullable|string|url|max:255',
+            'footer_bg_color' => 'nullable|string|max:20',
+            'footer_text_color' => 'nullable|string|max:20'
         ]);
 
         if ($request->hasFile('logo')) {
@@ -74,7 +79,12 @@ class CompanyInfoController extends Controller
             'email_alt' => 'nullable|email|max:255',
             'operational_hours' => 'required|string|max:255',
             'map_embed' => 'nullable|string',
-            'is_active' => 'boolean'
+            'is_active' => 'boolean',
+            'facebook' => 'nullable|string|url|max:255',
+            'instagram' => 'nullable|string|url|max:255',
+            'linkedin' => 'nullable|string|url|max:255',
+            'footer_bg_color' => 'nullable|string|max:20',
+            'footer_text_color' => 'nullable|string|max:20'
         ]);
 
         if ($request->hasFile('logo')) {

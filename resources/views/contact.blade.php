@@ -77,7 +77,7 @@
                                 value="{{ old('name') }}" 
                                 required
                                 placeholder="Masukkan nama lengkap Anda"
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50 text-gray-900"
                             >
                         </div>
 
@@ -92,7 +92,7 @@
                                 value="{{ old('email') }}" 
                                 required
                                 placeholder="email@example.com"
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50 text-gray-900"
                             >
                         </div>
 
@@ -106,7 +106,7 @@
                                 name="phone" 
                                 value="{{ old('phone') }}" 
                                 placeholder="+62 xxx xxxx xxxx"
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50 text-gray-900"
                             >
                         </div>
 
@@ -120,7 +120,7 @@
                                 name="subject" 
                                 value="{{ old('subject') }}" 
                                 required
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50 text-gray-900"
                             >
                         </div>
 
@@ -134,7 +134,7 @@
                                 rows="5" 
                                 required
                                 placeholder="Tuliskan pesan Anda di sini..."
-                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50 resize-none"
+                                class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition-colors bg-gray-50 resize-none text-gray-900"
                             >{{ old('message') }}</textarea>
                         </div>
 

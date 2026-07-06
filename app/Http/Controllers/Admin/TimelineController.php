@@ -58,6 +58,8 @@ class TimelineController extends Controller
             $validated['tags'] = [];
         }
 
+        $validated['is_active'] = $request->has('is_active');
+
         Timeline::create($validated);
 
         return redirect()->route('admin.timelines.index')
@@ -95,6 +97,8 @@ class TimelineController extends Controller
         } else {
             $validated['tags'] = [];
         }
+
+        $validated['is_active'] = $request->has('is_active');
 
         $timeline->update($validated);
 

@@ -118,6 +118,60 @@
                               placeholder="Paste embed code dari Google Maps di sini">{{ old('map_embed', $companyInfo->map_embed) }}</textarea>
                 </div>
 
+                <div>
+                    <label for="facebook" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Facebook URL (Opsional)
+                    </label>
+                    <input type="url" id="facebook" name="facebook"
+                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                           value="{{ old('facebook', $companyInfo->facebook) }}"
+                           placeholder="https://facebook.com/abegroup">
+                </div>
+
+                <div>
+                    <label for="instagram" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Instagram URL (Opsional)
+                    </label>
+                    <input type="url" id="instagram" name="instagram"
+                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                           value="{{ old('instagram', $companyInfo->instagram) }}"
+                           placeholder="https://instagram.com/abegroup">
+                </div>
+
+                <div>
+                    <label for="linkedin" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        LinkedIn URL (Opsional)
+                    </label>
+                    <input type="url" id="linkedin" name="linkedin"
+                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                           value="{{ old('linkedin', $companyInfo->linkedin) }}"
+                           placeholder="https://linkedin.com/company/abegroup">
+                </div>
+
+                <div>
+                    <label for="footer_bg_color" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Warna Background Footer (Opsional)
+                    </label>
+                    <div class="flex items-center mt-1">
+                        <input type="color" id="footer_bg_color" name="footer_bg_color"
+                               class="h-10 w-14 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer"
+                               value="{{ old('footer_bg_color', $companyInfo->footer_bg_color ?? '#000000') }}">
+                        <span class="ml-3 text-sm text-gray-500 dark:text-gray-400">Pilih warna latar belakang footer</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="footer_text_color" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                        Warna Teks Footer (Opsional)
+                    </label>
+                    <div class="flex items-center mt-1">
+                        <input type="color" id="footer_text_color" name="footer_text_color"
+                               class="h-10 w-14 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer"
+                               value="{{ old('footer_text_color', $companyInfo->footer_text_color ?? '#ffffff') }}">
+                        <span class="ml-3 text-sm text-gray-500 dark:text-gray-400">Pilih warna teks pada footer</span>
+                    </div>
+                </div>
+
                 <div class="col-span-2">
                     <div class="flex items-center">
                         <input id="is_active" name="is_active" type="checkbox" value="1" 

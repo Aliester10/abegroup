@@ -30,6 +30,9 @@ use App\Http\Controllers\SustainabilityController;
 use App\Http\Controllers\Admin\AboutController as AdminAboutController;
 use App\Http\Controllers\AboutguestController;
 use App\Http\Controllers\VisiMisiController;
+use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\Admin\CatalogController as AdminCatalogController;
+use App\Http\Controllers\Admin\CatalogLeadController;
 
 
 
@@ -51,6 +54,9 @@ Route::get('/berita/{slug}', [NewsController::class, 'show'])->name('news.show')
 Route::get('/hubungi', [\App\Http\Controllers\ContactController::class, 'index'])->name('contact');
 Route::post('/hubungi', [\App\Http\Controllers\ContactController::class, 'send'])->name('contact.send');
 
+// Catalog routes
+Route::get('/katalog', [CatalogController::class, 'index'])->name('catalog.index');
+Route::post('/katalog', [CatalogController::class, 'download'])->name('catalog.download');
 // Authentication routes with backward compatibility
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
@@ -225,5 +231,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::put('/partner/{partner}', [\App\Http\Controllers\Admin\PartnerController::class, 'update'])->name('partner.update');
         Route::delete('/partner/{partner}', [\App\Http\Controllers\Admin\PartnerController::class, 'destroy'])->name('partner.destroy');
 
+        // Catalog Routes
+        Route::resource('catalogs', AdminCatalogController::class);
+        Route::get('catalog-leads', [CatalogLeadController::class, 'index'])->name('catalog_leads.index');
     });
 });

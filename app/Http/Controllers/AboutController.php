@@ -24,19 +24,14 @@ class AboutController extends Controller
         // 1. Validasi: Menangani 'values' sebagai array
         $request->validate([
             'nama' => 'required|string|max:255',
-            'values' => 'required|array',
-            'values.*' => 'required|string|max:255',
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'deskripsi' => 'nullable|string',
         ]);
 
-        // 2. Gabungkan array values menjadi string untuk database
-        $valueString = implode(', ', $request->values);
-
         // 3. Simpan data
         $data = [
             'nama' => $request->nama,
-            'value' => $valueString,
+            'value' => '',
             'deskripsi' => $request->deskripsi,
         ];
 
@@ -54,10 +49,6 @@ class AboutController extends Controller
     {
         $about = About::findOrFail($id);
 
-        // MEMECAH string dari database kembali menjadi array untuk input dinamis di view edit
-        // Kami kirim ke view agar bisa di-looping (foreach)
-        $about->values_array = explode(', ', $about->value);
-
         return view('admin.about_company.edit', compact('about'));
     }
 
@@ -68,18 +59,13 @@ class AboutController extends Controller
         // Validasi yang sama dengan store
         $request->validate([
             'nama' => 'required|string|max:255',
-            'values' => 'required|array',
-            'values.*' => 'required|string|max:255',
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'deskripsi' => 'nullable|string',
         ]);
 
-        // Gabungkan array values menjadi string
-        $valueString = implode(', ', $request->values);
-
         $data = [
             'nama' => $request->nama,
-            'value' => $valueString,
+            'value' => '',
             'deskripsi' => $request->deskripsi,
         ];
 

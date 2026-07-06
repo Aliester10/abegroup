@@ -15,7 +15,12 @@ class CompanyInfo extends Model
         'email_alt',
         'operational_hours',
         'map_embed',
-        'is_active'
+        'is_active',
+        'facebook',
+        'instagram',
+        'linkedin',
+        'footer_bg_color',
+        'footer_text_color'
     ];
 
     protected $casts = [

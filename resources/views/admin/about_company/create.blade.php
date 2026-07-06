@@ -30,23 +30,7 @@
                             @error('nama') <p class="text-red-500 text-[10px] mt-1">{{ $message }}</p> @enderror
                         </div>
 
-                        {{-- SEKSI VALUE DINAMIS --}}
-                        <div>
-                            <label class="text-xs font-semibold text-gray-600 uppercase tracking-wider">Nilai (Value) *</label>
-                            <div id="value-container" class="space-y-2 mt-1">
-                                <div class="flex gap-2">
-                                    <input type="text" name="values[]"
-                                        placeholder="Contoh: 1000+"
-                                        class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                        required>
-                                    <button type="button" onclick="addValueField()" class="bg-blue-50 text-blue-600 px-3 py-2 rounded-lg hover:bg-blue-100">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-                            <p class="text-[10px] text-gray-400 mt-1">Klik tombol + untuk menambah nilai lainnya.</p>
-                            @error('values') <p class="text-red-500 text-[10px] mt-1">{{ $message }}</p> @enderror
-                        </div>
+
                     </div>
 
                     <div>
@@ -103,22 +87,5 @@
     </div>
 </div>
 
-{{-- SCRIPT UNTUK INPUT DINAMIS --}}
-<script>
-    function addValueField() {
-        const container = document.getElementById('value-container');
-        const newField = document.createElement('div');
-        newField.className = 'flex gap-2 mt-2';
-        newField.innerHTML = `
-            <input type="text" name="values[]"
-                placeholder="Nilai tambahan..."
-                class="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                required>
-            <button type="button" onclick="this.parentElement.remove()" class="bg-red-50 text-red-600 px-3 py-2 rounded-lg hover:bg-red-100">
-                ✕
-            </button>
-        `;
-        container.appendChild(newField);
-    }
-</script>
+
 @endsection
