@@ -379,9 +379,15 @@
         {{-- Section header --}}
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
             <h2 style="font-size:20px;font-weight:800;color:#0f172a;margin:0;">Pilih Katalog</h2>
-            <span style="font-size:12px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;padding:4px 14px;border-radius:99px;">
-                {{ $catalogs->count() }} katalog tersedia
-            </span>
+            <div style="display:flex; gap: 8px; align-items:center;">
+                <button type="button" onclick="selectCatalog('all')" style="font-size:12px;font-weight:600;color:#fff;background:#2563eb;border:none;padding:5px 12px;border-radius:99px;cursor:pointer;display:flex;align-items:center;gap:4px;transition:all 0.2s;">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    Unduh Semua (ZIP)
+                </button>
+                <span style="font-size:12px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #bfdbfe;padding:4px 14px;border-radius:99px;">
+                    {{ $catalogs->count() }} katalog
+                </span>
+            </div>
         </div>
 
         {{-- Catalog cards --}}
@@ -513,6 +519,7 @@
                         <div class="f-select-wrap">
                             <select id="catalog_select" name="catalog_id" required class="f-input" style="padding-right:36px;">
                                 <option value="">-- Pilih Katalog --</option>
+                                <option value="all">-- Semua Katalog (ZIP) --</option>
                                 @foreach($catalogs as $cat)
                                     <option value="{{ $cat->id }}">{{ $cat->title }}</option>
                                 @endforeach
@@ -560,8 +567,12 @@
 </div>{{-- /page-inner --}}
 </div>{{-- #cat-page --}}
 
+@include('partials.marketing.footer')
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-function selectCatalog(id) {
+function selectCatalog(id, fromDropdown = false) {
     document.querySelectorAll('.cat-row').forEach(function(c) {
         c.classList.remove('is-selected');
     });
@@ -573,15 +584,32 @@ function selectCatalog(id) {
         }
     }
     document.getElementById('catalog_select').value = id;
+
+    if (!fromDropdown) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Informasi',
+            text: 'Silakan isi form di sebelah kanan terlebih dahulu untuk mengunduh katalog.',
+            confirmButtonColor: '#2563eb',
+            confirmButtonText: 'Baik, Isi Form'
+        }).then((result) => {
+            var nameInput = document.querySelector('input[name="name"]');
+            if (nameInput) {
+                document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                nameInput.focus();
+            }
+        });
+    }
 }
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('catalog_select').addEventListener('change', function () {
         if (this.value) {
-            selectCatalog(this.value);
+            selectCatalog(this.value, true);
         } else {
             document.querySelectorAll('.cat-row').forEach(function(c) { c.classList.remove('is-selected'); });
         }
     });
 });
 </script>
+@endpush
 @endsection

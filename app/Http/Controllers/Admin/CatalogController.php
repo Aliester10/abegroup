@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Catalog;
+use App\Models\CatalogLead;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +13,8 @@ class CatalogController extends Controller
     public function index()
     {
         $catalogs = Catalog::latest()->paginate(10);
-        return view('admin.catalogs.index', compact('catalogs'));
+        $recentLeads = CatalogLead::with('catalog')->latest()->take(5)->get();
+        return view('admin.catalogs.index', compact('catalogs', 'recentLeads'));
     }
 
     public function create()

@@ -234,5 +234,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         // Catalog Routes
         Route::resource('catalogs', AdminCatalogController::class);
         Route::get('catalog-leads', [CatalogLeadController::class, 'index'])->name('catalog_leads.index');
+        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     });
 });
