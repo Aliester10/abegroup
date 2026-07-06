@@ -119,47 +119,45 @@
 
   <!-- Recent Data Tables -->
   <div class="grid gap-6 mb-8 md:grid-cols-2">
-    <!-- Recent Banners -->
+    <!-- Company Info -->
     <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
       <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-        Banner Terbaru
+        Informasi Perusahaan
       </h4>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
             <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-              <th class="px-2 py-2">ID</th>
-              <th class="px-2 py-2">Judul / Gambar</th>
-              <th class="px-2 py-2">Dibuat</th>
+              <th class="px-2 py-2">Email</th>
+              <th class="px-2 py-2">Telepon</th>
+              <th class="px-2 py-2">Status</th>
             </tr>
           </thead>
           <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-            @forelse ($recent_banners as $banner)
+            @forelse ($recent_company_info as $info)
               <tr class="text-gray-700 dark:text-gray-400">
                 <td class="px-2 py-2">
-                  <p class="text-sm font-medium">#{{ $banner->id }}</p>
+                  <p class="text-sm font-medium">{{ $info->email }}</p>
                 </td>
                 <td class="px-2 py-2">
-                  <div class="flex items-center text-sm">
-                    @if($banner->image)
-                      <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                        <img class="object-cover w-full h-full rounded-full" src="{{ Storage::url($banner->image) }}" alt="" loading="lazy" />
-                        <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                      </div>
-                    @endif
-                    <div>
-                      <p class="font-semibold">{{ $banner->title ?? 'Banner' }}</p>
-                    </div>
-                  </div>
+                  <p class="text-sm">{{ $info->phone }}</p>
                 </td>
                 <td class="px-2 py-2">
-                  <p class="text-sm">{{ $banner->created_at->format('d M Y') }}</p>
+                  @if($info->is_active)
+                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                      Aktif
+                    </span>
+                  @else
+                    <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:bg-red-700 dark:text-red-100">
+                      Tidak Aktif
+                    </span>
+                  @endif
                 </td>
               </tr>
             @empty
               <tr>
                 <td colspan="3" class="px-2 py-4 text-center text-gray-500 dark:text-gray-400">
-                  Belum ada data banner
+                  Belum ada data informasi perusahaan
                 </td>
               </tr>
             @endforelse

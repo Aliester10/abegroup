@@ -25,10 +25,10 @@ class DashboardController extends Controller
             'total_jobs' => JobVacancy::count(),
         ];
 
-        $recent_banners = Banner::latest()->take(5)->get();
+        $recent_company_info = \App\Models\CompanyInfo::latest()->take(5)->get();
         $recent_news = News::latest()->take(5)->get();
         $recent_users = User::latest()->take(5)->get();
 
-        return view('dashboard.index', compact('stats', 'recent_banners', 'recent_news', 'recent_users'));
+        return view('dashboard.index', compact('stats', 'recent_company_info', 'recent_news', 'recent_users'));
     }
 }
