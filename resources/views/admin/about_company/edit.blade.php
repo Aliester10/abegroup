@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
 
         {{-- ================= FORM UTAMA ================= --}}
-        <div class="lg:col-span-3">
+        <div class="lg:col-span-4">
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-xl font-semibold text-gray-800">Edit Poin About</h1>
                 <a href="{{ route('admin.about.index') }}" class="text-blue-600 hover:underline text-sm font-medium">
@@ -76,32 +76,7 @@
             </div>
         </div>
 
-        {{-- ================= PANDUAN RINGKAS ================= --}}
-        <div class="lg:col-span-1">
-            <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 sticky top-6">
-                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">
-                    💡 Info Perubahan
-                </h3>
 
-                <ul class="text-[11px] text-gray-600 space-y-4 leading-relaxed">
-                    <li>
-                        <strong class="text-gray-800 block">Multiple Values</strong>
-                        Anda sekarang bisa memasukkan lebih dari satu angka jika poin ini mencakup beberapa statistik sekaligus.
-                    </li>
-                    <li>
-                        <strong class="text-gray-800 block">Riwayat Gambar</strong>
-                        Gambar lama akan otomatis dihapus oleh sistem jika Anda mengunggah gambar baru.
-                    </li>
-                    <li>
-                        <strong class="text-gray-800 block">Validasi</strong>
-                        Pastikan Nilai (Value) tetap ringkas agar tidak merusak tampilan counter statistik di frontend.
-                    </li>
-                    <li class="pt-2 italic text-gray-400 border-t border-gray-200">
-                        Perubahan akan langsung berdampak pada halaman "Tentang Kami".
-                    </li>
-                </ul>
-            </div>
-        </div>
 
     </div>
 </div>
